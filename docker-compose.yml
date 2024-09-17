@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: frankfurt_school_manager
+      MYSQL_USER: root
+      MYSQL_PASSWORD: '@Tacitus0202'
+      MYSQL_ROOT_PASSWORD: '@Tacitus0202'
+
+  web:
+    build: .
+    command: gunicorn frankfurt_school_manager.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DJANGO_DB_HOST=db
+      - DJANGO_DB_PORT=3306
+      - DJANGO_DB_NAME=frankfurt_school_manager
+      - DJANGO_DB_USER=root
+      - DJANGO_DB_PASSWORD=@Tacitus0202
+
+  tailwind:
+    image: node:18
+    working_dir: /app
+    command: npm run start:tailwind
+    volumes:
+      - .:/app
+    depends_on:
+      - web
+
+volumes:
+  mysql_data:
