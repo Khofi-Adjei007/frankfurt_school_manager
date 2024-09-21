@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('logins/', include("access_control.gateway.urls")),
-    path('users/', include("fsm_core_users.users.urls")),
+    path('access_control/gateway/', include("access_control.gateway.urls")),
+    path('fsm_core_users/users/', include("fsm_core_users.users.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
 ]

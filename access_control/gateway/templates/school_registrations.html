@@ -1,0 +1,120 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frankfurt School Manager | School Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-100">
+    <!-- Centered Form Container -->
+    <div class="flex min-h-screen items-center justify-center px-4 -mt-4">
+
+        <div class="w-full max-w-3xl bg-gray-100 p-8 shadow-md rounded-lg">
+            <!-- Logo -->
+            <img src="{% static 'imgs/frankfurtlogoweb.png' %}" alt="Frankfurt School Manager Logo" class="mx-auto -mb-14 -mt-16 h-56 w-56 object-contain">
+
+            <div class="text-center mb-6">
+                <!-- Heading and Description -->
+                <h2 class="text-3xl font-bold text-red-600">Join Our School Network</h2>
+                <p class="text-gray-500 mt-2">Complete the form to start managing your school's operations effortlessly.</p>
+            </div>
+            
+                  
+
+            <form action="#" method="POST" class="space-y-6">
+
+                <!-- School Name and Type of School -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="school_name" class="block text-sm font-medium text-gray-700">School Name</label>
+                        <input id="school_name" name="school_name" type="text" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="school_type" class="block text-sm font-medium text-gray-700">Type of School</label>
+                        <select id="school_type" name="school_type" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                            <option value="Private">Private</option>
+                            <option value="Public">Public</option>
+                            <option value="Chartered">Chartered</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Year Established and Physical Address -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="year_established" class="block text-sm font-medium text-gray-700">Year Established</label>
+                        <input id="year_established" name="year_established" type="date" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="physical_address" class="block text-sm font-medium text-gray-700">Physical Address</label>
+                        <input id="physical_address" name="physical_address" type="text" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Digital Address and Contact -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="digital_address" class="block text-sm font-medium text-gray-700">Digital Address</label>
+                        <input id="digital_address" name="digital_address" type="text" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="official_contact" class="block text-sm font-medium text-gray-700">Official Contact</label>
+                        <input id="official_contact" name="official_contact" type="text" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Email and Social Media -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input id="email" name="email" type="email" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="social_media" class="block text-sm font-medium text-gray-700">Social Media (Optional)</label>
+                        <input id="social_media" name="social_media" type="text" 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Student and Staff Population -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="student_population" class="block text-sm font-medium text-gray-700">Student Population</label>
+                        <input id="student_population" name="student_population" type="number" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="staff_population" class="block text-sm font-medium text-gray-700">Staff Population</label>
+                        <input id="staff_population" name="staff_population" type="number" required 
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-6">
+                    <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Register School
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-6">
+                <p class="text-gray-600">Already have an account? 
+                    <a href="#" class="font-medium text-red-600 hover:text-red-500">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

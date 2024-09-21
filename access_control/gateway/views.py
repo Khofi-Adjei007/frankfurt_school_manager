@@ -9,5 +9,5 @@ def logins(request):
     return render(request, "logins.html")
 
 
-def create_school(request):
-    return render(request, "new_school_instance.html")
+def school_registration(request):
+    return render(request, "school_registrations.html")

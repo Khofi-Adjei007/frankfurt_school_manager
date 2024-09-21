@@ -16,6 +16,8 @@ services:
     command: gunicorn frankfurt_school_manager.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
+      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
     ports:
       - "8000:8000"
     depends_on:
@@ -33,6 +35,8 @@ services:
     command: npm run start:tailwind
     volumes:
       - .:/app
+      - ./static:/app/static
+      - ./staticfiles:/app/staticfiles
     depends_on:
       - web
 

@@ -1,0 +1,11 @@
+{
+    "name": "frankfurt_school_manager",
+    "version": "1.0.0",
+    "scripts": {
+      "start:tailwind": "npx tailwindcss -i ./staticfiles/css/dist/input.css -o ./static/css/dist/styles.css --watch"
+    },
+    "devDependencies": {
+      "tailwindcss": "^3.4.11"
+    }
+  }
+  
