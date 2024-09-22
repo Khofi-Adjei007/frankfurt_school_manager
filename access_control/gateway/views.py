@@ -11,3 +11,6 @@ def logins(request):
 
 def school_registration(request):
     return render(request, "school_registrations.html")
+
+def service_homepage(request):
+    return render(request, "service_homepage.html")
