@@ -15,87 +15,120 @@
 
 <div class="min-h-screen  bg-gray-300 bg-cover bg-center py-10">
     <div class="min-h-10 flex justify-center">
-        <div class="bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[85%]">
-
-            
+        <div class="bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[85%] relative">
 
             <div class="w-full bg-gray-100 shadow-lg mb-10 flex flex-col lg:flex-row items-center justify-center space-y-2 lg:space-y-0">
                 <!-- Logo Section -->
                 <div class="flex-shrink-0"><img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="max-h-56 max-w-56"></div>
-            
                 <!-- Text Section
                 <h1 class="text-xl lg:text-2xl font-bold text-gray-800 uppercase tracking-wide text-center lg:text-left">Frankfurt Montessori Schools</h1> -->
             </div>
             
             
             
-            
+            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10" >
 
-                <div class="items-center justify-center mx-auto ml-7 grid grid-cols-3 p-2 mb-10 ">
-                <div class="max-w-sm p-6 bg-green-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <svg class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
+                <!-- First Card -->
+                <div class="max-w-sm p-6 bg-green-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 fade-in-right">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4142 3L12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142ZM13 9H11V15H16V13H13V9Z"></path></svg>
                     <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-200 dark:text-white">Admissions & Registrations</h5></a>
-                    <p class="mb-3 font-normal text-gray-200 dark:text-gray-400 italic">Admit new students and register new staffs here</p>
-                    <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">See our guideline
-                    <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                    </svg>
-                    </a>
+                    <p class="mb-3 font-normal text-gray-200 text-sm dark:text-gray-400 italic">Admit new students and register new staff here.</p>
+                    <div class="flex flex-col-4 mt-8 text-gray-300">
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Students</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Teachers</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Other Staffs</span>
+                   </div>
+                </div>
+            
+                <!-- Second Card -->
+                <div class="max-w-sm p-6 bg-violet-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M16 16C17.6569 16 19 17.3431 19 19C19 20.6569 17.6569 22 16 22C14.3431 22 13 20.6569 13 19C13 17.3431 14.3431 16 16 16ZM6 12C8.20914 12 10 13.7909 10 16C10 18.2091 8.20914 20 6 20C3.79086 20 2 18.2091 2 16C2 13.7909 3.79086 12 6 12ZM14.5 2C17.5376 2 20 4.46243 20 7.5C20 10.5376 17.5376 13 14.5 13C11.4624 13 9 10.5376 9 7.5C9 4.46243 11.4624 2 14.5 2Z"></path></svg>
+                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Reports and Analytics</h5></a>
+                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">See all that is happening and projections</p>
+                    <div class="flex flex-col-4 mt-8 text-gray-300">
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Revenues</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Expenses</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Live Reports</span>
+                    </div>
+                </div>
+            
+                <!-- Third Card -->
+                <div class="max-w-sm p-6 bg-orange-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M21 10.063V4C21 3.44772 20.5523 3 20 3H19C17.0214 4.97864 13.3027 6.08728 11 6.61281V17.3872C13.3027 17.9127 17.0214 19.0214 19 21H20C20.5523 21 21 20.5523 21 20V13.937C21.8626 13.715 22.5 12.9319 22.5 12 22.5 11.0681 21.8626 10.285 21 10.063ZM5 7C3.89543 7 3 7.89543 3 9V15C3 16.1046 3.89543 17 5 17H6L7 22H9V7H5Z"></path></svg>
+                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Communications</h5></a>
+                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">Send and receieve Communications...</p>
+                    <div class="flex flex-col-4 mt-6 text-gray-300">
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Staff</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Parents</span>
+                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>students</span>
+                    </div>
                 </div>
 
-                <div class="max-w-sm p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5></a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                    <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">See our guideline
-                    <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                    </svg>
-                    </a>
-                </div>
+                    <!-- Fourth Card -->
+                    <div class="max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3"  viewBox="0 0 24 24" fill="currentColor"><path d="M16 2H4C3.44772 2 3 2.44772 3 3V21C3 21.5523 3.44772 22 4 22H12.2547C11.4638 20.8662 11 19.4872 11 18C11 14.134 14.134 11 18 11C19.0736 11 20.0907 11.2417 21 11.6736V7L16 2ZM13.7857 15.3269C13.8246 14.5997 14.3858 14.0083 15.11 13.9313L15.9807 13.8389C16.0841 13.8279 16.1815 13.7845 16.2589 13.715L16.9102 13.1299C17.4519 12.6431 18.2669 12.6218 18.8334 13.0795L19.5145 13.6298C19.5954 13.6951 19.6949 13.7333 19.7988 13.7389L20.6731 13.7857C21.4003 13.8246 21.9917 14.3858 22.0687 15.11L22.1611 15.9807C22.1721 16.0841 22.2155 16.1815 22.285 16.2589L22.8701 16.9102C23.3569 17.4519 23.3782 18.2669 22.9205 18.8334L22.3702 19.5145C22.3049 19.5954 22.2667 19.6949 22.2611 19.7988L22.2143 20.6731C22.1754 21.4003 21.6142 21.9917 20.89 22.0687L20.0193 22.1611C19.9159 22.1721 19.8185 22.2155 19.7411 22.285L19.0898 22.8701C18.5481 23.3569 17.7331 23.3782 17.1666 22.9205L16.4855 22.3702C16.4046 22.3049 16.3051 22.2667 16.2012 22.2611L15.3269 22.2143C14.5997 22.1754 14.0083 21.6142 13.9313 20.89L13.8389 20.0193C13.8279 19.9159 13.7845 19.8185 13.715 19.7411L13.1299 19.0898C12.6431 18.5481 12.6218 17.733 13.0795 17.1666L13.6298 16.4855C13.6951 16.4046 13.7333 16.3051 13.7389 16.2012L13.7857 15.3269ZM21.0303 17.0303L19.9697 15.9697L17.5 18.4393L16.0303 16.9697L14.9697 18.0303L16.9697 20.0303L17.5 20.5607L18.0303 20.0303L21.0303 17.0303Z"></path></svg>
+                        <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Examinations and Gradings</h5></a>
+                        <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 text-sm italic">See all activities due on examinations & gradings</p>
+                        <div class="flex flex-col-4 mt-6 text-gray-300">
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Gradings</span>
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Examinations</span>
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Resits</span>
+                        </div>
+                    </div>
 
-                <div class="max-w-sm p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Need a help in Claim?</h5></a>
-                    <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
-                    <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">See our guideline
-                    <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
-                    </svg>
-                    </a>
-                </div>
-                </div>
+                        <!-- Firth Card -->
+                    <div class="max-w-sm p-6 bg-red-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9V3H15V1H17V3ZM4 9V19H20V9H4ZM6 13H11V17H6V13Z"></path></svg>
+                        <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Events & Time-table</h5></a>
+                        <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 italic text-sm">All year calender and events</p>
+                        <div class="flex flex-col-4 mt-6 text-gray-300">
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Games</span>
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Holidays</span>
+                        <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Extra Curricullar</span>
+                        </div>
+                    </div>
 
+                    <!-- Third Card -->
+                    <div class="max-w-sm p-6 bg-rose-900 relative border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3 relative z-10" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21H14C14.5523 21 15 20.5523 15 20V10.6973L17.0215 20.2076C17.1363 20.7479 17.6673 21.0927 18.2075 20.9779L21.142 20.3541C21.6822 20.2393 22.027 19.7083 21.9122 19.1681L19.0015 5.47402C18.8866 4.9338 18.3556 4.58896 17.8154 4.70378L15 5.30221V5C15 4.44772 14.5523 4 14 4H9C9 3.44772 8.55228 3 8 3H4ZM9 6H13V14H9V6ZM13 16V19H9V16H13ZM7 17V19H5V17H7ZM18.7699 18.8137L18.3541 16.8577L19.3323 16.6498L19.748 18.6058L18.7699 18.8137Z"></path>
+                        </svg>
+                        <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white relative z-10">Library & I.C.T</h5></a>
+                        <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 italic text-sm relative z-10">All Library and Information Technology activities</p>
+                        <div class="flex flex-col-4 mt-6 text-gray-300 relative z-10">
+                            <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Library</span>
+                            <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>I.C.T</span>
+                            <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Hackertons</span>
+                        </div>
+                    </div>
+                    
+            </div>
+            
              
             
-                <!--Header login, Notifications and others Start-->
-                <div class="w-full bg-red-500 mt-10 py-2 px-4 border-t-2 border-red-400 flex items-center justify-between">
+            <!--Header login, Notifications and others Start-->
+            <div class="w-full bg-red-600 mt-10 py-2 px-8 border-t-2 border-red-400 flex items-center justify-between ">
 
-                    <!-- User Avatar and Info -->
-                    <div class="flex items-center space-x-4">
-                        <!-- User Avatar -->
-                        <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" alt="Bordered avatar">
+                <!-- User Avatar and Info -->
+                <div class="flex items-center space-x-4">
+                    <!-- User Avatar -->
+                    <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" alt="Bordered avatar">
                         
-                        <!-- User Information -->
-                        <div class="flex flex-col">
-                            <!-- Username and SVG icon -->
-                            <div class="flex items-center space-x-1">
-                                <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
-                                    <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
-                                </svg>
-                            </div>
+                    <!-- User Information -->
+                    <div class="flex flex-col">
 
-                            <!-- User role -->
-                            <p class="text-gray-100 font-thin text-xs md:text-sm">
-                                <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Admin</span>Frankfurt Int. School
+                    <!-- Username and SVG icon -->
+                        <div class="flex items-center space-x-1">
+                            <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                            <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                            </svg>
+                        </div>
+
+                    <!-- User role -->
+                        <p class="text-gray-100 font-thin text-xs md:text-sm">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Admin</span>Frankfurt Int. School
                             </p>
                         </div>
                     </div>
@@ -109,6 +142,9 @@
                             <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900"></div>
                         </button>
 
+                         <!-- Divider -->
+                        <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+    
                         <!-- Chat Icon -->
                         <button class="relative">
                             <svg class="w-6 h-6 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -117,8 +153,8 @@
                             </svg>  
                         </button>
                     </div>
-                </div>
-                <!--Header login, Notifications and others Ends-->
+            </div>
+            <!--Header login, Notifications and others Ends-->
 
             </div>
         </div>

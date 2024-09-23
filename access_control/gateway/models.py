@@ -11,7 +11,6 @@ class School(models.Model):
     name = models.CharField(max_length=255)
     physical_address = models.CharField(max_length=255)
     digital_address = models.CharField(max_length=255)
-    
     population = models.PositiveIntegerField()  
     official_contact = models.CharField(max_length=13)
     year_established = models.PositiveIntegerField() 
