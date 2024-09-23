@@ -1,0 +1,433 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions & Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+
+<body class="bg-gray-100">
+    <style>
+        .active-tab {border-bottom-color: #ef4444; /* Red color for the active tab */}
+        .hidden {display: none;}
+        .active-form {display: block;}
+    </style>
+    
+
+    <!-- Centered Form Container -->
+    <div class="flex min-h-screen items-center justify-center px-4 lg:-mt-10 md:pt-4">
+        <div class="w-full max-w-3xl bg-gray-50 p-8 shadow-md mb-6 rounded-lg mt-4 md:mt-20 lg:mt-8">
+        
+
+
+        <!--Logos and heads-->
+        <div class="w-full bg-gray-50 mb-6 -mt-14 lg:mt-2 md:mt-8 p-4 lg:p-6 flex flex-row items-center justify-center space-x-4 relative">
+            <!-- Home Icon (Positioned to the far left) -->
+            <div class="absolute left-0 top-0 lg:top-auto lg:left-4 lg:ml-4 flex items-center">
+                <a href="#" class="text-red-500 hover:text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-sm" fill="currentColor">
+                <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM12 15C13.3807 15 14.5 13.8807 14.5 12.5C14.5 11.1193 13.3807 9.99998 12 9.99998C10.6193 9.99998 9.5 11.1193 9.5 12.5C9.5 13.8807 10.6193 15 12 15Z"></path>
+                </svg>
+                </a>
+            </div>
+            <!-- Logo Section -->
+            <div class="flex-shrink-0"><img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-6 max-h-40 max-w-40"></div>
+
+            <!-- Divider -->
+            <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+
+            <!-- Other Logo Section -->
+            <div class="flex-shrink-0"><img src="{% static 'imgs/otherschool.jpg' %}" alt="Other School Logo" class="ml-6 max-h-16 max-w-16"></div>
+        </div>
+
+
+        <!-- Button Container -->
+        <div class="flex justify-center mb-8 space-x-4">
+            <button id="student-btn" class="text-red-600 font-bold uppercase tab-btn px-6 py-2 bg-red-50 border-b-4 border-transparent active-tab">Admit New Student</button>
+            <button id="staff-btn" class="tab-btn px-6 py-2 bg-red-50 text-red-600 font-bold uppercase border-b-4 border-transparent">Register New Staff</button>
+        </div>
+        
+        <!-- Form Container -->
+        <div id="form-container">
+            <form id="student-form" class="active-form space-y-2">
+                
+                <div class="bg-green-50 px-4 space-y-4 mb-6">
+                <!-- Student Information -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input id="first_name" name="first_name" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="middle_name" class="block text-sm font-medium text-gray-700">Middle Name (Optional)</label>
+                        <input id="middle_name" name="middle_name" type="text"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input id="last_name" name="last_name" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                        <input id="date_of_birth" name="date_of_birth" type="date" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="height" class="block text-sm font-medium text-gray-700">Height (in cm)</label>
+                        <input id="height" name="height" type="number" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="complexion" class="block text-sm font-medium text-gray-700">Complexion</label>
+                        <input id="complexion" name="complexion" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="hometown" class="block text-sm font-medium text-gray-700">Hometown</label>
+                        <input id="hometown" name="hometown" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="native_language" class="block text-sm font-medium text-gray-700">Native Language</label>
+                        <input id="native_language" name="native_language" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div>
+                    <label for="residential_address" class="block text-sm font-medium text-gray-700">Residential Address</label>
+                    <input id="residential_address" name="residential_address" type="text" required
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="previous_school" class="block text-sm font-medium text-gray-700">Previous School</label>
+                        <input id="previous_school" name="previous_school" type="text"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="sports" class="block text-sm font-medium text-gray-700">Does student play any sport?</label>
+                        <input id="sports" name="sports" type="text"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="talents" class="block text-sm font-medium text-gray-700">Any known talents</label>
+                        <input id="talents" name="talents" type="text"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="medical_conditions" class="block text-sm font-medium text-gray-700">Any known medical conditions</label>
+                        <input id="medical_conditions" name="medical_conditions" type="text"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div>
+                    <label for="student_photo" class="block text-sm font-medium text-gray-700">Photo</label>
+                    <input id="student_photo" name="student_photo" type="file" accept="image/*"
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                </div>
+            
+                <div class="bg-red-50 py-2 px-5 space-y-4 mb-4">
+                <!-- Parent Information -->
+                <h3 class="text-lg text-red-600 font-semibold mt-3 mb-6">Parent Details</h3>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="father_name" class="block text-sm font-medium text-gray-700">Father's Name</label>
+                        <input id="father_name" name="father_name" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="father_occupation" class="block text-sm font-medium text-gray-700">Father's Occupation</label>
+                        <input id="father_occupation" name="father_occupation" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="father_tel" class="block text-sm font-medium text-gray-700">Father's Tel</label>
+                        <input id="father_tel" name="father_tel" type="tel" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="father_email" class="block text-sm font-medium text-gray-700">Father's Email</label>
+                        <input id="father_email" name="father_email" type="email"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="mother_name" class="block text-sm font-medium text-gray-700">Mother's Name</label>
+                        <input id="mother_name" name="mother_name" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="mother_occupation" class="block text-sm font-medium text-gray-700">Mother's Occupation</label>
+                        <input id="mother_occupation" name="mother_occupation" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="mother_tel" class="block text-sm font-medium text-gray-700">Mother's Tel</label>
+                        <input id="mother_tel" name="mother_tel" type="tel" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="mother_email" class="block text-sm font-medium text-gray-700">Mother's Email</label>
+                        <input id="mother_email" name="mother_email" type="email"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="parent_residential_address" class="block text-sm font-medium text-gray-700">Residential Address</label>
+                        <input id="parent_residential_address" name="parent_residential_address" type="text" required
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="parent_email" class="block text-sm font-medium text-gray-700">Parent's Email</label>
+                        <input id="parent_email" name="parent_email" type="email"
+                               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            </div>
+            
+                <!-- Submit -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            
+
+
+            
+            <form id="staff-form" class="hidden">
+
+            <!-- Staff Information -->
+            <div class="bg-green-50 px-4 space-y-2 mb-6 py-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label><input id="first_name" name="first_name" type="text" required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="middle_name" class="block text-sm font-medium text-gray-700">Middle Name (Optional)</label>
+                    <input id="middle_name" name="middle_name" type="text"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+            </div>
+        
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <input id="last_name" name="last_name" type="text" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                    <input id="date_of_birth" name="date_of_birth" type="date" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+            </div>
+        
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <label for="native_language" class="block text-sm font-medium text-gray-700">Native Language</label>
+                    <input id="native_language" name="native_language" type="text" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="telephone" class="block text-sm font-medium text-gray-700">Telephone</label>
+                    <input id="telephone" name="telephone" type="tel" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+            </div>
+        
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="email" name="email" type="email" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                <div>
+                    <label for="residential_address" class="block text-sm font-medium text-gray-700">Residential Address</label>
+                    <input id="residential_address" name="residential_address" type="text" required
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+            </div>
+        
+            <div>
+                <label for="marital_status" class="block text-sm font-medium text-gray-700">Marital Status</label>
+                <select id="marital_status" name="marital_status" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    <option value="">Select Marital Status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                </select>
+            </div>
+            </div>
+
+            <div class="bg-red-50 px-4 space-y-2 mb-6 py-4 hidden">
+                <!-- Conditional Spouse Information for Married Status -->
+                <div id="spouse-info" class="space-y-6 hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div>
+                            <label for="spouse_name" class="block text-sm font-medium text-gray-700">Spouse's Name</label>
+                            <input id="spouse_name" name="spouse_name" type="text"
+                                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="spouse_contact" class="block text-sm font-medium text-gray-700">Spouse's Contact</label>
+                            <input id="spouse_contact" name="spouse_contact" type="tel"
+                                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="spouse_residential_address" class="block text-sm font-medium text-gray-700">Spouse's Residential Address</label>
+                        <input id="spouse_residential_address" name="spouse_residential_address" type="text"
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bg-yellow-50 px-4 space-y-2 mb-2 py-4">
+                <!-- Next of Kin Information -->
+                <h3 class="text-lg font-semibold mt-2">Next of Kin Information</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="next_of_kin_name" class="block text-sm font-medium text-gray-700">Next of Kin's Name</label>
+                        <input id="next_of_kin_name" name="next_of_kin_name" type="text" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="next_of_kin_contact" class="block text-sm font-medium text-gray-700">Next of Kin's Contact</label>
+                        <input id="next_of_kin_contact" name="next_of_kin_contact" type="tel" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="relation_to_next_of_kin" class="block text-sm font-medium text-gray-700">Relation to Next of Kin</label>
+                        <input id="relation_to_next_of_kin" name="relation_to_next_of_kin" type="text" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="bg-rose-50 px-4 space-y-2 mb-6 py-4">
+                <!-- Employment Information -->
+                <h3 class="text-lg font-semibold mt-2">Employment Information</h3>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="position_applied" class="block text-sm font-medium text-gray-700">Position/Area of Admissions</label>
+                        <input id="position_applied" name="position_applied" type="text" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                        placeholder="e.g., Nursery Tutor, High School Mathematics Teacher, Administrator">
+                    </div>
+                    <div>
+                        <label for="qualifications" class="block text-sm font-medium text-gray-700">Qualifications</label>
+                        <input id="qualifications" name="qualifications" type="text" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                        placeholder="e.g., Bsc. Pupil Education">
+                    </div>
+                </div>
+            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <label for="expertise_area" class="block text-sm font-medium text-gray-700">Actual Area of Expertise</label>
+                        <input id="expertise_area" name="expertise_area" type="text" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                                placeholder="e.g., Classroom Management, Teaching Mathematics, Administration">
+                    </div>
+                    <div>
+                        <label for="years_of_experience" class="block text-sm font-medium text-gray-700">Years of Work Experience</label>
+                        <input id="years_of_experience" name="years_of_experience" type="number" min="0" required
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                </div>
+            
+                <div>
+                    <label for="previous_workplace" class="block text-sm font-medium text-gray-700">Previous Workplace</label>
+                    <input id="previous_workplace" name="previous_workplace" type="text"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
+                </div>
+            
+                <!-- Submit -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Register Staff
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+        
+    </div>
+    </div>
+
+    <script>
+        const studentBtn = document.getElementById('student-btn');
+        const staffBtn = document.getElementById('staff-btn');
+        const studentForm = document.getElementById('student-form');
+        const staffForm = document.getElementById('staff-form');
+    
+        // Set initial state: show the student form by default
+        studentForm.classList.add('active-form');
+        staffForm.classList.add('hidden');
+        studentBtn.classList.add('active-tab');
+    
+        // Add event listeners for both buttons
+        studentBtn.addEventListener('click', () => {
+            // Show student form and hide staff form
+            studentBtn.classList.add('active-tab');
+            staffBtn.classList.remove('active-tab');
+            studentForm.classList.remove('hidden');
+            studentForm.classList.add('active-form');
+            staffForm.classList.add('hidden');
+            staffForm.classList.remove('active-form');
+        });
+    
+        staffBtn.addEventListener('click', () => {
+            // Show staff form and hide student form
+            staffBtn.classList.add('active-tab');
+            studentBtn.classList.remove('active-tab');
+            staffForm.classList.remove('hidden');
+            staffForm.classList.add('active-form');
+            studentForm.classList.add('hidden');
+            studentForm.classList.remove('active-form');
+        });
+    </script>
+    
+
+</body>
+</html>
