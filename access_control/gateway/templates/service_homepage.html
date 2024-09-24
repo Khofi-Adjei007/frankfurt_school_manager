@@ -13,34 +13,77 @@
 </head>
 <body>
 
-<div class="min-h-screen  bg-gray-300 bg-cover bg-center py-10">
+<div class="min-h-screen  bg-gray-300 bg-cover bg-center">
     <div class="min-h-10 flex justify-center">
 
-        <div class="bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[85%] relative">
+        <div class="relative bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[85%] top-0 left-0 right-0 h-screen overflow-y-auto">
             <div class="absolute inset-0 bg-center opacity-10" style="background-image: url('{% static 'imgs/background.jpg' %}');"></div>
             <div class="relative z-10">
-                
-                
-            <!--Logos and heads-->
-            <div class="w-full bg-gray-50 border border-b-red-500 shadow-lg mb-10 flex flex-col lg:flex-row items-center justify-center lg:space-y-0">
-                <!-- Logo Section -->
-                <div class="flex-shrink-0"><img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-6 max-h-40 max-w-40"></div>
+        
+                 
+            <!--Header login, Notifications and others Start-->
+            <div class="sticky top-0 left-0 right-0 z-50 w-full bg-red-600 py-2 px-8 border-t-2 mb-6 border-red-400 flex items-center justify-between ">
 
-                <!-- Divider -->
-                <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+                <!-- User Avatar and Info -->
+                <div class="flex items-center space-x-4">
+                    <!-- User Avatar -->
+                    <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" alt="Bordered avatar">
+                        
+                    <!-- User Information -->
+                    <div class="flex flex-col">
 
-                <div class="flex-shrink-0"><img src="{% static 'imgs/otherschool.jpg' %}" alt="Frankfurt School Manager Logo" class="ml-6 max-h-16 max-w-16"></div>
-                <!-- Text Section
-                <h1 class="text-xl lg:text-2xl font-bold text-gray-800 uppercase tracking-wide text-center lg:text-left">Frankfurt Montessori Schools</h1> -->
+                    <!-- Username and SVG icon -->
+                        <div class="flex items-center space-x-1">
+                            <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                            <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                            </svg>
+                        </div>
+
+                    <!-- User role -->
+                        <p class="text-gray-100 font-thin text-xs md:text-sm">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Admin</span>Frankfurt Int. School
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Icons for Notifications and Chat -->
+                    <div class="flex items-center space-x-6 mr-3 md:mr-6 bg-red-100 border border-gray-200 p-2 rounded-lg ring-2 ring-red-100 ring-offset-2">
+                        <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-red-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" type="button">
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                            <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+                            </svg> 
+                            <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900"></div>
+                        </button>
+
+                         <!-- Divider -->
+                        <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+    
+                        <!-- Chat Icon -->
+                        <button class="relative">
+                            <svg class="w-6 h-6 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z" clip-rule="evenodd"/>
+                            </svg>  
+                        </button>
+
+                           <!-- Divider -->
+                           <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+                           <button class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 dark:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"></path></svg>
+                        </button>
+                    </div>
             </div>
-            
-            
-            <div class="max-w-7xl mx-auto grid grid-cols-1 space-y-3 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10">
+            <!--Header login, Notifications and others Ends-->
+
+                
+            <div class=" max-w-7xl mx-auto ml-4 grid grid-cols-1 space-y-3 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10">
                 <!-- First Card -->
                 <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-200 ...animate-breathing max-w-sm p-6 bg-green-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-green-600 ring-offset-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4142 3L12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142ZM13 9H11V15H16V13H13V9Z"></path></svg>
                     <a href="{% url 'admissions_and_registrations' %}"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-200 dark:text-white">Admissions & Registrations</h5></a>
-                    <p class="mb-3 font-normal text-gray-200 text-sm dark:text-gray-400 italic">Admit new students and register new staff here.</p>
+                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">Admit new students and register new staff here.</p>
                     <div class="flex flex-col-4 mt-8 text-gray-300">
                     <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Students</span>
                     <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Teachers</span>
@@ -109,67 +152,22 @@
                     <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>I.C.T</span>
                     <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Hackertons</span>
                     </div>
-                </div>       
+                </div>
             </div>
             
-             
-            
-            <!--Header login, Notifications and others Start-->
-            <div class="w-full bg-red-600 mt-10 py-2 px-8 border-t-2 border-red-400 flex items-center justify-between ">
+             <!--Logos and heads-->
+            <div class="w-full bg-gray-50 border border-t-red-500 shadow-lg  flex flex-col lg:flex-row items-center justify-center lg:space-y-0">
+                <!-- Logo Section -->
+                <div class="flex-shrink-0"><img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-6 max-h-40 max-w-40"></div>
 
-                <!-- User Avatar and Info -->
-                <div class="flex items-center space-x-4">
-                    <!-- User Avatar -->
-                    <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" alt="Bordered avatar">
-                        
-                    <!-- User Information -->
-                    <div class="flex flex-col">
+                <!-- Divider -->
+                <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
 
-                    <!-- Username and SVG icon -->
-                        <div class="flex items-center space-x-1">
-                            <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
-                            <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
-                            </svg>
-                        </div>
-
-                    <!-- User role -->
-                        <p class="text-gray-100 font-thin text-xs md:text-sm">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Admin</span>Frankfurt Int. School
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Icons for Notifications and Chat -->
-                    <div class="flex items-center space-x-6 mr-3 md:mr-6 bg-red-100 border border-gray-200 p-2 rounded-lg ring-2 ring-red-100 ring-offset-2">
-                        <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-red-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" type="button">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                            <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
-                            </svg> 
-                            <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900"></div>
-                        </button>
-
-                         <!-- Divider -->
-                        <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-    
-                        <!-- Chat Icon -->
-                        <button class="relative">
-                            <svg class="w-6 h-6 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z" clip-rule="evenodd"/>
-                            </svg>  
-                        </button>
-
-                           <!-- Divider -->
-                           <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-                           <button class="relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 dark:text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"></path></svg>
-                        </button>
-                    </div>
+                <div class="flex-shrink-0"><img src="{% static 'imgs/otherschool.jpg' %}" alt="Frankfurt School Manager Logo" class="ml-6 max-h-16 max-w-16"></div>
+                <!-- Text Section
+                <h1 class="text-xl lg:text-2xl font-bold text-gray-800 uppercase tracking-wide text-center lg:text-left">Frankfurt Montessori Schools</h1> -->
             </div>
-            <!--Header login, Notifications and others Ends-->
-
+           
             </div>
         </div>
     </div>

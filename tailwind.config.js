@@ -1,8 +1,9 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './templates/**/*.html',   
-    './staticfiles/**/*.css',  
-    './static/**/*.js',        
+    './templates/**/*.html',    // Adjust to your actual HTML template paths
+    './static/**/*.css',        // Assuming your CSS files are here
+    './static/**/*.js',         // Adjust to your actual JS paths
     '!./node_modules/**/*',
   ],
   theme: {
@@ -18,6 +19,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-}
-
+  plugins: [
+    require('@tailwindcss/forms'),          // Forms plugin
+    require('@tailwindcss/typography'),     // Typography plugin
+    require('@tailwindcss/aspect-ratio'),   // Aspect Ratio plugin
+  ],
+};

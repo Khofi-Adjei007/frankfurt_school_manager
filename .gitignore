@@ -1,2 +1,8 @@
-/.venv/
-/node_modules/
+# Ignore virtual environment
+.myvenv
+
+# Ignore Node.js modules
+node_modules/
+
+# Ignore Python dependencies
+requirements.txt
