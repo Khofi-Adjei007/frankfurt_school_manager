@@ -27,7 +27,7 @@
         <div class="w-full bg-gray-50 mb-6 -mt-14 lg:mt-2 md:mt-8 p-4 lg:p-6 flex flex-row items-center justify-center space-x-4 relative">
             <!-- Home Icon (Positioned to the far left) -->
             <div class="absolute left-0 top-0 lg:top-auto lg:left-4 lg:ml-4 flex items-center">
-                <a href="#" class="text-red-500 hover:text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-sm" fill="currentColor">
+                <a href="{% url 'service_homepage' %}" class="text-red-500 hover:text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-sm" fill="currentColor">
                 <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM12 15C13.3807 15 14.5 13.8807 14.5 12.5C14.5 11.1193 13.3807 9.99998 12 9.99998C10.6193 9.99998 9.5 11.1193 9.5 12.5C9.5 13.8807 10.6193 15 12 15Z"></path>
                 </svg>
                 </a>
@@ -49,11 +49,14 @@
             <button id="staff-btn" class="tab-btn px-6 py-2 bg-red-50 text-red-600 font-bold uppercase border-b-4 border-transparent">Register New Staff</button>
         </div>
         
+
         <!-- Form Container -->
         <div id="form-container">
+
+             <!--Students registrations forms-->
             <form id="student-form" class="active-form space-y-2">
                 
-                <div class="bg-green-50 px-4 space-y-4 mb-6">
+                <div class="bg-green-50 px-4 space-y-2 mb-6">
                 <!-- Student Information -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
@@ -146,7 +149,7 @@
                 </div>
                 </div>
             
-                <div class="bg-red-50 py-2 px-5 space-y-4 mb-4">
+                <div class="bg-red-50 py-2 px-5 space-y-2 mb-4">
                 <!-- Parent Information -->
                 <h3 class="text-lg text-red-600 font-semibold mt-3 mb-6">Parent Details</h3>
             
@@ -219,14 +222,12 @@
                 <!-- Submit -->
                 <div class="pt-6">
                     <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Submit
+                        Admit Student
                     </button>
                 </div>
             </form>
             
-
-
-            
+            <!--Staff registrations forms-->
             <form id="staff-form" class="hidden">
 
             <!-- Staff Information -->
@@ -342,7 +343,7 @@
             </div>
 
 
-            <div class="bg-rose-50 px-4 space-y-2 mb-6 py-4">
+            <div class="bg-blue-50 px-4 space-y-3 mb-6 py-4">
                 <!-- Employment Information -->
                 <h3 class="text-lg font-semibold mt-2">Employment Information</h3>
             
@@ -382,14 +383,14 @@
                 </div>
                 </div>
             
-                <!-- Submit -->
-                <div class="pt-6">
-                    <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Register Staff
-                    </button>
-                </div>
+            <!-- Submit -->
+            <div class="pt-6">
+                <button type="submit" class="w-full px-4 py-2 bg-red-500 text-white rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    Register Staff
+                </button>
+            </div>
             </form>
-            
+
         </div>
         
     </div>
