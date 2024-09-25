@@ -1,5 +1,6 @@
 # Ignore virtual environment
 .myvenv
+.venv
 
 # Ignore Node.js modules
 node_modules/
