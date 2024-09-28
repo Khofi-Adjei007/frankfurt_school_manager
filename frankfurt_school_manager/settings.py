@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 
     #custom apps
     'access_control.gateway',
+    'sia.sch_explorer',
 
     #tailwind/static custom apps
     'tailwind',
