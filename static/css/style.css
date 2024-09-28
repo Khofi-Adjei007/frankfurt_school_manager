@@ -1,0 +1,37 @@
+.banner-container {
+    position: relative;
+}
+
+.banner {
+    background-image: url('https://www.creatopy.com/blog/wp-content/uploads/2016/05/Learn-Digital-Marketing-Courses-.png');
+    background-position: center;
+    height: 30vh;
+    position: relative;
+}
+
+.overlay-container {
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media(min-width: 768px) {
+    .overlay-container {
+        width: 40%;
+    }
+}
+
+/* Sticky Search Bar */
+#sticky-search.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f3f4f6;
+}
