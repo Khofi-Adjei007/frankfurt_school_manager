@@ -10,54 +10,57 @@
 </head>
 
 <body class="bg-gray-100">
-    <style>
-        .active-tab {border-bottom-color: #ef4444; /* Red color for the active tab */}
-        .hidden {display: none;}
-        .active-form {display: block;}
-    </style>
+<style>
+    .active-tab {border-bottom-color: #ef4444; /* Red color for the active tab */}
+    .hidden {display: none;}
+    .active-form {display: block;}
+</style>
     
 
     <!-- Centered Form Container -->
     <div class="flex min-h-screen items-center justify-center px-4 lg:-mt-10 md:pt-4">
 
-        <div class="w-full max-w-3xl bg-gray-50 shadow-md mb-6 rounded-lg mt-4 md:mt-20 lg:mt-8 border-t-8 border-t-red-500" >
+        <div class="w-full max-w-3xl bg-gray-50 shadow-md mb-6 rounded-lg mt-4 md:mt-20 lg:mt-8 ">
 
+            <div class="bg-red-600 top-0 w-full rounded-sm relative py-2">
+                <!-- Yellow indicator bar -->
+                <div id="yellow-indicator" class="absolute bottom-0 h-1 bg-yellow-400 rounded-full transition-all duration-300" style="width: 0; left: 0;"></div>
             
-            <!--Logos and heads-->
-            <div class="w-full bg-gray-50 mb-6  lg:mt-0 md:mt-8 p-2 lg:p-2 flex flex-row items-center justify-center space-x-4 relative">
-
-                <!-- Home Icon (Positioned to the far left) -->
-                <div class="absolute left-0 top-0 lg:top-auto lg:left-24 lg:ml-4 md:ml-24 md:top-auto sm:ml-24 sm:top-auto  flex items-center">
-                    <a href="{% url 'service_homepage' %}" class="text-red-500 hover:text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-sm" fill="currentColor">
-                    <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM12 15C13.3807 15 14.5 13.8807 14.5 12.5C14.5 11.1193 13.3807 9.99998 12 9.99998C10.6193 9.99998 9.5 11.1193 9.5 12.5C9.5 13.8807 10.6193 15 12 15Z"></path>
-                    </svg>
-                    </a>
+                <div class="w-full">
+                    <ul class="flex justify-evenly items-center font-medium rounded-lg bg-transparent md:flex-row">
+                        <!-- Home Button (skipped in the JS logic) -->
+                        <li class="relative" data-target="home">
+                            <a href="{% url 'service_homepage' %}" class="block py-2 px-1 text-white rounded hover:bg-red-500 transition">
+                                <!-- Responsive icon size for different screen sizes -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" fill="currentColor">
+                                    <path d="M20 20C20 20.5523 19.5523 21 19 21H5C4.44772 21 4 20.5523 4 20V11L1 11L11.3273 1.6115C11.7087 1.26475 12.2913 1.26475 12.6727 1.6115L23 11L20 11V20ZM12 15C13.3807 15 14.5 13.8807 14.5 12.5C14.5 11.1193 13.3807 9.99998 12 9.99998C10.6193 9.99998 9.5 11.1193 9.5 12.5C9.5 13.8807 10.6193 15 12 15Z"></path>
+                                </svg>
+                            </a>
+                        </li>
+                        <!-- Responsive text sizes for other items -->
+                        <li class="relative" data-target="form1">
+                            <a href="#" class="block py-2 px-3 text-white rounded hover:bg-red-500 transition text-sm sm:text-base md:text-md lg:text-lg">Student Admissions Forms</a>
+                        </li>
+                        <li class="relative" data-target="form2">
+                            <a href="#" class="block py-2 px-3 text-white rounded hover:bg-red-500 transition text-sm sm:text-base md:text-lg lg:text-lg">Staff Registrations Forms</a>
+                        </li>
+                        <li class="relative" data-target="form3">
+                            <a href="#" class="block py-2 px-3 text-white rounded hover:bg-red-500 transition text-sm sm:text-base md:text-lg lg:text-lg">Coming Soon</a>
+                        </li>
+                    </ul>
                 </div>
-
-                <!-- Logo Section -->
-                <div class="flex-shrink-0"><img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-6 max-h-40 max-w-40"></div>
-
-                <!-- Divider -->
-                <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-
-                <!-- Other Logo Section -->
-                <div class="flex-shrink-0"><img src="{% static 'imgs/otherschool.jpg' %}" alt="Other School Logo" class="ml-6 max-h-16 max-w-16"></div>
-            </div>
-
-
-            <!-- Button Container -->
-            <div class="flex justify-center mb-8 mt-8 space-x-4">
-                <button id="student-btn" class="text-red-600 font-bold uppercase tab-btn px-6 py-2 bg-red-50 border-b-4 border-transparent active-tab">Admit New Student</button>
-                <button id="staff-btn" class="tab-btn px-6 py-2 bg-red-50 text-red-600 font-bold uppercase border-b-4 border-transparent">Register New Staff</button>
             </div>
             
+            
+            
+      
 
             <!-- Form Container -->
-            <div id="form-container">
-                
+            <div  class="mt-6">
 
                 <!--Students registrations forms-->
-                <form id="student-form" class="active-form space-y-2">
+                <div id="form1" class="">
+                <form  class=" active-form space-y-2">
                 
                 <div class="bg-green-50 px-4 space-y-2 mb-6">
                     <!-- Student Information -->
@@ -229,9 +232,11 @@
                         </button>
                     </div>
                 </form>
-                
+                </div>
+
+
                 <!--Staff registrations forms-->
-                <form id="staff-form" class="hidden">
+                <form id="form2" class="hidden">
 
                 <!-- Staff Information -->
                 <div class="bg-green-50 px-4 space-y-2 mb-6 py-4">
@@ -394,42 +399,66 @@
                 </div>
                 </form>
 
+                <!--Others Cooming Soon-->
+                <form id="form3" action="">
+                </form>
+
             </div>
 
         </div>
     </div>
 
     <script>
-        const studentBtn = document.getElementById('student-btn');
-        const staffBtn = document.getElementById('staff-btn');
-        const studentForm = document.getElementById('student-form');
-        const staffForm = document.getElementById('staff-form');
-    
-        // Set initial state: show the student form by default
-        studentForm.classList.add('active-form');
-        staffForm.classList.add('hidden');
-        studentBtn.classList.add('active-tab');
-    
-        // Add event listeners for both buttons
-        studentBtn.addEventListener('click', () => {
-            // Show student form and hide staff form
-            studentBtn.classList.add('active-tab');
-            staffBtn.classList.remove('active-tab');
-            studentForm.classList.remove('hidden');
-            studentForm.classList.add('active-form');
-            staffForm.classList.add('hidden');
-            staffForm.classList.remove('active-form');
-        });
-    
-        staffBtn.addEventListener('click', () => {
-            // Show staff form and hide student form
-            staffBtn.classList.add('active-tab');
-            studentBtn.classList.remove('active-tab');
-            staffForm.classList.remove('hidden');
-            staffForm.classList.add('active-form');
-            studentForm.classList.add('hidden');
-            studentForm.classList.remove('active-form');
-        });
+// JavaScript to toggle active class and show/hide forms and adjust yellow indicator position
+const menuItems = document.querySelectorAll('ul li');
+const yellowIndicator = document.getElementById('yellow-indicator');
+const forms = document.querySelectorAll('[id^="form"]'); // Select all elements with IDs starting with 'form'
+
+// Skip the first menu item (home button) and apply the logic to the rest
+const otherMenuItems = Array.from(menuItems).slice(1);
+
+// Ensure the second menu item is active by default
+otherMenuItems[0].classList.add('active');
+document.getElementById('form1').classList.remove('hidden');
+
+// Function to update the yellow indicator position
+function updateYellowIndicator(item) {
+    const itemRect = item.getBoundingClientRect();
+    const containerRect = document.querySelector('.bg-red-600').getBoundingClientRect();
+
+    const leftPosition = itemRect.left - containerRect.left;
+    const width = itemRect.width;
+
+    yellowIndicator.style.width = `${width}px`;
+    yellowIndicator.style.left = `${leftPosition}px`;
+}
+
+// Set the initial position for the default active menu item
+updateYellowIndicator(otherMenuItems[0]);
+
+otherMenuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Remove active state from all menu items
+        otherMenuItems.forEach(i => i.classList.remove('active'));
+
+        // Add active state to the clicked item
+        item.classList.add('active');
+
+        // Hide all forms
+        forms.forEach(form => form.classList.add('hidden'));
+
+        // Show the associated form
+        const targetForm = item.getAttribute('data-target');
+        document.getElementById(targetForm).classList.remove('hidden');
+
+        // Update the yellow indicator position
+        updateYellowIndicator(item);
+    });
+});
+
+
     </script>
     
 

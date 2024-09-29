@@ -1,0 +1,206 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher's Service Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+<body>
+
+<div class="min-h-screen bg-gray-100 bg-cover bg-center">
+    <div class="min-h-10 flex justify-center">
+
+        <div class="relative bg-white  mx-auto shadow-md w-full md:w-[90%] lg:w-[80%] top-0 left-0 right-0 h-auto overflow-y-auto">
+            <div class="absolute inset-0 bg-center opacity-10" style="background-image: url('{% static 'imgs/background.jpg' %}');"></div>
+            <div class="relative z-10">
+            
+            <!-- Header with login, Notifications, and others Start -->
+            <div class="sticky top-0 z-50 w-full bg-blue-600 py-2 px-12 flex items-center justify-between">
+
+                <!-- User Avatar and Info -->
+                <div class="flex items-center space-x-4">
+                    <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="{% static 'imgs/teacher.jpg' %}" alt="Teacher Avatar">
+                        
+                    <!-- User Information -->
+                    <div class="flex flex-col">
+                        <div class="flex items-center space-x-1"><span class="text-gray-100 font-semibold text-sm md:text-base">Mr. Turkson</span></div>
+                        <p class="text-gray-100 font-thin text-xs md:text-sm"><span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-md">Class Teacher : Basic One (1)</span> Frankfurt Int. School</p>
+                    </div>
+                </div>
+
+                <!-- Icons for Notifications, Chat, Settings, and Logout -->
+                <div class="flex items-center space-x-4 mr-3 md:mr-6 bg-blue-100 border border-gray-200 p-2 rounded-lg ring-2 ring-blue-100 ring-offset-2">
+                    <!-- Notification Button -->
+                    <button id="dropdownNotificationButton" class="relative inline-flex items-center text-sm font-medium text-blue-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" type="button">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                            <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+                        </svg>
+                        <div class="absolute block w-3 h-3 bg-blue-500 border-2 border-white rounded-full -top-0.5 left-2.5"></div>
+                    </button>
+
+                    <div class="w-px h-6 bg-gray-300"></div>
+
+                    <!-- Chat Icon -->
+                    <button class="relative ">
+                        <svg class="w-6 h-6 text-blue-500 hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z" clip-rule="evenodd"/>
+                        </svg>  
+                    </button>
+
+                    <div class="w-px h-6 bg-gray-300"></div>
+
+                    <!-- Settings Icon -->
+                    <button class="relative">
+                        <svg class="w-6 h-6 text-blue-500 hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.13127 13.6308C1.9492 12.5349 1.95521 11.434 2.13216 10.3695C3.23337 10.3963 4.22374 9.86798 4.60865 8.93871C4.99357 8.00944 4.66685 6.93557 3.86926 6.17581C4.49685 5.29798 5.27105 4.51528 6.17471 3.86911C6.9345 4.66716 8.0087 4.99416 8.93822 4.60914C9.86774 4.22412 10.3961 3.23332 10.369 2.13176C11.4649 1.94969 12.5658 1.9557 13.6303 2.13265C13.6036 3.23385 14.1319 4.22422 15.0612 4.60914C15.9904 4.99406 17.0643 4.66733 17.8241 3.86975C18.7019 4.49734 19.4846 5.27153 20.1308 6.1752C19.3327 6.93499 19.0057 8.00919 19.3907 8.93871C19.7757 9.86823 20.7665 10.3966 21.8681 10.3695C22.0502 11.4654 22.0442 12.5663 21.8672 13.6308C20.766 13.6041 19.7756 14.1324 19.3907 15.0616C19.0058 15.9909 19.3325 17.0648 20.1301 17.8245C19.5025 18.7024 18.7283 19.4851 17.8247 20.1312C17.0649 19.3332 15.9907 19.0062 15.0612 19.3912C14.1316 19.7762 13.6033 20.767 13.6303 21.8686C12.5344 22.0507 11.4335 22.0447 10.3691 21.8677C10.3958 20.7665 9.86749 19.7761 8.93822 19.3912C8.00895 19.0063 6.93508 19.333 6.17532 20.1306C5.29749 19.503 4.51479 18.7288 3.86862 17.8252C4.66667 17.0654 4.99367 15.9912 4.60865 15.0616C4.22363 14.1321 3.23284 13.6038 2.13127 13.6308ZM11.9997 15.0002C13.6565 15.0002 14.9997 13.657 14.9997 12.0002C14.9997 10.3433 13.6565 9.00018 11.9997 9.00018C10.3428 9.00018 8.99969 10.3433 8.99969 12.0002C8.99969 13.657 10.3428 15.0002 11.9997 15.0002Z"></path></svg>
+                    </button>
+
+                    <div class="w-px h-6 bg-gray-300"></div>
+
+                    <!-- Logout Icon -->
+                    <button class="relative">
+                        <svg class="w-6 h-6 text-blue-500 hover:text-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Header Ends -->
+             
+
+        <!-- Container -->
+        <div class="container mx-auto top-0">
+
+        <!-- Navigation Bar -->
+        <div class="bg-blue-100 px-14 py-2 relative flex justify-between w-full">
+
+            <!-- Overview -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="overview">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14 21C13.4477 21 13 20.5523 13 20V12C13 11.4477 13.4477 11 14 11H20C20.5523 11 21 11.4477 21 12V20C21 20.5523 20.5523 21 20 21H14ZM4 13C3.44772 13 3 12.5523 3 12V4C3 3.44772 3.44772 3 4 3H10C10.5523 3 11 3.44772 11 4V12C11 12.5523 10.5523 13 10 13H4ZM9 11V5H5V11H9ZM4 21C3.44772 21 3 20.5523 3 20V16C3 15.4477 3.44772 15 4 15H10C10.5523 15 11 15.4477 11 16V20C11 20.5523 10.5523 21 10 21H4ZM5 19H9V17H5V19ZM15 19H19V13H15V19ZM13 4C13 3.44772 13.4477 3 14 3H20C20.5523 3 21 3.44772 21 4V8C21 8.55228 20.5523 9 20 9H14C13.4477 9 13 8.55228 13 8V4ZM15 5V7H19V5H15Z"></path>
+                </svg>
+                <span>Overview</span>
+            </button>
+
+            <!-- Attendance -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="attendance">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 10C14.2091 10 16 8.20914 16 6 16 3.79086 14.2091 2 12 2 9.79086 2 8 3.79086 8 6 8 8.20914 9.79086 10 12 10ZM5.5 13C6.88071 13 8 11.8807 8 10.5 8 9.11929 6.88071 8 5.5 8 4.11929 8 3 9.11929 3 10.5 3 11.8807 4.11929 13 5.5 13ZM21 10.5C21 11.8807 19.8807 13 18.5 13 17.1193 13 16 11.8807 16 10.5 16 9.11929 17.1193 8 18.5 8 19.8807 8 21 9.11929 21 10.5ZM12 11C14.7614 11 17 13.2386 17 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5 15.9999C5 15.307 5.10067 14.6376 5.28818 14.0056L5.11864 14.0204C3.36503 14.2104 2 15.6958 2 17.4999V21.9999H5V15.9999ZM22 21.9999V17.4999C22 15.6378 20.5459 14.1153 18.7118 14.0056 18.8993 14.6376 19 15.307 19 15.9999V21.9999H22Z"></path>
+                </svg>
+                <span>Attendance</span>
+            </button>
+
+            <!-- Class Scores -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="class-scores">
+                <i class="ri-pencil-ruler-line text-xl"></i>
+                <span>Class Scores</span>
+            </button>
+
+            <!-- Exam Scores -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="exam-scores">
+                <i class="ri-file-list-3-line text-xl"></i>
+                <span>Exam Scores</span>
+            </button>
+
+            <!-- Reports -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="reports">
+                <i class="ri-bar-chart-line text-xl"></i>
+                <span>Reports</span>
+            </button>
+
+            <!-- Time Table -->
+            <button class="nav-link flex items-center space-x-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium" data-section="timetable">
+                <i class="ri-calendar-2-line text-xl"></i>
+                <span>Time Table</span>
+            </button>
+
+            <!-- Active Indicator -->
+            <div id="active-indicator" class="absolute bottom-0 left-0 w-0 h-1 bg-blue-500 transition-all"></div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="mt-8 p-4">
+
+            <!-- Overview Section -->
+            <div id="overview" class="content-section">
+                <h2 class="text-2xl font-bold mb-4">Overview</h2>
+                <p>This is the overview section content.</p>
+            </div>
+            
+            <!-- Attendance Section -->
+            <div id="attendance" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4">Attendance</h2>
+                <p>This is the attendance section content.</p>
+            </div>
+            <!-- Class Scores Section -->
+            <div id="class-scores" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4">Class Scores</h2>
+                <p>This is the class scores section content.</p>
+            </div>
+            <!-- Exam Scores Section -->
+            <div id="exam-scores" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4">Exam Scores</h2>
+                <p>This is the exam scores section content.</p>
+            </div>
+            <!-- Reports Section -->
+            <div id="reports" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4">Reports</h2>
+                <p>This is the reports section content.</p>
+            </div>
+            <!-- Time Table Section -->
+            <div id="timetable" class="content-section hidden">
+                <h2 class="text-2xl font-bold mb-4">Time Table</h2>
+                <p>This is the timetable section content.</p>
+            </div>
+        </div>
+        </div>
+            
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+      // Handle active indicator movement and content switching
+    const buttons = document.querySelectorAll('.nav-link');
+    const indicator = document.getElementById('active-indicator');
+    const sections = document.querySelectorAll('.content-section');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove 'active-link' class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active-link'));
+
+            // Add 'active-link' class to the clicked button
+            this.classList.add('active-link');
+
+            // Move indicator to the active button
+            const buttonRect = this.getBoundingClientRect();
+            const containerRect = this.parentElement.getBoundingClientRect();
+
+            // Set the indicator's position and size
+            indicator.style.width = `${buttonRect.width}px`;
+            indicator.style.transform = `translateX(${buttonRect.left - containerRect.left}px)`;
+            indicator.style.transition = 'transform 0.3s ease, width 0.3s ease';
+
+            // Hide all sections and show the selected section
+            const selectedSection = this.getAttribute('data-section');
+            sections.forEach(section => {
+                section.classList.add('hidden'); // Hide all sections
+                if (section.id === selectedSection) {
+                    section.classList.remove('hidden'); // Show the selected section
+                }
+            });
+        });
+    });
+
+    // Optionally, trigger a click on the first button to initialize the indicator position and content
+    buttons[0].click();
+</script>
+</body>
+</html>
