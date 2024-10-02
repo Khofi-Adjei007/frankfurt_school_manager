@@ -1025,6 +1025,10 @@ select {
   margin-top: 1.25rem;
 }
 
+.me-1 {
+  margin-inline-end: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1306,6 +1310,10 @@ select {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1893,6 +1901,10 @@ select {
 
 .pt-5 {
   padding-top: 1.25rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
 }
 
 .text-left {
