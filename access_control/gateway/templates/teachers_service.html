@@ -95,12 +95,16 @@
                 <span class="text-sm">Overview</span>
             </button>
 
+                 <!-- Time Table -->
+                 <button class="nav-link flex flex-col items-center space-y-1 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium w-1/2 md:w-auto" data-section="timetable">
+                    <i class="ri-calendar-2-line text-xl"></i>
+                    <span class="text-sm">Time Table</span>
+                </button>
+
             <!-- Attendance -->
             <button class="nav-link flex flex-col items-center space-y-1 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium w-1/2 md:w-auto" data-section="attendance">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 10C14.2091 10 16 8.20914 16 6 16 3.79086 14.2091 2 12 2 9.79086 2 8 3.79086 8 6 8 8.20914 9.79086 10 12 10ZM5.5 13C6.88071 13 8 11.8807 8 10.5 8 9.11929 6.88071 8 5.5 8 4.11929 8 3 9.11929 3 10.5 3 11.8807 4.11929 13 5.5 13ZM21 10.5C21 11.8807 19.8807 13 18.5 13 17.1193 13 16 11.8807 16 10.5 16 9.11929 17.1193 8 18.5 8 19.8807 8 21 9.11929 21 10.5ZM12 11C14.7614 11 17 13.2386 17 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5 15.9999C5 15.307 5.10067 14.6376 5.28818 14.0056L5.11864 14.0204C3.36503 14.2104 2 15.6958 2 17.4999V21.9999H5V15.9999ZM22 21.9999V17.4999C22 15.6378 20.5459 14.1153 18.7118 14.0056 18.8993 14.6376 19 15.307 19 15.9999V21.9999H22Z"></path>
-                </svg>
-                <span class="text-sm">Attendance</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor"><path d="M16.3303 13.497C17.9562 12.2151 19 10.2278 19 7.9967H21C21 10.9687 19.5595 13.6043 17.3385 15.2432L19.8661 19.6211C20.4183 20.5776 20.0906 21.8008 19.134 22.3531L15.6073 16.2447C14.5029 16.7283 13.2828 16.9967 12 16.9967C10.7172 16.9967 9.49712 16.7283 8.39278 16.2447L4.86606 22.3531C3.90947 21.8008 3.58172 20.5776 4.13401 19.6211L9.19751 10.8508C8.45844 10.125 8.00003 9.11439 8.00003 7.9967C8.00003 6.13286 9.2748 4.56676 11 4.12272V1.9967H13V4.12272C14.7253 4.56676 16 6.13286 16 7.9967C16 9.11439 15.5416 10.125 14.8025 10.8508L16.3303 13.497ZM14.599 14.4983L13.071 11.8517C12.7302 11.9462 12.371 11.9967 12 11.9967C11.6291 11.9967 11.2699 11.9462 10.929 11.8517L9.40101 14.4983C10.2046 14.8198 11.0817 14.9967 12 14.9967C12.9184 14.9967 13.7955 14.8198 14.599 14.4983ZM12 8.9967C12.5523 8.9967 13 8.54899 13 7.9967C13 7.44442 12.5523 6.9967 12 6.9967C11.4477 6.9967 11 7.44442 11 7.9967C11 8.54899 11.4477 8.9967 12 8.9967Z"></path></svg>
+                <span class="text-sm">Assignments</span>
             </button>
 
             <!-- Class Scores -->
@@ -119,12 +123,6 @@
             <button class="nav-link flex flex-col items-center space-y-1 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium w-1/2 md:w-auto" data-section="reports">
                 <i class="ri-bar-chart-line text-xl"></i>
                 <span class="text-sm">Reports</span>
-            </button>
-
-            <!-- Time Table -->
-            <button class="nav-link flex flex-col items-center space-y-1 px-4 py-2 text-blue-500 hover:text-blue-700 font-medium w-1/2 md:w-auto" data-section="timetable">
-                <i class="ri-calendar-2-line text-xl"></i>
-                <span class="text-sm">Time Table</span>
             </button>
 
             <!-- Active Indicator -->
@@ -159,14 +157,14 @@
                             </p>
                         </button>
 
-                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-lime-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
+                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-red-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
                             <div class="flex flex-col ml-3 items-start">
-                                <p class="text-sm">Total Attendance Today</p>
-                                <span class="text-lg font-bold">63/103</span>
+                                <p class="text-sm">Assignment Due on 3/10/24</p>
+                                <span class="text-sm font-semibold italic">14 Submissions / 103</span>
                             </div>
                             <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-green-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
-                                Do a Manual Clock-in
+                            <p class="bg-red-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
+                               Review Assignments
                             </p>
                         </button>
 
