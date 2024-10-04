@@ -47,11 +47,12 @@ INSTALLED_APPS = [
     #custom apps
     'access_control.gateway',
     'sia.sch_explorer',
+    'teachers.teachers_service',
 
     #tailwind/static custom apps
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
 ]
 
 #tailwind and its relations

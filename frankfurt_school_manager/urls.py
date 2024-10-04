@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
+    path('teachers/teachers_service/', include("teachers.teachers_service.urls")),
     path('sia/sch_explorer/', include("sia.sch_explorer.urls")),
     path('access_control/gateway/', include("access_control.gateway.urls")),
     path('fsm_core_users/users/', include("fsm_core_users.users.urls")),

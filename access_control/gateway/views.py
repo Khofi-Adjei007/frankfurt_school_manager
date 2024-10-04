@@ -19,8 +19,6 @@ def admissions_and_registrations(request):
     return render(request, "admissions_and_registrations.html")
 
 
-def teachers_service(request):
-    return render (request, "teachers_service.html")
 
 def parents_service(request):
     return render(request, "parents_service_page.html")
