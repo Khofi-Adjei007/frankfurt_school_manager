@@ -4,5 +4,5 @@ from . import views
 
 #url patterns for access_control/gatewa
 urlpatterns = [
-    path('teachers_service_page/', views.teachers_service_page, name='teachers_service_page'),
+    path('parents_service_page/', views.parents_service_page, name='parents_service_page'),
 ]

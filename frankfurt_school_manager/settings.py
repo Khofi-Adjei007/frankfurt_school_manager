@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'access_control.gateway',
     'sia.sch_explorer',
     'teachers.teachers_service',
+    'parents.parents_service',
+    'moderator.moderators_service',
 
     #tailwind/static custom apps
     'tailwind',
