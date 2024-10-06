@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'teachers.teachers_service',
     'parents.parents_service',
     'moderator.moderators_service',
+    'rest_framework',
 
     #tailwind/static custom apps
     'tailwind',

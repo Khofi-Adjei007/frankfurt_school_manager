@@ -174,7 +174,7 @@
                                 <span class="text-lg font-bold">63/103</span>
                             </div>
                             <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-green-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
+                            <p class="bg-yellow-500 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
                                 Do a Manual Clock-in
                             </p>
                         </button>
@@ -194,13 +194,13 @@
         </div>
 
                     
-        <div class="bg-white mx-auto mt-3 p-1 grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div class="bg-white mx-auto mt-3 p-1 grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center">
                 {% include 'teachers_analytics/teachers_attendance_overview.html' %}
                 {% include 'teachers_analytics/classscore_analysis.html' %}
                 {% include 'teachers_analytics/exam_scores_analysis.html' %}
                 {% include 'teachers_analytics/reports_analysis.html' %}
         </div>            
-         </div>
+        </div>
     
 
 
@@ -226,11 +226,39 @@
                 <h2 class="text-2xl font-bold mb-4">Reports</h2>
                 <p>This is the reports section content.</p>
             </div>
+
             <!-- Time Table Section -->
             <div id="timetable" class="content-section hidden">
-                <h2 class="text-2xl font-bold mb-4">Time Table</h2>
-                <p>This is the timetable section content.</p>
+                <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 my-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 py-3">
+                        <!-- Class Timetable -->
+                        <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 px-2 flex items-center justify-center text-center space-x-2">
+                            <i class="ri-calendar-line text-2xl"></i>
+                            <span>Class Timetable</span>
+                        </a>
+                        <!-- School Timetable -->
+                        <a href="#" class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-2 flex items-center justify-center text-center space-x-2">
+                            <i class="ri-booklet-line text-2xl"></i>
+                            <span>School Timetable</span>
+                        </a>
+                        <!-- Academic Timetable -->
+                        <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-4 px-2 flex items-center justify-center text-center space-x-2">
+                            <i class="ri-file-list-line text-2xl"></i>
+                            <span>Academic Timetable</span>
+                        </a>
+                        <!-- Events & Occasions -->
+                        <a href="#" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-4 px-2 flex items-center justify-center text-center space-x-2">
+                            <i class="ri-calendar-event-line text-2xl"></i>
+                            <span>Events & Occasions</span>
+                        </a>
+                    </div>
+                </div>
+                
+                {% include 'timetables/Academic_timetable.html' %}
             </div>
+            
+
+
             </div>
         </div>
 

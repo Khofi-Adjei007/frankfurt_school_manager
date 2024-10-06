@@ -85,47 +85,144 @@
             <!--Header login, Notifications and others Ends-->
 
            
-            <!--Content and Body-->
-            <div class="p-6">
-    <!-- Header Section -->
-    <header class="text-center mb-8">
-        <h1 class="text-4xl font-bold">Parent Dashboard</h1>
-        <p class="mt-2 text-gray-600">Stay up-to-date with your ward's progress</p>
-    </header>
-
-    <!-- Tiles Section -->
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-2 place-items-center">
-
-        <!-- Fees & Payments Tile -->
-        <div class="bg-blue-100 p-8 w-72 h-72 flex flex-col items-center justify-center rounded-lg shadow hover:shadow-lg transition">
-            <i class="ri-wallet-line text-6xl text-blue-600 mb-4"></i>
-            <h2 class="text-2xl font-semibold text-blue-800 mb-2">Fees & Payments</h2>
-            <p class="text-center text-blue-600">Check payment history, make new payments, and manage fees.</p>
-        </div>
-
-        <!-- Ward's Academics Tile -->
-        <div class="bg-green-100 p-8 w-72 h-72 flex flex-col items-center justify-center rounded-lg shadow hover:shadow-lg transition">
-            <i class="ri-book-open-line text-6xl text-green-600 mb-4"></i>
-            <h2 class="text-2xl font-semibold text-green-800 mb-2">Ward's Academics</h2>
-            <p class="text-center text-green-600">View your ward’s grades, assignments, and academic progress.</p>
-        </div>
-
-        <!-- Notifications & Events Tile -->
-        <div class="bg-yellow-100 p-8 w-72 h-72 flex flex-col items-center justify-center rounded-lg shadow hover:shadow-lg transition">
-            <i class="ri-notification-3-line text-6xl text-yellow-600 mb-4"></i>
-            <h2 class="text-2xl font-semibold text-yellow-800 mb-2">Notifications & Events</h2>
-            <p class="text-center text-yellow-600">Stay informed on upcoming events and important notifications.</p>
-        </div>
-
-        <!-- Attendance Tile -->
-        <div class="bg-red-100 p-8 w-72 h-72 flex flex-col items-center justify-center rounded-lg shadow hover:shadow-lg transition">
-            <i class="ri-calendar-check-line text-6xl text-red-600 mb-4"></i>
-            <h2 class="text-2xl font-semibold text-red-800 mb-2">Attendance</h2>
-            <p class="text-center text-red-600">Track your ward’s attendance records and tardiness.</p>
-        </div>
-
+            <div class="min-h-screen bg-gray-50 py-6 sm:py-12">
+                <!-- Header -->
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+                        <div>
+                            <h1 class="text-3xl font-semibold text-gray-800">Your Child's Profile</h1>
+                            <p class="text-gray-500">Monitor your children’s progress and school updates</p>
+                        </div>
+                        <!-- Child Selector for Multiple Kids -->
+                        <div>
+                            <label for="child-select" class="block text-sm font-medium text-gray-700">Select Child:</label>
+                            <select id="child-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option>John Doe</option>
+                                <option>Jane Doe</option>
+                                <option>Sam Doe</option>
+                            </select>
+                        </div>
+                    </div>
+                </header>
+            
+                <!-- Important Info Section (Fees & Messages) -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- School Fees -->
+                        <div class="bg-orange-100 border-l-4 border-orange-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-orange-700">School Fees</h3>
+                            <p class="text-gray-600 mt-4">Total Fees Due: $1,200</p>
+                            <p class="text-gray-500">Next Payment: $600 (Due: 15th Oct)</p>
+                        </div>
+                        <!-- Messages from School -->
+                        <div class="bg-blue-100 border-l-4 border-blue-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-blue-700">Messages from School</h3>
+                            <p class="text-gray-600 mt-4">Parent-Teacher Meeting on 25th Oct</p>
+                            <p class="text-gray-500">Sports Day Rescheduled: 22nd Oct</p>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Child Overview Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+                    <div class="bg-white shadow-md rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Child Image -->
+                        <div class="col-span-1">
+                            <img src="child-photo.jpg" alt="Child Photo" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                        <!-- Child Information -->
+                        <div class="col-span-3 space-y-4">
+                            <h2 class="text-2xl font-semibold text-gray-800">John Doe</h2>
+                            <p class="text-gray-600">Grade: 5</p>
+                            <p class="text-gray-600">Age: 10</p>
+                            <p class="text-gray-600">Class Teacher: Mrs. Smith</p>
+                            <p class="text-gray-600">School: Sunnydale International</p>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Key Information Cards -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+                    <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                        <!-- Attendance -->
+                        <div class="bg-green-100 border-l-4 border-green-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-green-700">Attendance</h3>
+                            <p class="text-gray-600 mt-4">95%</p>
+                            <span class="inline-block bg-green-200 text-green-700 px-3 py-1 rounded-full text-sm mt-2">Excellent</span>
+                        </div>
+                        <!-- Academic Performance -->
+                        <div class="bg-purple-100 border-l-4 border-purple-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-purple-700">Academic Performance</h3>
+                            <p class="text-gray-600 mt-4">Overall Grade: A</p>
+                            <span class="inline-block bg-purple-200 text-purple-700 px-3 py-1 rounded-full text-sm mt-2">Great Job</span>
+                        </div>
+                        <!-- Upcoming Events -->
+                        <div class="bg-yellow-100 border-l-4 border-yellow-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-yellow-700">Upcoming Events</h3>
+                            <p class="text-gray-600 mt-4">Sports Day: 15th Oct</p>
+                            <p class="text-gray-500">Parent-Teacher Meeting: 25th Oct</p>
+                        </div>
+                        <!-- Recent Activities -->
+                        <div class="bg-teal-100 border-l-4 border-teal-500 shadow-md rounded-lg p-6 text-center">
+                            <h3 class="text-lg font-semibold text-teal-700">Recent Activities</h3>
+                            <p class="text-gray-600 mt-4">Science Fair - 2nd Place</p>
+                            <p class="text-gray-500">Art Competition - Winner</p>
+                        </div>
+                    </div>
+                </section>
+            
+                <!-- Assignments Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Current Assignments</h2>
+                    <div class="bg-red-100 border-l-4 border-red-500 shadow-md rounded-lg p-6">
+                        <ul class="space-y-4">
+                            <li class="flex justify-between text-gray-600">
+                                <span>Math Homework - Complete Chapter 4</span>
+                                <span class="text-sm text-gray-500">Due: 10th Oct</span>
+                            </li>
+                            <li class="flex justify-between text-gray-600">
+                                <span>Science Project - Volcano Model</span>
+                                <span class="text-sm text-gray-500">Due: 15th Oct</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            
+               <!-- Academic Progress Table -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Exam Scores</h2>
+    <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-blue-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-blue-800 uppercase tracking-wider">Subject</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-blue-800 uppercase tracking-wider">Score</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-blue-800 uppercase tracking-wider">Grade</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr class="bg-gray-50">
+                    <td class="px-6 py-4 text-sm text-gray-900">Mathematics</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">88</td>
+                    <td class="px-6 py-4 text-sm text-green-600 font-semibold">A</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 text-sm text-gray-900">English</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">85</td>
+                    <td class="px-6 py-4 text-sm text-green-600 font-semibold">A</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="px-6 py-4 text-sm text-gray-900">Science</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">90</td>
+                    <td class="px-6 py-4 text-sm text-green-700 font-semibold">A+</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+</section>
+
+            </div>
+            
 
             
             
