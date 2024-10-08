@@ -1027,6 +1027,18 @@ select {
   margin-top: 2rem;
 }
 
+.-mb-14 {
+  margin-bottom: -3.5rem;
+}
+
+.-mt-16 {
+  margin-top: -4rem;
+}
+
+.-mt-4 {
+  margin-top: -1rem;
+}
+
 .block {
   display: block;
 }
@@ -1129,6 +1141,10 @@ select {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-56 {
+  height: 14rem;
 }
 
 .max-h-16 {
@@ -1237,6 +1253,10 @@ select {
 
 .w-px {
   width: 1px;
+}
+
+.w-56 {
+  width: 14rem;
 }
 
 .min-w-32 {
@@ -1817,6 +1837,11 @@ select {
 
 .bg-center {
   background-position: center;
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover {
