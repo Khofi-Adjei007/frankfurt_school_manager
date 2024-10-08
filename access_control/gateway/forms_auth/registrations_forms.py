@@ -4,13 +4,12 @@ from django.utils.translation import gettext_lazy as _
 import re
 
 
-
 class SchoolRegistrationForm(forms.ModelForm):
     class Meta:
         model = School
         fields = [
             'name', 'school_type', 'year_established', 'physical_address', 'digital_address', 
-            'official_contact', 'email', 'social_media', 'population'
+            'official_telephone_number', 'email', 'social_media', 'population'
         ]
         widgets = {
             'name': forms.TextInput(attrs={'id': 'school_name', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'School Name'}),
@@ -18,7 +17,7 @@ class SchoolRegistrationForm(forms.ModelForm):
             'year_established': forms.NumberInput(attrs={'id': 'year_established', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'}),
             'physical_address': forms.TextInput(attrs={'id': 'physical_address', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Physical Address'}),
             'digital_address': forms.TextInput(attrs={'id': 'digital_address', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Digital Address'}),
-            'official_contact': forms.TextInput(attrs={'id': 'official_contact', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Official Contact'}),
+            'official_telephone_number': forms.TextInput(attrs={'id': 'official_telephone_number', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Official Telephone Number'}),
             'email': forms.EmailInput(attrs={'id': 'email', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Email'}),
             'social_media': forms.TextInput(attrs={'id': 'social_media', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Social Media'}),
             'population': forms.NumberInput(attrs={'id': 'student_population', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'})
@@ -42,13 +41,13 @@ class SchoolRegistrationForm(forms.ModelForm):
             raise forms.ValidationError(_("Digital address cannot be empty."))
         return digital_address
 
-    def clean_official_contact(self):
-        official_contact = self.cleaned_data.get('official_contact')
-        if not official_contact:
-            raise forms.ValidationError(_("Official contact cannot be empty."))
-        if not re.match(r'^\+?1?\d{9,15}$', official_contact):  # Adjust regex according to your needs
-            raise forms.ValidationError(_("Enter a valid official contact number."))
-        return official_contact
+    def clean_official_telephone_number(self):
+        official_telephone_number = self.cleaned_data.get('official_telephone_number')
+        if not official_telephone_number:
+            raise forms.ValidationError(_("Official telephone number cannot be empty."))
+        if not re.match(r'^\+?1?\d{9,15}$', official_telephone_number): 
+            raise forms.ValidationError(_("Enter a valid official telephone number."))
+        return official_telephone_number
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -69,4 +68,3 @@ class SchoolRegistrationForm(forms.ModelForm):
         if population is None or population < 0:
             raise forms.ValidationError(_("Enter a valid student population (must be a positive number)."))
         return population
-

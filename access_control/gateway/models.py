@@ -48,7 +48,7 @@ class School(models.Model):
     physical_address = models.CharField(max_length=255)
     digital_address = models.CharField(max_length=255)
     population = models.PositiveIntegerField()  
-    official_contact = models.CharField(max_length=13)
+    official_telephone_number = models.CharField(max_length=13)
     year_established = models.PositiveIntegerField() 
     email = models.EmailField()
     social_media = models.CharField(max_length=255, blank=True, null=True)

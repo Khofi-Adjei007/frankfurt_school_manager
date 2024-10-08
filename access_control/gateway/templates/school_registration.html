@@ -14,75 +14,93 @@
         <div class="w-full max-w-3xl bg-gray-50 p-8 shadow-md rounded-lg">
             <img src="{% static 'imgs/frankfurtlogoweb.png' %}" alt="Frankfurt School Manager Logo" class="mx-auto -mb-14 -mt-16 h-56 w-56 object-contain">
             <div class="text-center mb-6">
-                <h2 class="text-3xl font-bold text-red-600">Join Our School Network</h2>
-                <p class="text-gray-500 mt-2">Complete the form to start managing your school's operations effortlessly.</p>
+                <h2 class="text-3xl font-bold text-red-600">Join Our School Network Today!</h2>
+                <p class="text-gray-500 mt-2">Complete this form to begin managing your school's operations with ease.</p>
             </div>
 
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            <form method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
                 {% csrf_token %}
                 {{ form.non_field_errors }}
-
+            
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.name.label_tag }}
                         {{ form.name }}
+                        {% if form.name.errors %}
+                            <p class="text-red-600 text-sm">{{ form.name.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     <div>
                         {{ form.school_type.label_tag }}
                         {{ form.school_type }}
+                        {% if form.school_type.errors %}
+                            <p class="text-red-600 text-sm">{{ form.school_type.errors.0 }}</p>
+                        {% endif %}
                     </div>
                 </div>
-
+            
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.year_established.label_tag }}
                         {{ form.year_established }}
+                        {% if form.year_established.errors %}
+                            <p class="text-red-600 text-sm">{{ form.year_established.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     <div>
                         {{ form.physical_address.label_tag }}
                         {{ form.physical_address }}
+                        {% if form.physical_address.errors %}
+                            <p class="text-red-600 text-sm">{{ form.physical_address.errors.0 }}</p>
+                        {% endif %}
                     </div>
                 </div>
-
+            
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.digital_address.label_tag }}
                         {{ form.digital_address }}
+                        {% if form.digital_address.errors %}
+                            <p class="text-red-600 text-sm">{{ form.digital_address.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     <div>
-                        {{ form.official_contact.label_tag }}
-                        {{ form.official_contact }}
+                        {{ form.official_telephone_number.label_tag }}
+                        {{ form.official_telephone_number }}
+                        {% if form.official_telephone_number.errors %}
+                            <p class="text-red-600 text-sm">{{ form.official_telephone_number.errors.0 }}</p>
+                        {% endif %}
                     </div>
                 </div>
-
+            
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.email.label_tag }}
                         {{ form.email }}
+                        {% if form.email.errors %}
+                            <p class="text-red-600 text-sm">{{ form.email.errors.0 }}</p>
+                        {% endif %}
                     </div>
-                    <div>
-                        {{ form.social_media.label_tag }}
-                        {{ form.social_media }}
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.population.label_tag }}
                         {{ form.population }}
+                        {% if form.population.errors %}
+                            <p class="text-red-600 text-sm">{{ form.population.errors.0 }}</p>
+                        {% endif %}
                     </div>
                 </div>
-
+            
                 <div class="mt-6">
                     <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Register School
                     </button>
                 </div>
             </form>
+            
 
             <div class="text-center mt-6">
                 <p class="text-gray-600">Already have an account? 
-                    <a href="#" class="font-medium text-red-600 hover:text-red-500">Login</a>
+                    <a href="{%  url 'logins' %}" class="font-medium text-red-600 hover:text-red-500">Login</a>
                 </p>
             </div>
         </div>
