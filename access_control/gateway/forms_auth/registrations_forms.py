@@ -3,24 +3,53 @@ from ..models import School
 from django.utils.translation import gettext_lazy as _
 import re
 
-
 class SchoolRegistrationForm(forms.ModelForm):
     class Meta:
         model = School
         fields = [
-            'name', 'school_type', 'year_established', 'physical_address', 'digital_address', 
-            'official_telephone_number', 'email', 'social_media', 'population'
+            'name', 'school_type', 'year_established', 'physical_address', 
+            'digital_address', 'official_telephone_number', 'email', 
+            'social_media', 'population'
         ]
+
         widgets = {
-            'name': forms.TextInput(attrs={'id': 'school_name', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'School Name'}),
-            'school_type': forms.Select(attrs={'id': 'school_type', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'}),
-            'year_established': forms.NumberInput(attrs={'id': 'year_established', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'}),
-            'physical_address': forms.TextInput(attrs={'id': 'physical_address', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Physical Address'}),
-            'digital_address': forms.TextInput(attrs={'id': 'digital_address', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Digital Address'}),
-            'official_telephone_number': forms.TextInput(attrs={'id': 'official_telephone_number', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Official Telephone Number'}),
-            'email': forms.EmailInput(attrs={'id': 'email', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Email'}),
-            'social_media': forms.TextInput(attrs={'id': 'social_media', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm', 'placeholder': 'Social Media'}),
-            'population': forms.NumberInput(attrs={'id': 'student_population', 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'})
+            'name': forms.TextInput(attrs={
+                'id': 'school_name',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+                'placeholder': 'School Name'
+            }),
+            'school_type': forms.Select(attrs={
+                'id': 'school_type',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
+            }),
+            'year_established': forms.NumberInput(attrs={
+                'id': 'year_established',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
+            }),
+            'physical_address': forms.TextInput(attrs={
+                'id': 'physical_address',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+                'placeholder': 'Physical Address'
+            }),
+            'digital_address': forms.TextInput(attrs={
+                'id': 'digital_address',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+                'placeholder': 'Digital Address'
+            }),
+            'official_telephone_number': forms.TextInput(attrs={
+                'id': 'official_telephone_number',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+                'placeholder': 'Official Telephone Number'
+            }),
+            'email': forms.EmailInput(attrs={
+                'id': 'email',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+                'placeholder': 'Email'
+            }),
+            'population': forms.NumberInput(attrs={
+                'id': 'student_population',
+                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
+            }),
         }
 
     def clean_name(self):
@@ -57,14 +86,23 @@ class SchoolRegistrationForm(forms.ModelForm):
             raise forms.ValidationError(_("Enter a valid email address."))
         return email
 
-    def clean_social_media(self):
-        social_media = self.cleaned_data.get('social_media')
-        if not social_media:
-            raise forms.ValidationError(_("Social media cannot be empty."))
-        return social_media
-
     def clean_population(self):
         population = self.cleaned_data.get('population')
         if population is None or population < 0:
             raise forms.ValidationError(_("Enter a valid student population (must be a positive number)."))
         return population
+
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        email = cleaned_data.get('email')
+
+        # Check for duplicate school names
+        if name and School.objects.filter(name=name).exists():
+            self.add_error('name', _("This School Already Exist."))
+
+        # Check for duplicate email addresses
+        if email and School.objects.filter(email=email).exists():
+            self.add_error('email', _("A school with this email address already exists."))
+
+        return cleaned_data

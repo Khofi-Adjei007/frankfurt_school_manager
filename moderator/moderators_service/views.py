@@ -9,3 +9,6 @@ def moderators_service_page(request):
 
 def admissions_and_registrations(request):
     return render(request, "admissions_and_registrations.html")
+
+def settings_page(request):
+    return render(request, "settings_page.html")

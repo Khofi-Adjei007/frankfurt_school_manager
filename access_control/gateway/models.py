@@ -55,7 +55,7 @@ class School(models.Model):
     logo = models.ImageField(upload_to='school_logos/')
 
     # Additional Information
-    registration_number = models.CharField(max_length=50, unique=True)
+    registration_number = models.CharField(max_length=50)
     principal_name = models.CharField(max_length=255) 
     board_of_directors = models.TextField(blank=True, null=True)
     motto = models.CharField(max_length=255, blank=True, null=True)

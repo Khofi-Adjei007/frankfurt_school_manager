@@ -25,68 +25,68 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.name.label_tag }}
-                        {{ form.name }}
                         {% if form.name.errors %}
-                            <p class="text-red-600 text-sm">{{ form.name.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.name.errors.0 }}</p>
                         {% endif %}
+                        {{ form.name }}
                     </div>
                     <div>
                         {{ form.school_type.label_tag }}
-                        {{ form.school_type }}
                         {% if form.school_type.errors %}
-                            <p class="text-red-600 text-sm">{{ form.school_type.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.school_type.errors.0 }}</p>
                         {% endif %}
+                        {{ form.school_type }}
                     </div>
                 </div>
             
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.year_established.label_tag }}
-                        {{ form.year_established }}
                         {% if form.year_established.errors %}
                             <p class="text-red-600 text-sm">{{ form.year_established.errors.0 }}</p>
                         {% endif %}
+                        {{ form.year_established }}
                     </div>
                     <div>
                         {{ form.physical_address.label_tag }}
-                        {{ form.physical_address }}
                         {% if form.physical_address.errors %}
-                            <p class="text-red-600 text-sm">{{ form.physical_address.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.physical_address.errors.0 }}</p>
                         {% endif %}
+                        {{ form.physical_address }}
                     </div>
                 </div>
             
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.digital_address.label_tag }}
-                        {{ form.digital_address }}
                         {% if form.digital_address.errors %}
-                            <p class="text-red-600 text-sm">{{ form.digital_address.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.digital_address.errors.0 }}</p>
                         {% endif %}
+                        {{ form.digital_address }}
                     </div>
                     <div>
                         {{ form.official_telephone_number.label_tag }}
-                        {{ form.official_telephone_number }}
                         {% if form.official_telephone_number.errors %}
-                            <p class="text-red-600 text-sm">{{ form.official_telephone_number.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.official_telephone_number.errors.0 }}</p>
                         {% endif %}
+                        {{ form.official_telephone_number }}
                     </div>
                 </div>
             
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.email.label_tag }}
-                        {{ form.email }}
                         {% if form.email.errors %}
-                            <p class="text-red-600 text-sm">{{ form.email.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.email.errors.0 }}</p>
                         {% endif %}
+                        {{ form.email }}
                     </div>
                     <div>
                         {{ form.population.label_tag }}
-                        {{ form.population }}
                         {% if form.population.errors %}
-                            <p class="text-red-600 text-sm">{{ form.population.errors.0 }}</p>
+                        <p class="text-red-600 text-sm">{{ form.population.errors.0 }}</p>
                         {% endif %}
+                        {{ form.population }}
                     </div>
                 </div>
             
