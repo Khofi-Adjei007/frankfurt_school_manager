@@ -3,6 +3,8 @@ from . import views
 
 
 #url patterns for access_control/gatewa
+#app_name = 'moderators_service'
+
 urlpatterns = [
     path('logins/', views.logins, name='logins'),
     path('school_registration/', views.school_registration, name='school_registration'),

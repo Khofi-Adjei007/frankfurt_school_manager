@@ -1,0 +1,86 @@
+
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Servervice Home Page | Frankfurt School Manager | </title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+<body>
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Admin Settings</h1>
+        <form method="POST" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Name Field -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <p class="text-red-500 text-sm">{{ form.name.errors }}</p>
+                {% endif %}
+            </div>
+            
+            <!-- Position Field -->
+            <div>
+                <label for="position" class="block text-sm font-medium text-gray-700">Position in School</label>
+                {{ form.position }}
+                {% if form.position.errors %}
+                    <p class="text-red-500 text-sm">{{ form.position.errors }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Email Field -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <p class="text-red-500 text-sm">{{ form.email.errors }}</p>
+                {% endif %}
+            </div>
+            
+            <!-- Phone Field -->
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                    <p class="text-red-500 text-sm">{{ form.phone.errors }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Address Field -->
+            <div>
+                <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                {{ form.address }}
+                {% if form.address.errors %}
+                    <p class="text-red-500 text-sm">{{ form.address.errors }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Profile Picture Field -->
+            <div>
+                <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                {{ form.profile_picture }}
+                {% if form.profile_picture.errors %}
+                    <p class="text-red-500 text-sm">{{ form.profile_picture.errors }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

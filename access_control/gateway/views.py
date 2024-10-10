@@ -20,11 +20,13 @@ def school_registration(request):
         
         # Check if the form is valid
         if form.is_valid():
+
             # Check for duplicates by school name
             school_name = form.cleaned_data.get('name')
             if School.objects.filter(name=school_name).exists():
                 messages.error(request, "A school with this name already exists. Please choose a different name.")
             else:
+                
                 # If no duplicates, save the form
                 form.save()
                 messages.success(request, "School registered successfully!") 
@@ -33,8 +35,9 @@ def school_registration(request):
                 form = SchoolRegistrationForm()
 
                 # Redirect to the success page
-                return redirect(reverse('school_registration_success'))  # Use the name of your success view
+                return redirect(reverse('school_registration_success'))
         else:
+
             # If the form is invalid, print this errors for debugging
             print(form.errors)
             messages.error(request, "There were some errors in your submission. Please correct them.")
