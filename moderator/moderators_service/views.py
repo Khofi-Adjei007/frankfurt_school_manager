@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import urls
-from . import AdminSettingsForm
+from .AdminSettingsForm import AdminSettingsForm
 
 
 

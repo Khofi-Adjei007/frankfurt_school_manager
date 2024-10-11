@@ -71,9 +71,14 @@
 
                          <!-- Divider -->
                          <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-                         <button class="relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor"><path d="M8.68637 4.00008L11.293 1.39348C11.6835 1.00295 12.3167 1.00295 12.7072 1.39348L15.3138 4.00008H19.0001C19.5524 4.00008 20.0001 4.4478 20.0001 5.00008V8.68637L22.6067 11.293C22.9972 11.6835 22.9972 12.3167 22.6067 12.7072L20.0001 15.3138V19.0001C20.0001 19.5524 19.5524 20.0001 19.0001 20.0001H15.3138L12.7072 22.6067C12.3167 22.9972 11.6835 22.9972 11.293 22.6067L8.68637 20.0001H5.00008C4.4478 20.0001 4.00008 19.5524 4.00008 19.0001V15.3138L1.39348 12.7072C1.00295 12.3167 1.00295 11.6835 1.39348 11.293L4.00008 8.68637V5.00008C4.00008 4.4478 4.4478 4.00008 5.00008 4.00008H8.68637ZM6.00008 6.00008V9.5148L3.5148 12.0001L6.00008 14.4854V18.0001H9.5148L12.0001 20.4854L14.4854 18.0001H18.0001V14.4854L20.4854 12.0001L18.0001 9.5148V6.00008H14.4854L12.0001 3.5148L9.5148 6.00008H6.00008ZM12.0001 16.0001C9.79094 16.0001 8.00008 14.2092 8.00008 12.0001C8.00008 9.79094 9.79094 8.00008 12.0001 8.00008C14.2092 8.00008 16.0001 9.79094 16.0001 12.0001C16.0001 14.2092 14.2092 16.0001 12.0001 16.0001ZM12.0001 14.0001C13.1047 14.0001 14.0001 13.1047 14.0001 12.0001C14.0001 10.8955 13.1047 10.0001 12.0001 10.0001C10.8955 10.0001 10.0001 10.8955 10.0001 12.0001C10.0001 13.1047 10.8955 14.0001 12.0001 14.0001Z"></path></svg>
-                        </button>
+                         <a href="{% url 'moderators_service:settings_page' %}" class="relative">
+                            <button type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8.68637 4.00008L11.293 1.39348C11.6835 1.00295 12.3167 1.00295 12.7072 1.39348L15.3138 4.00008H19.0001C19.5524 4.00008 20.0001 4.4478 20.0001 5.00008V8.68637L22.6067 11.293C22.9972 11.6835 22.9972 12.3167 22.6067 12.7072L20.0001 15.3138V19.0001C20.0001 19.5524 19.5524 20.0001 19.0001 20.0001H15.3138L12.7072 22.6067C12.3167 22.9972 11.6835 22.9972 11.293 22.6067L8.68637 20.0001H5.00008C4.4478 20.0001 4.00008 19.5524 4.00008 19.0001V15.3138L1.39348 12.7072C1.00295 12.3167 1.00295 11.6835 1.39348 11.293L4.00008 8.68637V5.00008C4.00008 4.4478 4.4478 4.00008 5.00008 4.00008H8.68637ZM6.00008 6.00008V9.5148L3.5148 12.0001L6.00008 14.4854V18.0001H9.5148L12.0001 20.4854L14.4854 18.0001H18.0001V14.4854L20.4854 12.0001L18.0001 9.5148V6.00008H14.4854L12.0001 3.5148L9.5148 6.00008H6.00008ZM12.0001 16.0001C9.79094 16.0001 8.00008 14.2092 8.00008 12.0001C8.00008 9.79094 9.79094 8.00008 12.0001 8.00008C14.2092 8.00008 16.0001 9.79094 16.0001 12.0001C16.0001 14.2092 14.2092 16.0001 12.0001 16.0001ZM12.0001 14.0001C13.1047 14.0001 14.0001 13.1047 14.0001 12.0001C14.0001 10.8955 13.1047 10.0001 12.0001 10.0001C10.8955 10.0001 10.0001 10.8955 10.0001 12.0001C10.0001 13.1047 10.8955 14.0001 12.0001 14.0001Z"></path>
+                                </svg>
+                            </button>
+                        </a>
+                        
 
                             <!-- Divider -->
                            <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
@@ -91,7 +96,7 @@
                 <!-- First Card -->
                 <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 duration-200 ...animate-breathing max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-blue-700 ring-offset-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4142 3L12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142ZM13 9H11V15H16V13H13V9Z"></path></svg>
-                    <a href="{% url 'admissions_and_registrations' %}"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-200 dark:text-white">Admissions & Registrations</h5></a>
+                    <a href="{% url 'moderators_service:admissions_and_registrations' %}"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-200 dark:text-white">Admissions & Registrations</h5></a>
                     <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">Admit new students and register new staff here.</p>
                     <div class="flex flex-col-4 mt-8 text-gray-300">
                     <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Students</span>
