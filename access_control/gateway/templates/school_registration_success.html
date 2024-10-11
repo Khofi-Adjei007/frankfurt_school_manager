@@ -62,9 +62,10 @@
 <!-- JavaScript for Redirection -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Display the success animation for 3 seconds, then redirect to settings
+
+        // Display the success animation for 3 seconds, then redirect to login
         setTimeout(function () {
-            window.location.href = "{% url 'moderators_service:settings_page' %}";  // Change to your admin settings URL
+            window.location.href = "{% url 'gateway:logins' %}";
         }, 3000);  // 3 seconds delay
     });
 </script>

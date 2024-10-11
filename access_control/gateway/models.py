@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.hashers import make_password
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -40,8 +41,9 @@ class User(AbstractUser):
         return self.username
 
 
-class School(models.Model):
 
+
+class School(models.Model):
     # Basic Information
     name = models.CharField(max_length=255)
     physical_address = models.CharField(max_length=255)
@@ -71,9 +73,16 @@ class School(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) 
     updated_at = models.DateTimeField(auto_now=True)
 
+    # Password
+    password = models.CharField(max_length=128)  # Store hashed password
+
+    def save(self, *args, **kwargs):
+        # Ensure password is hashed before saving
+        self.password = make_password(self.password)
+        super(School, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
-
 
     class Meta:
         verbose_name = "School"

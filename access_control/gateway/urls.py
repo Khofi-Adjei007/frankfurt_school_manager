@@ -3,7 +3,7 @@ from . import views
 
 
 #url patterns for access_control/gatewa
-#app_name = 'moderators_service'
+app_name = 'gateway'
 
 urlpatterns = [
     path('logins/', views.logins, name='logins'),
