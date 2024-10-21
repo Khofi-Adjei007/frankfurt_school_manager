@@ -126,7 +126,7 @@ class SchoolRegistrationForm(forms.ModelForm):
             if password != confirm_password:
                 self.add_error('confirm_password', _("The two password fields must match."))
 
-        # Additional validations for duplicates
+        # Check for duplicate entries
         name = cleaned_data.get('name')
         email = cleaned_data.get('email')
         official_telephone_number = cleaned_data.get('official_telephone_number')

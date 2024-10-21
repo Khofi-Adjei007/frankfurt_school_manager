@@ -1,0 +1,93 @@
+<!-- Container for Student Services Admin -->
+<div class="bg-white shadow-lg rounded-lg relative h-56 flex flex-col w-[70%]">
+    <!-- Upper Part (Icons) -->
+    <div class="flex justify-center items-center space-x-6 bg-green-100 p-1" style="flex: 1">
+        <i class="ri-user-3-line text-5xl text-green-600 font-bold"></i> <!-- Student Icon -->
+        <i class="ri-arrow-left-right-line text-2xl text-green-600 font-bold"></i> <!-- Two-sided arrow Icon -->
+        <i class="ri-service-line text-5xl text-green-600 font-bold"></i> <!-- Service Icon -->
+    </div>
+
+    <!-- Lower Part (Button and Slider) -->
+    <div class="bg-green-600 flex flex-col items-center justify-center" style="flex: 1">
+        <button class="bg-green-600 text-white py-1 px-4 font-semibold mb-2 w-full">Student Service Admin</button>
+
+        <!-- Slide Switch for "By Mail" -->
+        <div class="bg-green-300 w-[80%] rounded-md mx-auto flex items-center justify-between p-1 mb-4">
+            <!-- Stylish "By Mail" text on the left -->
+            <label class="text-white font-semibold text-sm tracking-wide italic ml-3">Invite By Mail</label>
+
+            <!-- Toggle Switch -->
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleStudentServiceMail" class="sr-only peer" onclick="toggleStudentServiceMailModal()">
+                <div class="relative w-16 h-7 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 dark:bg-gray-700 peer-checked:after:translate-x-[1.75rem] after:translate-x-0 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
+            </label>
+        </div>
+
+        <!-- Slide Switch for "By SMS" -->
+        <div class="bg-green-300 w-[80%] mb-4 rounded-md mx-auto flex items-center justify-between p-1">
+            <!-- Stylish "By SMS" text on the left -->
+            <label class="text-white font-semibold text-sm tracking-wide italic ml-3">Invite By SMS</label>
+
+            <!-- Toggle Switch -->
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleStudentServiceSMS" class="sr-only peer" onclick="toggleStudentServiceSMSModal()">
+                <div class="relative w-16 h-7 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 dark:bg-gray-700 peer-checked:after:translate-x-[1.75rem] after:translate-x-0 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Email Input -->
+<div id="studentServiceEmailModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full z-50">
+        <h2 class="text-xl font-bold mb-4">Enter Email</h2>
+        <input type="email" placeholder="Enter email" class="w-full border border-gray-300 p-3 rounded mb-4">
+        <button class="bg-green-600 text-white py-2 px-4 rounded w-full">Submit</button>
+        <button class="mt-2 text-green-600 underline" onclick="closeStudentServiceMailModal()">Close</button>
+    </div>
+</div>
+
+<!-- Modal for SMS Input -->
+<div id="studentServiceSmsModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full z-50">
+        <h2 class="text-xl font-bold mb-4">Enter Contact Number</h2>
+        <input type="tel" placeholder="Enter contact number" class="w-full border border-gray-300 p-3 rounded mb-4">
+        <button class="bg-green-600 text-white py-2 px-4 rounded w-full">Submit</button>
+        <button class="mt-2 text-green-600 underline" onclick="closeStudentServiceSMSModal()">Close</button>
+    </div>
+</div>
+
+<!-- Toggle Modal Functionality -->
+<script>
+function toggleStudentServiceMailModal() {
+    // Open the email modal
+    document.getElementById("studentServiceEmailModal").classList.remove("hidden");
+    
+    // Reset the toggle to unchecked after modal is opened
+    document.getElementById("toggleStudentServiceMail").checked = true;
+}
+
+function closeStudentServiceMailModal() {
+    // Close the email modal
+    document.getElementById("studentServiceEmailModal").classList.add("hidden");
+    
+    // Automatically reset the toggle to the initial state (left)
+    document.getElementById("toggleStudentServiceMail").checked = false;
+}
+
+function toggleStudentServiceSMSModal() {
+    // Open the SMS modal
+    document.getElementById("studentServiceSmsModal").classList.remove("hidden");
+    
+    // Reset the toggle to unchecked after modal is opened
+    document.getElementById("toggleStudentServiceSMS").checked = true;
+}
+
+function closeStudentServiceSMSModal() {
+    // Close the SMS modal
+    document.getElementById("studentServiceSmsModal").classList.add("hidden");
+    
+    // Automatically reset the toggle to the initial state (left)
+    document.getElementById("toggleStudentServiceSMS").checked = false;
+}
+</script>

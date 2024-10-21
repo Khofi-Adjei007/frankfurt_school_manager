@@ -23,6 +23,34 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(name)s: %(message)s',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'your_app_name': {  # Replace 'your_app_name' with the name of your app
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-#sste@s5kttw!uu5+a34@je&aj@ctm&3d18hq_a!3ajvdu6(rt'
@@ -66,6 +94,13 @@ INTERNAL_IPS = [
 ]
 NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
 
+AUTHENTICATION_BACKENDS = [
+    'access_control.gateway.backends.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+AUTH_USER_MODEL = 'gateway.User'
+
+LOGIN_URL = '/gateway/logins/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

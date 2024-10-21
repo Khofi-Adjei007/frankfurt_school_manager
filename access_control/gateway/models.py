@@ -1,46 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.hashers import make_password
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-
-
-
-class User(AbstractUser):
-    other_names = models.CharField(max_length=255, null=False, blank=False)
-    last_name = models.CharField(max_length=255, null=False, blank=False)
-    date_of_birth = models.DateField()
-    date_joined = models.DateField()
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
-    
-    USER_TYPE_CHOICES = (
-        ('admin', 'Admin'),
-        ('teacher', 'Teacher'),
-        ('student', 'Student'),
-        ('parent', 'Parent'),
-    )
-    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='registrations_user_set',
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='registrations_user_permissions_set', 
-        blank=True
-    )
-
-    def __str__(self):
-        return self.username
-
-
+from django.utils import timezone
 
 
 class School(models.Model):
@@ -87,6 +52,41 @@ class School(models.Model):
     class Meta:
         verbose_name = "School"
         verbose_name_plural = "Schools"
+
+
+#User model, connected to school model via a foreign key
+class User(AbstractUser):
+    school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='users', null=True)
+    other_names = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    date_joined = models.DateTimeField(default=timezone.now)
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    
+    USER_TYPE_CHOICES = (
+        ('admin', 'Admin'),
+        ('teacher', 'Teacher'),
+        ('student', 'Student'),
+        ('parent', 'Parent'),
+    )
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='registrations_user_set',
+        blank=True
+    )
+    
+    is_setup_complete = models.BooleanField(default=False)
+
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='registrations_user_permissions_set', 
+        blank=True
+    )
+
+    def __str__(self):
+        return self.username
 
 
 

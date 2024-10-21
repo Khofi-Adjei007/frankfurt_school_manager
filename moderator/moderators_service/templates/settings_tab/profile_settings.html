@@ -1,0 +1,136 @@
+<div class="container items-start my-8 p-6 bg-white rounded-lg max-w-4xl">
+    <!-- Header -->
+    <h1 class="text-3xl font-bold text-red-600 mb-4 flex items-center">
+        School Registration - Let's Get a Few Things Setup
+    </h1>
+    <p class="text-gray-600 mb-8">
+        Please complete the information below to finalize the school registration.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        
+        <!-- Admin Information Section -->
+        <div class="mb-8">
+            <div class="mb-3">
+                <h2 class="text-xl font-semibold text-gray-800">Principal Admin Details</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.first_name.id_for_label }}">First Name</label>
+                    <input type="text" name="first_name" id="{{ form.first_name.id_for_label }}" value="{{ form.first_name.value }}" placeholder="First Name" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.first_name.errors %}
+                        <span class="text-red-500 text-sm">{{ form.first_name.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.middle_name.id_for_label }}">Middle Name (Optional)</label>
+                    <input type="text" name="middle_name" id="{{ form.middle_name.id_for_label }}" value="{{ form.middle_name.value }}" placeholder="Middle Name" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.middle_name.errors %}
+                        <span class="text-red-500 text-sm">{{ form.middle_name.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.last_name.id_for_label }}">Last Name</label>
+                    <input type="text" name="last_name" id="{{ form.last_name.id_for_label }}" value="{{ form.last_name.value }}" placeholder="Last Name" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.last_name.errors %}
+                        <span class="text-red-500 text-sm">{{ form.last_name.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.email.id_for_label }}">Email</label>
+                    <input type="email" name="email" id="{{ form.email.id_for_label }}" value="{{ form.email.value }}" placeholder="Email" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.email.errors %}
+                        <span class="text-red-500 text-sm">{{ form.email.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div class="col-span-1 sm:col-span-2">
+                    <label class="block text-gray-600 font-medium" for="{{ form.phone_number.id_for_label }}">Contact Number</label>
+                    <input type="tel" name="phone_number" id="{{ form.phone_number.id_for_label }}" value="{{ form.phone_number.value }}" placeholder="Contact Number" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.phone_number.errors %}
+                        <span class="text-red-500 text-sm">{{ form.phone_number.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <!-- Photo Upload Field -->
+                <div class="col-span-1 sm:col-span-2">
+                    <label class="block text-gray-600 font-medium" for="{{ form.photo.id_for_label }}">Upload Photo</label>
+                    <input type="file" name="photo" id="{{ form.photo.id_for_label }}" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.photo.errors %}
+                        <span class="text-red-500 text-sm">{{ form.photo.errors|first }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- School Information Section -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">School Information</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.logo.id_for_label }}">School Logo</label>
+                    <input type="file" name="logo" id="{{ form.logo.id_for_label }}" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.logo.errors %}
+                        <span class="text-red-500 text-sm">{{ form.logo.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.motto.id_for_label }}">School Motto</label>
+                    <input type="text" name="motto" id="{{ form.motto.id_for_label }}" value="{{ form.motto.value }}" placeholder="Enter School Motto" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.motto.errors %}
+                        <span class="text-red-500 text-sm">{{ form.motto.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.govt_registration_number.id_for_label }}">Govt. Registration Number (Optional)</label>
+                    <input type="text" name="govt_registration_number" id="{{ form.govt_registration_number.id_for_label }}" value="{{ form.govt_registration_number.value }}" placeholder="Govt. Reg. Number" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.govt_registration_number.errors %}
+                        <span class="text-red-500 text-sm">{{ form.govt_registration_number.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.social_media_links.id_for_label }}">Social Media Links (Optional)</label>
+                    <input type="text" name="social_media_links" id="{{ form.social_media_links.id_for_label }}" value="{{ form.social_media_links.value }}" placeholder="Social Media URL" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.social_media_links.errors %}
+                        <span class="text-red-500 text-sm">{{ form.social_media_links.errors|first }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Additional School Information</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.number_of_teachers.id_for_label }}">Number of Teachers</label>
+                    <input type="number" name="number_of_teachers" id="{{ form.number_of_teachers.id_for_label }}" value="{{ form.number_of_teachers.value }}" placeholder="Number of Teachers" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.number_of_teachers.errors %}
+                        <span class="text-red-500 text-sm">{{ form.number_of_teachers.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.number_of_other_staff.id_for_label }}">Number of Other Staff</label>
+                    <input type="number" name="number_of_other_staff" id="{{ form.number_of_other_staff.id_for_label }}" value="{{ form.number_of_other_staff.value }}" placeholder="Number of Staff" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.number_of_other_staff.errors %}
+                        <span class="text-red-500 text-sm">{{ form.number_of_other_staff.errors|first }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <label class="block text-gray-600 font-medium" for="{{ form.number_of_classrooms.id_for_label }}">Number of Classrooms</label>
+                    <input type="number" name="number_of_classrooms" id="{{ form.number_of_classrooms.id_for_label }}" value="{{ form.number_of_classrooms.value }}" placeholder="Number of Classrooms" class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring focus:ring-red-300 focus:border-red-500">
+                    {% if form.number_of_classrooms.errors %}
+                        <span class="text-red-500 text-sm">{{ form.number_of_classrooms.errors|first }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-end">
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                Submit Registration
+            </button>
+        </div>
+    </form>
+</div>

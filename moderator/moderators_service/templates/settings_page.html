@@ -12,88 +12,118 @@
     {% tailwind_css %}
 </head>
 
+<style>
+    .active-tab {
+      border-b-2 border-red-500 text-red-500;
+    }
+    .hidden {display: none;}
+</style>
+  
+  
+
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <div class="bg-white shadow-lg rounded-lg p-8">
-            <h1 class="text-3xl font-bold text-red-600 mb-6">Admin Settings</h1>
-            <form method="POST" enctype="multipart/form-data" class="space-y-6">
-                {% csrf_token %}
-
-                <!-- Name Field -->
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" value="{{ form.name.value }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.name.errors %}
-                        <p class="text-red-500 text-sm">{{ form.name.errors }}</p>
-                    {% endif %}
+          <div class="relative">
+            <div class="sticky top-0 bg-white z-50 ">
+                <h1 class="text-3xl font-bold text-red-600 mb-2">
+                    <i class="ri-settings-4-line"></i> Settings
+                </h1>
+                
+                <h3 class="text-sm text-gray-600 mb-6">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin.</h3>
+        
+                <div class="w-full border-b border-gray-200">
+                    <ul class="flex justify-start space-x-2 sm:space-x-3 md:space-x-4">
+                        <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 border-b-2 border-red-500 text-red-500 text-xs sm:text-sm md:text-base" data-tab="user-management">
+                            <i class="ri-user-line"></i> Profiles
+                        </li>
+                        <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="system-settings">
+                            <i class="ri-settings-3-line"></i> Controls
+                        </li>
+                        <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="themes">
+                            <i class="ri-palette-line"></i> Themes
+                        </li>
+                        <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="notifications">
+                            <i class="ri-notification-line"></i> Notices
+                        </li>
+                        <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="customization">
+                            <i class="ri-tools-line"></i> Customization
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        
+            <!-- Placeholder for content that will scroll behind the settings tab -->
+            <div class="tab-content mt-6" id="user-management">
+              {% include 'settings_tab/profile_settings.html'%}
+            </div>
+            
 
-                <!-- Position Field -->
-                <div>
-                    <label for="position" class="block text-sm font-medium text-gray-700">Position in School</label>
-                    <input type="text" id="position" name="position" value="{{ form.position.value }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.position.errors %}
-                        <p class="text-red-500 text-sm">{{ form.position.errors }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Email Field -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" value="{{ form.email.value }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.email.errors %}
-                        <p class="text-red-500 text-sm">{{ form.email.errors }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Phone Field -->
-                <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                    <input type="text" id="phone" name="phone" value="{{ form.phone.value }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.phone.errors %}
-                        <p class="text-red-500 text-sm">{{ form.phone.errors }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Address Field -->
-                <div>
-                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                    <input type="text" id="address" name="address" value="{{ form.address.value }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.address.errors %}
-                        <p class="text-red-500 text-sm">{{ form.address.errors }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Profile Picture Field -->
-                <div>
-                    <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
-                    <input type="file" id="profile_picture" name="profile_picture" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    {% if form.profile_picture.errors %}
-                        <p class="text-red-500 text-sm">{{ form.profile_picture.errors }}</p>
-                    {% endif %}
-                </div>
-
-                <!-- Password Change Field -->
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Change Password</label>
-                    <input type="password" id="password" name="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50" placeholder="New Password">
-                </div>
-
-                <!-- Notifications Toggle -->
-                <div class="flex items-center">
-                    <input type="checkbox" id="notifications" name="notifications" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
-                    <label for="notifications" class="ml-2 block text-sm text-gray-700">Enable Email Notifications</label>
-                </div>
-
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-                        <ion-icon name="save-outline" class="mr-2"></ion-icon>Save Changes
-                    </button>
-                </div>
-            </form>
+            <!--Admin Assigning Section-->
+            <div class="tab-content hidden mt-6" id="system-settings">
+              <div class="w-[95%] items-center mx-auto p-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                  {% include 'settings_tab/vice_principal_invite.html'%}
+                  {% include 'settings_tab/human_resource_control.html'%}
+                  {% include 'settings_tab/academic_admin.html'%}
+                  {% include 'settings_tab/student_service_admin.html'%}
+                  {% include 'settings_tab/finance_admin.html'%}
+                  {% include 'settings_tab/IT_admin.html'%}
+                  {% include 'settings_tab/pra_admin.html'%}
+                  {% include 'settings_tab/operations_facilities.html'%}
+              </div>
+              </div>
+            </div>
+            
+            <div class="tab-content hidden mt-6" id="themes">
+              <!-- Themes settings content goes here -->
+              <p>Themes Settings Content</p>
+            </div>
+            
+            <div class="tab-content hidden mt-6" id="notifications">
+              <!-- Notifications & Announcements settings content goes here -->
+              <p>Notifications & Announcements Settings Content</p>
+            </div>
+            
+            <div class="tab-content hidden mt-6" id="customization">
+              <!-- Customization settings content goes here -->
+              <p>Customization Settings Content</p>
+            </div>
+        </div>
+        
+              
+                 
+        
+              
         </div>
     </div>
-</body>
 
+
+    <script>
+      function toggleInvite(button) {
+        const inputField = button.nextElementSibling;
+        inputField.classList.toggle('hidden');
+      }
+
+        const tabs = document.querySelectorAll('.tab-item');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+      // Remove active class from all tabs
+      tabs.forEach(item => item.classList.remove('border-b-2', 'border-red-500', 'text-red-500'));
+
+      // Add active class to the clicked tab
+      tab.classList.add('border-b-2', 'border-red-500', 'text-red-500');
+
+      // Hide all content sections
+      contents.forEach(content => content.classList.add('hidden'));
+
+      // Show the content related to the clicked tab
+      document.getElementById(tab.getAttribute('data-tab')).classList.remove('hidden');
+      });
+      });
+    </script>
+
+</body>
 </html>

@@ -1,0 +1,141 @@
+<!-- Container 1 -->
+<div class="bg-white shadow-lg rounded-lg relative h-56 flex flex-col w-[70%]">
+    <!-- Upper Part (Icons) -->
+    <div class="flex justify-center items-center space-x-6 bg-blue-100 p-1" style="flex: 1">
+        <i class="ri-admin-line text-5xl text-blue-600 font-bold"></i> <!-- Admin Icon -->
+        <i class="ri-arrow-left-right-line text-2xl text-blue-600 font-bold"></i> <!-- Two-sided arrow Icon -->
+        <i class="ri-user-2-line text-5xl text-blue-600 font-bold"></i> <!-- Human Resource Icon -->
+    </div>
+
+    <!-- Lower Part (Button and Slider) -->
+    <div class="bg-blue-600 flex flex-col items-center justify-center" style="flex: 1">
+        <button class="bg-blue-600 text-white py-1 px-4 font-semibold mb-2 w-full">Human Resource Admin</button>
+
+        <!-- Slide Switch for "By Mail" -->
+        <div class="bg-blue-300 w-[80%] rounded-md mx-auto flex items-center justify-between p-1 mb-4">
+            <!-- Stylish "By Mail" text on the left -->
+            <label class="text-white font-semibold text-sm tracking-wide italic ml-3">Invite By Mail</label>
+
+            <!-- Toggle Switch -->
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleHRMail" class="sr-only peer" onclick="toggleHRMailModal()">
+                <div class="relative w-16 h-7 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-[1.75rem] after:translate-x-0 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
+            </label>
+        </div>
+
+        <!-- Slide Switch for "By SMS" -->
+        <div class="bg-blue-300 w-[80%] mb-4 rounded-md mx-auto flex items-center justify-between p-1">
+            <!-- Stylish "By SMS" text on the left -->
+            <label class="text-white font-semibold text-sm tracking-wide italic ml-3">Invite By SMS</label>
+
+            <!-- Toggle Switch -->
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleHRSMS" class="sr-only peer" onclick="toggleHRSMSModal()">
+                <div class="relative w-16 h-7 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-[1.75rem] after:translate-x-0 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Email Input -->
+<div id="hrEmailModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full z-50">
+        <h2 class="text-xl font-bold mb-4">Enter Email</h2>
+        <input type="email" placeholder="Enter email" class="w-full border border-gray-300 p-3 rounded mb-4">
+        <button class="bg-blue-600 text-white py-2 px-4 rounded w-full">Submit</button>
+        <button class="mt-2 text-blue-600 underline" onclick="closeHRMailModal()">Close</button>
+    </div>
+</div>
+
+<!-- Modal for SMS Input -->
+<div id="hrSmsModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full z-50">
+        <h2 class="text-xl font-bold mb-4">Enter Contact Number</h2>
+        <input type="tel" placeholder="Enter contact number" class="w-full border border-gray-300 p-3 rounded mb-4">
+        <button class="bg-blue-600 text-white py-2 px-4 rounded w-full">Submit</button>
+        <button class="mt-2 text-blue-600 underline" onclick="closeHRSMSModal()">Close</button>
+    </div>
+</div>
+
+<!-- Tailwind CSS for the Toggle Switch -->
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 34px;
+        height: 14px;
+    }
+    
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+    
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 0px;
+        bottom: 0px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+        background-color: rgb(24, 24, 190);
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+</style>
+
+<!-- Toggle Modal Functionality -->
+<script>
+function toggleHRMailModal() {
+    // Open the email modal
+    document.getElementById("hrEmailModal").classList.remove("hidden");
+    
+    // Reset the toggle to unchecked after modal is opened
+    document.getElementById("toggleHRMail").checked = true;
+}
+
+function closeHRMailModal() {
+    // Close the email modal
+    document.getElementById("hrEmailModal").classList.add("hidden");
+    
+    // Automatically reset the toggle to the initial state (left)
+    document.getElementById("toggleHRMail").checked = false;
+}
+
+function toggleHRSMSModal() {
+    // Open the SMS modal
+    document.getElementById("hrSmsModal").classList.remove("hidden");
+    
+    // Reset the toggle to unchecked after modal is opened
+    document.getElementById("toggleHRSMS").checked = true;
+}
+
+function closeHRSMSModal() {
+    // Close the SMS modal
+    document.getElementById("hrSmsModal").classList.add("hidden");
+    
+    // Automatically reset the toggle to the initial state (left)
+    document.getElementById("toggleHRSMS").checked = false;
+}
+</script>

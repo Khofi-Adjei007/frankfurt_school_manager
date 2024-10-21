@@ -1,0 +1,97 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+    <!-- Include Lottie Web Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <style>
+        /* Centering the content */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            text-align: center; /* Center text */
+            margin: 0; /* Remove default margin */
+            overflow: hidden; /* Prevent scrolling during animation */
+            position: relative;
+        }
+        /* Positioning the text on top of the animation */
+        #welcome-message {
+            font-size: 2.2em; /* Slightly smaller text to fit in 2 lines */
+            font-weight: bold; /* Bold text */
+            color: red; /* Text color red */
+            opacity: 1; /* Initial opacity */
+            transition: opacity 1s; /* Fade out transition */
+            position: absolute;
+            top: 12%; /* Adjusted position to move text slightly up */
+            width: 100%; /* Full width */
+            text-align: center; /* Center text */
+        }
+        /* Making the animation icon larger */
+        #animation {
+            width: 42em; /* Increased size */
+            height: 42em; /* Increased size */
+            opacity: 1; /* Initial opacity */
+            transition: opacity 1s; /* Fade out transition */
+            position: absolute;
+            top: 16%; /* Move the animation further down */
+        }
+    </style>
+</head>
+<body>
+    <div id="welcome-message"></div> <!-- Text is on top of the animation -->
+    <div id="animation"></div>
+
+    <script>
+       // Load Lottie animation for the waving icon
+var animation = lottie.loadAnimation({
+    container: document.getElementById('animation'),
+    renderer: 'svg',
+    loop: true, // Loop the animation
+    autoplay: true,
+    path: "{% static 'animations/Animation - 1729505982876.json' %}"  // Replace with your actual animation path
+});
+
+// Updated message with two clear sentences
+const message = `Hi There, We are so glad to have you.<br>Let's Complete Your Profile for a good time.`; 
+let i = 0;
+let line = ""; // Initialize line variable
+
+function typeWriter() {
+    // Each sentence is treated separately and typed out
+    if (i < message.length) {
+        line += message[i]; // Add each character to the line
+        document.getElementById("welcome-message").innerHTML = line; // Update the displayed message
+        i++;
+        setTimeout(typeWriter, 80); // Adjust typing speed as necessary
+    } else {
+        // Start fade out after 4 seconds
+        setTimeout(() => {
+            fadeOut();
+        }, 5000); // Time before fading out
+    }
+}
+
+function fadeOut() {
+    // Fade out text and animation
+    document.getElementById("welcome-message").style.opacity = '0';
+    document.getElementById("animation").style.opacity = '0';
+
+    // Redirect after fade out is complete
+    setTimeout(() => {
+        window.location.href = "{% url 'moderators_service:settings_page' %}"; // Replace with your actual URL
+    }, 1000); // Wait for the fade out transition to complete
+}
+
+// Start the typewriter effect
+typeWriter();
+
+    </script>
+</body>
+</html>
