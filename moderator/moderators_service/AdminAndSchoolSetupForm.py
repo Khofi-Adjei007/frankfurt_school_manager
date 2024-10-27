@@ -14,33 +14,120 @@ def validate_curriculum_types(value):
     if not re.match(r'^[a-zA-Z, ]+$', value):
         raise ValidationError('Curriculum types must contain only letters, commas, and spaces.')
 
-class AdminAndSchoolSetupForm(forms.Form):  # Use forms.Form since we have two models
+
+class AdminAndSchoolSetupForm(forms.Form):
     # Admin fields
     first_name = forms.CharField(
-        max_length=255, 
+        max_length=255,
         required=True,
-        error_messages={'required': 'First name is required.'}
+        error_messages={'required': 'First name is required.'},
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'First Name'
+        })
     )
-    middle_name = forms.CharField(max_length=255, required=False)
+    middle_name = forms.CharField(
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Middle Name'
+        })
+    )
     last_name = forms.CharField(
-        max_length=255, 
+        max_length=255,
         required=True,
-        error_messages={'required': 'Last name is required.'}
+        error_messages={'required': 'Last name is required.'},
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Last Name'
+        })
     )
-    email = forms.EmailField(required=True, error_messages={'required': 'Email is required.'})
-    phone_number = forms.CharField(max_length=13, required=True, validators=[validate_phone_number])
+    email = forms.EmailField(
+        required=True,
+        error_messages={'required': 'Email is required.'},
+        widget=forms.EmailInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Email'
+        })
+    )
+    phone_number = forms.CharField(
+        max_length=13,
+        required=True,
+        validators=[validate_phone_number],
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Phone Number'
+        })
+    )
     photo = forms.ImageField(required=False)
 
     # School fields
     logo = forms.ImageField(required=False)
-    motto = forms.CharField(max_length=255, required=False)
-    govt_registration_number = forms.CharField(max_length=255, required=False)
-    social_media_links = forms.URLField(required=False)
-    number_of_teachers = forms.IntegerField(required=True, error_messages={'required': 'Number of teachers is required.'})
-    number_of_other_staff = forms.IntegerField(required=True, error_messages={'required': 'Number of other staff is required.'})
-    number_of_classrooms = forms.IntegerField(required=True, error_messages={'required': 'Number of classrooms is required.'})
-    curriculum_types = forms.CharField(max_length=255, required=True, validators=[validate_curriculum_types], error_messages={'required': 'Curriculum types are required.'})
-    board_of_directors = forms.CharField(widget=forms.Textarea, required=False)
+    motto = forms.CharField(
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Motto'
+        })
+    )
+    govt_registration_number = forms.CharField(
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Government Registration Number'
+        })
+    )
+    social_media_links = forms.URLField(
+        required=False,
+        widget=forms.URLInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Social Media Links'
+        })
+    )
+    number_of_teachers = forms.IntegerField(
+        required=True,
+        error_messages={'required': 'Number of teachers is required.'},
+        widget=forms.NumberInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Number of Teachers'
+        })
+    )
+    number_of_other_staff = forms.IntegerField(
+        required=True,
+        error_messages={'required': 'Number of other staff is required.'},
+        widget=forms.NumberInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Number of Other Staff'
+        })
+    )
+    number_of_classrooms = forms.IntegerField(
+        required=True,
+        error_messages={'required': 'Number of classrooms is required.'},
+        widget=forms.NumberInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Number of Classrooms'
+        })
+    )
+    curriculum_types = forms.CharField(
+        max_length=255,
+        required=True,
+        validators=[validate_curriculum_types],
+        error_messages={'required': 'Curriculum types are required.'},
+        widget=forms.TextInput(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Curriculum Types'
+        })
+    )
+    board_of_directors = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'class': 'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
+            'placeholder': 'Board of Directors'
+        }),
+        required=False
+    )
 
     def __init__(self, admin_instance=None, school_instance=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -84,3 +171,4 @@ class AdminAndSchoolSetupForm(forms.Form):  # Use forms.Form since we have two m
         school_instance.curriculum_types = self.cleaned_data['curriculum_types']
         school_instance.board_of_directors = self.cleaned_data['board_of_directors']
         school_instance.save()
+

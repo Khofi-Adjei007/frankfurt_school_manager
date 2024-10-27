@@ -26,68 +26,54 @@ def moderators_service_page(request):
 def admissions_and_registrations(request):
     return render(request, "admissions_and_registrations.html")
 
-
 @login_required(login_url='/gateway/logins/')
 def settings_page(request):
+    # Handle both forms in the same view
+    admin_settings_form = AdminSettingsForm()
+    admin_school_setup_form = AdminAndSchoolSetupForm()
+
     if request.method == 'POST':
-        form = AdminSettingsForm(request.POST, request.FILES)
-        if form.is_valid():
-            return redirect('success_page')
-    else:
-        form = AdminSettingsForm()
+        if 'admin_settings' in request.POST:
+            admin_settings_form = AdminSettingsForm(request.POST, request.FILES)
+            if admin_settings_form.is_valid():
+                # Process AdminSettingsForm (like in your original settings_page view)
+                return redirect('success_page')
 
-    return render(request, 'settings_page.html', {'form': form})
+        elif 'admin_school_setup' in request.POST:
+            admin_school_setup_form = AdminAndSchoolSetupForm(request.POST, request.FILES)
+            if admin_school_setup_form.is_valid():
+                # Save admin and school data like in admin_and_school_setup view
+                admin_instance = Admin(
+                    first_name=admin_school_setup_form.cleaned_data['first_name'],
+                    middle_name=admin_school_setup_form.cleaned_data['middle_name'],
+                    last_name=admin_school_setup_form.cleaned_data['last_name'],
+                    email=admin_school_setup_form.cleaned_data['email'],
+                    phone_number=admin_school_setup_form.cleaned_data['phone_number'],
+                    photo=admin_school_setup_form.cleaned_data['photo']
+                )
+                admin_instance.save()
 
+                school_instance = School(
+                    logo=admin_school_setup_form.cleaned_data['logo'],
+                    motto=admin_school_setup_form.cleaned_data['motto'],
+                    govt_registration_number=admin_school_setup_form.cleaned_data['govt_registration_number'],
+                    social_media_links=admin_school_setup_form.cleaned_data['social_media_links'],
+                    number_of_teachers=admin_school_setup_form.cleaned_data['number_of_teachers'],
+                    number_of_other_staff=admin_school_setup_form.cleaned_data['number_of_other_staff'],
+                    number_of_classrooms=admin_school_setup_form.cleaned_data['number_of_classrooms'],
+                    curriculum_types=admin_school_setup_form.cleaned_data['curriculum_types'],
+                    board_of_directors=admin_school_setup_form.cleaned_data['board_of_directors'],
+                    admin=admin_instance  # Link to the admin instance
+                )
+                school_instance.save()
 
+                return redirect('success_page')
 
+    return render(request, 'settings_page.html', {
+        'admin_settings_form': admin_settings_form,
+        'admin_school_setup_form': admin_school_setup_form
+    })
 
-def admin_and_school_setup(request):
-    if request.method == 'POST':
-        print("POST request received.")  # Debugging print
-        form = AdminAndSchoolSetupForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            print("Form is valid.")  # Debugging print
-
-            # Save admin data
-            admin_instance = Admin(
-                first_name=form.cleaned_data['first_name'],
-                middle_name=form.cleaned_data['middle_name'],
-                last_name=form.cleaned_data['last_name'],
-                email=form.cleaned_data['email'],
-                phone_number=form.cleaned_data['phone_number'],
-                photo=form.cleaned_data['photo']
-            )
-            admin_instance.save()
-            print("Admin instance saved.")  # Debugging print
-
-            # Save school data
-            school_instance = School(
-                logo=form.cleaned_data['logo'],
-                motto=form.cleaned_data['motto'],
-                govt_registration_number=form.cleaned_data['govt_registration_number'],
-                social_media_links=form.cleaned_data['social_media_links'],
-                number_of_teachers=form.cleaned_data['number_of_teachers'],
-                number_of_other_staff=form.cleaned_data['number_of_other_staff'],
-                number_of_classrooms=form.cleaned_data['number_of_classrooms'],
-                curriculum_types=form.cleaned_data['curriculum_types'],
-                board_of_directors=form.cleaned_data['board_of_directors'],
-                admin=admin_instance  # Link to the admin instance
-            )
-            school_instance.save()
-            print("School instance saved.")  # Debugging print
-            
-            # Redirect to a success page or another view
-            return redirect('success_page')  # Replace with your desired URL name
-
-        else:
-            print("Form is invalid.")  # Debugging print
-            print(form.errors)  # Print form errors for debugging
-
-    else:
-        form = AdminAndSchoolSetupForm()  # Instantiate the form for GET request
-
-    return render(request, 'settings_page.html', {'form': form})
 
 
 
