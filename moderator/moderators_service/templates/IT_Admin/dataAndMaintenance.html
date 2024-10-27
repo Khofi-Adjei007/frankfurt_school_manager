@@ -1,0 +1,61 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- or your local path if you have it installed -->
+</head>
+
+<div class="container mx-auto px-4 py-6">
+    <div class="bg-white rounded-lg p-6">
+        <h2 class="text-3xl font-bold text-red-600 mb-4">
+            <i class="ri-database-2-line"></i> Data & Maintenance
+        </h2>
+
+        <h3 class="text-lg text-gray-700 mb-6">Manage Data Integrity and System Maintenance</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Data Backup Section -->
+            <div class="p-6 border border-gray-200 rounded-lg bg-red-50 hover:shadow-lg transition duration-300">
+                <h4 class="text-xl font-semibold text-red-700 mb-2">Data Backup</h4>
+                <p class="text-gray-600 mb-4">Schedule and manage data backups for system integrity.</p>
+                <button class="bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition">
+                    <i class="ri-save-3-line mr-2"></i> Manage Backups
+                </button>
+            </div>
+
+            <!-- Data Restoration Section -->
+            <div class="p-6 border border-gray-200 rounded-lg bg-pink-100 hover:shadow-lg transition duration-300">
+                <h4 class="text-xl font-semibold text-pink-700 mb-2">Data Restoration</h4>
+                <p class="text-gray-600 mb-4">Restore data from previous backups as needed.</p>
+                <button class="bg-pink-500 text-white rounded-md px-4 py-2 hover:bg-pink-600 transition">
+                    <i class="ri-restart-line mr-2"></i> Restore Data
+                </button>
+            </div>
+
+            <!-- Database Maintenance -->
+            <div class="p-6 border border-gray-200 rounded-lg bg-red-100 hover:shadow-lg transition duration-300">
+                <h4 class="text-xl font-semibold text-red-700 mb-2">Database Maintenance</h4>
+                <p class="text-gray-600 mb-4">Perform regular maintenance tasks on the database.</p>
+                <button class="bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition">
+                    <i class="ri-settings-2-line mr-2"></i> Perform Maintenance
+                </button>
+            </div>
+
+            <!-- Data Integrity Check -->
+            <div class="p-6 border border-gray-200 rounded-lg bg-orange-100 hover:shadow-lg transition duration-300">
+                <h4 class="text-xl font-semibold text-orange-700 mb-2">Data Integrity Check</h4>
+                <p class="text-gray-600 mb-4">Run checks to ensure data accuracy and consistency.</p>
+                <button class="bg-blue-700 text-white rounded-md px-4 py-2 hover:bg-orange-600 transition">
+                    <i class="ri-check-line mr-2"></i> Check Integrity
+                </button>
+            </div>
+        </div>
+
+        <!-- System Logs Section -->
+        <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-red-100 hover:shadow-lg transition duration-300">
+            <h4 class="text-xl font-semibold text-red-700 mb-2">System Logs</h4>
+            <p class="text-gray-600 mb-4">Review system logs for maintenance and troubleshooting.</p>
+            <button class="bg-red-500 text-white rounded-md px-4 py-2 hover:bg-red-600 transition">
+                <i class="ri-file-text-line mr-2"></i> View Logs
+            </button>
+        </div>
+    </div>
+</div>

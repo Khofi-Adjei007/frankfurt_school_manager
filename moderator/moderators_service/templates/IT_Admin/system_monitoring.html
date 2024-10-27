@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <title>System Monitoring - Frankfurt School Manager</title>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Main Container -->
+    <div class="container mx-auto py-4 px-5 space-y-4">
+
+      
+
+        <!-- Server Status Section -->
+        <section class="bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-lg font-semibold mb-4">Server Status</h2>
+            <div class="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+                <div class="p-4 rounded-lg border border-gray-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-medium text-gray-700">Application Server</h3>
+                        <span class="text-green-600 text-sm">Online</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Last checked: 3 mins ago</p>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-200">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-medium text-gray-700">Database Server</h3>
+                        <span class="text-red-600 text-sm">Offline</span>
+                    </div>
+                    <p class="text-xs text-gray-500">Last checked: 5 mins ago</p>
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Active Users Section -->
+        <section class="bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-lg font-semibold mb-4">User Activity</h2>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="p-4 rounded-lg border border-gray-200 flex items-center space-x-4">
+                    <i class="ri-user-line text-blue-500 text-2xl"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">Active Logged-In Users</p>
+                        <p class="text-lg font-semibold text-gray-900">24</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-200 flex items-center space-x-4">
+                    <i class="ri-login-circle-line text-green-500 text-2xl"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">Login Attempts Today</p>
+                        <p class="text-lg font-semibold text-gray-900">86</p>
+                    </div>
+                </div>
+                <div class="p-4 rounded-lg border border-gray-200 flex items-center space-x-4">
+                    <i class="ri-close-circle-line text-red-500 text-2xl"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-700">Failed Logins</p>
+                        <p class="text-lg font-semibold text-gray-900">13</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Metrics Section -->
+        <section class="bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-lg font-semibold mb-4">System Metrics</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-medium text-gray-600">CPU Usage</p>
+                    <div class="w-full h-2 mt-2 bg-gray-200 rounded-full">
+                        <div class="h-2 bg-indigo-500 rounded-full" style="width: 42%;"></div>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500">42% utilization</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-medium text-gray-600">Memory Usage</p>
+                    <div class="w-full h-2 mt-2 bg-gray-200 rounded-full">
+                        <div class="h-2 bg-blue-500 rounded-full" style="width: 68%;"></div>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500">68% utilization</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-medium text-gray-600">Disk Usage</p>
+                    <div class="w-full h-2 mt-2 bg-gray-200 rounded-full">
+                        <div class="h-2 bg-purple-500 rounded-full" style="width: 55%;"></div>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500">55% utilization</p>
+                </div>
+                <div class="p-4 border border-gray-200 rounded-lg">
+                    <p class="text-sm font-medium text-gray-600">Network Traffic</p>
+                    <div class="w-full h-2 mt-2 bg-gray-200 rounded-full">
+                        <div class="h-2 bg-green-500 rounded-full" style="width: 25%;"></div>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500">25% usage</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Error Logs Section -->
+        <section class="bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-lg font-semibold mb-4">Recent Error Logs</h2>
+            <div class="space-y-4">
+                <div class="p-4 bg-red-50 rounded-lg border border-red-200 flex items-center space-x-4">
+                    <i class="ri-alert-line text-red-600 text-2xl"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-700">Database connection error</p>
+                        <p class="text-xs text-gray-500">Timestamp: Oct 26, 2024, 10:45 AM</p>
+                    </div>
+                    <span class="px-2 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-md">Critical</span>
+                </div>
+                <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200 flex items-center space-x-4">
+                    <i class="ri-error-warning-line text-yellow-500 text-2xl"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-700">Memory usage above 85%</p>
+                        <p class="text-xs text-gray-500">Timestamp: Oct 26, 2024, 11:15 AM</p>
+                    </div>
+                    <span class="px-2 py-1 text-sm font-semibold text-yellow-700 bg-yellow-100 rounded-md">Warning</span>
+                </div>
+                <div class="p-4 bg-green-50 rounded-lg border border-green-200 flex items-center space-x-4">
+                    <i class="ri-checkbox-circle-line text-green-500 text-2xl"></i>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-700">Scheduled backup completed</p>
+                        <p class="text-xs text-gray-500">Timestamp: Oct 26, 2024, 11:45 AM</p>
+                    </div>
+                    <span class="px-2 py-1 text-sm font-semibold text-green-700 bg-green-100 rounded-md">Info</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

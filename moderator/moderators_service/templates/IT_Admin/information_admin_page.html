@@ -1,0 +1,153 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Admin Settings | Frankfurt School Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    {% tailwind_css %}
+</head>
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg p-8 relative">
+            
+            <!-- Header with Title and Icons -->
+            <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+                <div class="flex-1 mb-4 md:mb-0">
+                    <!-- Title and Description on the Left -->
+                    <h1 class="text-3xl font-bold text-orange-600"><i class="ri-computer-line"></i> Systems Administration and Support</h1>
+                    <h3 class="text-sm text-gray-600">Manage technical issues, register new students and staff, and monitor admin activities.</h3>
+                </div>
+                
+                <div class="relative flex items-center gap-4 cursor-pointer" onclick="toggleDropdown()">
+                    <!-- User Information -->
+                    <div class="flex flex-col text-right">
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                            </svg>
+                            <span class="text-gray-600 font-semibold text-sm md:text-base">Jese Leos</span>
+                        </div>
+                        <!-- User Role with Status Indicator -->
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-700 dark:text-green-100">
+                                IT Administrator
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- User Avatar -->
+                    <img class="w-14 h-14 rounded-full ring-2 ring-orange-500" src="https://www.shutterstock.com/image-photo/smiling-cheerful-young-adult-african-260nw-1850821510.jpg" alt="User Profile">
+                    
+                    <!-- Dropdown Menu -->
+                    <div id="dropdownMenu" class="absolute right-0 mt-32 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-[9999]">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation Section -->
+            <div class="relative">
+                <div class="sticky top-0 bg-white z-50">
+                    <div class="w-full border-b border-gray-200">
+                        <ul class="flex flex-wrap justify-start space-x-2 sm:space-x-3 md:space-x-4">
+                            <!-- User and Access Management Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 border-b-2 border-orange-500 text-orange-500 text-xs sm:text-sm md:text-base" data-tab="user-access-management">
+                                <i class="ri-user-settings-line"></i> User & Access Management
+                            </li>
+                            <!-- Support and Ticketing System Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="support-ticketing">
+                                <i class="ri-ticket-2-line"></i> Support & Ticketing
+                            </li>
+                            <!-- System Monitoring and Alerts Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="system-monitoring">
+                                <i class="ri-dashboard-line"></i> System Monitoring
+                            </li>
+                            <!-- Security and Compliance Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="security-compliance">
+                                <i class="ri-shield-keyhole-line"></i> Security & Compliance
+                            </li>
+                            <!-- Device and Network Management Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="device-network">
+                                <i class="ri-device-line"></i> Device & Network
+                            </li>
+                            <!-- Data and System Maintenance Tab -->
+                            <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="data-maintenance">
+                                <i class="ri-database-2-line"></i> Data & Maintenance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="tab-content mt-6" id="user-access-management">
+                    {% include 'IT_Admin/user_access_management.html' %}
+                </div>
+                <div class="tab-content hidden mt-6" id="support-ticketing">
+                    {% include 'IT_Admin/SupportAndTicketing.html' %}
+                </div>
+                <div class="tab-content hidden mt-6" id="system-monitoring">
+                    {% include 'IT_Admin/system_monitoring.html' %}
+                </div>
+                <div class="tab-content hidden mt-6" id="security-compliance">
+                    {% include 'IT_Admin/securityCompliance.html' %}
+                </div>
+                <div class="tab-content hidden mt-6" id="device-network">
+                    {% include 'IT_Admin/deviceAndNetwork.html' %}
+                </div>
+                <div class="tab-content hidden mt-6" id="data-maintenance">
+                    {% include 'IT_Admin/dataAndmaintenance.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active classes from all tabs
+                tabs.forEach(t => t.classList.remove('text-orange-500', 'border-b-2', 'border-orange-500'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                // Add active classes to the clicked tab
+                tab.classList.add('text-orange-500', 'border-b-2', 'border-orange-500');
+
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById("dropdownMenu");
+            dropdown.classList.toggle("hidden");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.cursor-pointer')) {
+                const dropdowns = document.getElementsByClassName("hidden");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

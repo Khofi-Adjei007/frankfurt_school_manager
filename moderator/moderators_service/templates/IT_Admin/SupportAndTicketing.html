@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <title>Support and Ticketing System - IT Admin</title>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto p-5">
+
+        <!-- Support & Ticketing Section -->
+        <div id="support-ticketing" class="bg-white rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Received Tickets</h2>
+
+            <!-- Existing Tickets Section -->
+            <div class="mt-8">
+                <ul class="mt-2 space-y-4">
+                    <li class="bg-green-50 border-l-4 border-green-500 p-4 rounded-md shadow-md">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-medium text-gray-800">Issue with Login</h4>
+                            <span class="text-green-600 font-bold">Resolved</span>
+                        </div>
+                        <p class="text-gray-600">Description: Unable to log in to the system. Please help!</p>
+                        <p class="text-sm text-gray-500">Status: Resolved</p>
+                        <textarea rows="2" placeholder="Resolution notes..." class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"></textarea>
+                        <button class="mt-2 px-4 py-1 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400" disabled>Resolved</button>
+                    </li>
+
+                    <li class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-md shadow-md">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-medium text-gray-800">Website Bug</h4>
+                            <span class="text-yellow-600 font-bold">In Progress</span>
+                        </div>
+                        <p class="text-gray-600">Description: Found a bug on the homepage.</p>
+                        <p class="text-sm text-gray-500">Status: In Progress</p>
+                        <textarea rows="2" placeholder="Resolution notes..." class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm"></textarea>
+                        <button class="mt-2 px-4 py-1 bg-green-600 text-white rounded-md hover:bg-green-700">Resolve Ticket</button>
+                    </li>
+
+                    <li class="bg-red-50 border-l-4 border-red-500 p-4 rounded-md shadow-md">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-medium text-gray-800">Network Connectivity Issue</h4>
+                            <span class="text-red-600 font-bold">Open</span>
+                        </div>
+                        <p class="text-gray-600">Description: Cannot connect to the network.</p>
+                        <p class="text-sm text-gray-500">Status: Open</p>
+                        <textarea rows="2" placeholder="Resolution notes..." class="mt-2 block w-full border-gray-300 rounded-md shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"></textarea>
+                        <button class="mt-2 px-4 py-1 bg-green-600 text-white rounded-md hover:bg-green-700">Resolve Ticket</button>
+                    </li>
+
+                    <!-- More tickets can be listed here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

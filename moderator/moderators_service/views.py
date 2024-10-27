@@ -28,6 +28,7 @@ def admissions_and_registrations(request):
 
 @login_required(login_url='/gateway/logins/')
 def settings_page(request):
+
     # Handle both forms in the same view
     admin_settings_form = AdminSettingsForm()
     admin_school_setup_form = AdminAndSchoolSetupForm()
@@ -36,12 +37,14 @@ def settings_page(request):
         if 'admin_settings' in request.POST:
             admin_settings_form = AdminSettingsForm(request.POST, request.FILES)
             if admin_settings_form.is_valid():
-                # Process AdminSettingsForm (like in your original settings_page view)
+
+                # Save admin data like in admin_settings view
                 return redirect('success_page')
 
         elif 'admin_school_setup' in request.POST:
             admin_school_setup_form = AdminAndSchoolSetupForm(request.POST, request.FILES)
             if admin_school_setup_form.is_valid():
+
                 # Save admin and school data like in admin_and_school_setup view
                 admin_instance = Admin(
                     first_name=admin_school_setup_form.cleaned_data['first_name'],
@@ -63,7 +66,7 @@ def settings_page(request):
                     number_of_classrooms=admin_school_setup_form.cleaned_data['number_of_classrooms'],
                     curriculum_types=admin_school_setup_form.cleaned_data['curriculum_types'],
                     board_of_directors=admin_school_setup_form.cleaned_data['board_of_directors'],
-                    admin=admin_instance  # Link to the admin instance
+                    admin=admin_instance
                 )
                 school_instance.save()
 
@@ -76,4 +79,6 @@ def settings_page(request):
 
 
 
-
+def information_admin_page(request):
+    return render(request, 'IT_admin/information_admin_page.html')
+ 
