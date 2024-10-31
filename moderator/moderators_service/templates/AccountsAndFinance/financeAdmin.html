@@ -1,0 +1,141 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance and Accounting Admin | Frankfurt School Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    {% tailwind_css %}
+</head>
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg p-8 relative">
+            
+            <!-- Header with Title and Icons -->
+            <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+                <div class="flex-1 mb-4 md:mb-0">
+                    <!-- Title and Description on the Left -->
+                    <h1 class="text-3xl font-bold text-green-700"><i class="ri-bank-line"></i> Finance & Accounting Administration</h1>
+                    <h3 class="text-sm text-gray-600">Manage financial records, track assets, liabilities, and monitor revenue & expenses.</h3>
+                </div>
+                
+                <div class="relative flex items-center gap-4 cursor-pointer" onclick="toggleDropdown()">
+                    <!-- User Information -->
+                    <div class="flex flex-col text-right">
+                        <div class="flex items-center space-x-1">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                                <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
+                            </svg>
+                            <span class="text-gray-600 font-semibold text-sm md:text-base">Alex Morgan</span>
+                        </div>
+                        <!-- User Role with Status Indicator -->
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-700 dark:text-green-100">
+                                Finance Admin
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- User Avatar -->
+                    <img class="w-14 h-14 rounded-full ring-2 ring-green-500" src="https://www.shutterstock.com/image-photo/smiling-young-business-woman-260nw-1850821510.jpg" alt="User Profile">
+                    
+                    <!-- Dropdown Menu -->
+                    <div id="dropdownMenu" class="absolute right-0 mt-32 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden z-[9999]">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Navigation Section -->
+            <div class="w-full border-b border-gray-200">
+                <ul class="flex flex-wrap justify-start space-x-2 sm:space-x-3 md:space-x-4">
+                    <!-- Fees Management Tab as the First Tab -->
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 border-b-2 border-green-500 text-green-700 text-xs sm:text-sm md:text-base" data-tab="fees-management">
+                        <i class="ri-money-dollar-circle-line"></i> Fees Management
+                    </li>
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="revenue">
+                        <i class="ri-money-dollar-circle-line"></i> Revenue
+                    </li>
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="expenses">
+                        <i class="ri-money-euro-circle-line"></i> Expenses
+                    </li>
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="assets">
+                        <i class="ri-bank-line"></i> Assets
+                    </li>
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="liabilities">
+                        <i class="ri-money-cny-box-line"></i> Liabilities
+                    </li>
+                    <li class="tab-item py-2 px-2 sm:px-3 md:px-4 cursor-pointer font-medium text-gray-600 text-xs sm:text-sm md:text-base" data-tab="equity">
+                        <i class="ri-equalizer-line"></i> Equity
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-content hidden mt-6" id="fees-management">
+                {% include 'AccountsAndFinance/fees_management.html' %}
+            </div>
+            <div class="tab-content mt-6" id="revenue">
+                {% include 'AccountsAndFinance/revenue.html' %}
+            </div>
+            <div class="tab-content hidden mt-6" id="expenses">
+                {% include 'AccountsAndFinance/expenses.html' %}
+            </div>
+            <div class="tab-content hidden mt-6" id="assets">
+                {% include 'AccountsAndFinance/assets.html' %}
+            </div>
+            <div class="tab-content hidden mt-6" id="liabilities">
+                {% include 'AccountsAndFinance/liability.html' %}
+            </div>
+            <div class="tab-content hidden mt-6" id="equity">
+                {% include 'AccountsAndFinance/equity.html' %}
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('text-green-700', 'border-b-2', 'border-green-500'));
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                tab.classList.add('text-green-700', 'border-b-2', 'border-green-500');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('hidden');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.relative')) {
+                const dropdowns = document.getElementsByClassName("hidden");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Expenses</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">School Expenses</h1>
+        </header>
+
+        <!-- Filters Section -->
+        <div class="bg-white p-6 rounded-lg border border-gray-300 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Filter Expenses</h2>
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-4">
+                    <input type="date" class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input type="date" class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <select class="border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Select Category</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="salaries">Salaries</option>
+                        <option value="supplies">Supplies</option>
+                        <!-- Add more categories as needed -->
+                    </select>
+                </div>
+                <button class="bg-blue-600 text-white p-2 rounded transition duration-200 hover:bg-blue-700">Filter</button>
+            </div>
+        </div>
+
+        <!-- Expense List Table -->
+        <div class="bg-white p-6 rounded-lg border border-gray-300 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Expense List</h2>
+            <table class="min-w-full border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border px-4 py-2">Date</th>
+                        <th class="border px-4 py-2">Category</th>
+                        <th class="border px-4 py-2">Description</th>
+                        <th class="border px-4 py-2">Amount</th>
+                        <th class="border px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example of an expense row -->
+                    <tr>
+                        <td class="border px-4 py-2">2024-10-01</td>
+                        <td class="border px-4 py-2">Utilities</td>
+                        <td class="border px-4 py-2">Electricity Bill</td>
+                        <td class="border px-4 py-2">$150.00</td>
+                        <td class="border px-4 py-2">
+                            <button class="bg-green-600 text-white px-2 rounded transition duration-200 hover:bg-green-700">Edit</button>
+                            <button class="bg-red-600 text-white px-2 rounded transition duration-200 hover:bg-red-700">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Add more rows dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="bg-white p-6 rounded-lg border border-gray-300">
+            <h2 class="text-xl font-semibold mb-4">Expense Summary</h2>
+            <p>Total Expenses: <strong>$XXXX</strong></p>
+            <p>Utilities: <strong>$XXXX</strong></p>
+            <p>Salaries: <strong>$XXXX</strong></p>
+            <p>Supplies: <strong>$XXXX</strong></p>
+            <!-- Add more summary categories as needed -->
+        </div>
+
+        <!-- Add New Expense Button -->
+        <div class="mt-4">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded transition duration-200 hover:bg-blue-700">Add New Expense</button>
+        </div>
+    </div>
+
+    <script>
+        // You can add JavaScript functionality here for dynamic interactions (e.g., opening modals for adding/editing expenses)
+    </script>
+</body>
+
+</html>

@@ -81,4 +81,7 @@ def settings_page(request):
 
 def information_admin_page(request):
     return render(request, 'IT_admin/information_admin_page.html')
- 
+
+
+def financeAndAccounts(request):
+    return render(request, 'AccountsAndFinance/financeAdmin.html')
