@@ -85,10 +85,10 @@
             </div>
             
             <!-- Tab Contents -->
-            <div class="tab-content hidden mt-6" id="fees-management">
+            <div class="tab-content mt-6" id="fees-management">
                 {% include 'AccountsAndFinance/fees_management.html' %}
             </div>
-            <div class="tab-content mt-6" id="revenue">
+            <div class="tab-content hidden mt-6" id="revenue">
                 {% include 'AccountsAndFinance/revenue.html' %}
             </div>
             <div class="tab-content hidden mt-6" id="expenses">
@@ -111,31 +111,39 @@
         const tabs = document.querySelectorAll('.tab-item');
         const tabContents = document.querySelectorAll('.tab-content');
 
+        // Display the Fees Management tab content by default on page load
+        tabContents.forEach(content => content.classList.add('hidden'));
+        document.getElementById('fees-management').classList.remove('hidden');
+
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('text-green-700', 'border-b-2', 'border-green-500'));
+                // Hide all tab contents
                 tabContents.forEach(content => content.classList.add('hidden'));
-
-                tab.classList.add('text-green-700', 'border-b-2', 'border-green-500');
+                // Remove active class from all tabs
+                tabs.forEach(item => item.classList.remove('border-b-2', 'border-green-500', 'text-green-700'));
+                // Show the clicked tab's content
                 const tabId = tab.getAttribute('data-tab');
                 document.getElementById(tabId).classList.remove('hidden');
+                // Add active class to the clicked tab
+                tab.classList.add('border-b-2', 'border-green-500', 'text-green-700');
             });
         });
 
         function toggleDropdown() {
-            const dropdown = document.getElementById('dropdownMenu');
-            dropdown.classList.toggle('hidden');
+            const dropdown = document.getElementById("dropdownMenu");
+            dropdown.classList.toggle("hidden");
         }
 
+        // Close dropdown when clicking outside
         window.onclick = function(event) {
-            if (!event.target.matches('.relative')) {
-                const dropdowns = document.getElementsByClassName("hidden");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.add('hidden');
+            if (!event.target.matches('.cursor-pointer') && !event.target.matches('.relative')) {
+                const dropdown = document.getElementById("dropdownMenu");
+                if (!dropdown.classList.contains('hidden')) {
+                    dropdown.classList.add('hidden');
                 }
             }
         }
     </script>
-</body>
 
+</body>
 </html>

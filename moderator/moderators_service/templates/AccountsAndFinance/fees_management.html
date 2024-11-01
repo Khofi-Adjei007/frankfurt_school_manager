@@ -1,0 +1,94 @@
+<div class="fees-management p-6 bg-gray-100 rounded-lg">
+    <h2 class="text-3xl font-bold text-center text-green-700">Fees Management</h2>
+    <p class="text-gray-700 text-center mb-4">Manage student fees and send reminders for unpaid balances.</p>
+
+    <!-- Student Selection -->
+    <div class="mb-6">
+        <label for="student-select" class="block text-lg text-green-600 font-medium">Select Student:</label>
+        <select id="student-select" class="mt-1 block w-full border border-green-300 rounded-md focus:border-green-500">
+            <option value="">Select a student...</option>
+            {% for student in students %}
+                <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- Fees Record Form -->
+    <form id="fees-record-form" class="mb-6 bg-white p-4 rounded border border-green-300">
+        <h3 class="text-xl font-bold text-green-600">Record Fees</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label for="amount-due" class="block text-gray-700">Amount Due:</label>
+                <input type="number" id="amount-due" class="mt-1 block w-full border border-green-300 rounded-md focus:border-green-500">
+            </div>
+            <div>
+                <label for="payment-date" class="block text-gray-700">Date of Payment:</label>
+                <input type="date" id="payment-date" class="mt-1 block w-full border border-green-300 rounded-md focus:border-green-500">
+            </div>
+            <div>
+                <label for="paid-by" class="block text-gray-700">Paid By:</label>
+                <select id="paid-by" class="mt-1 block w-full border border-green-300 rounded-md focus:border-green-500">
+                    <!-- Options for parents -->
+                </select>
+            </div>
+            <div>
+                <label for="balance-left" class="block text-gray-700">Balance Left:</label>
+                <input type="number" id="balance-left" class="mt-1 block w-full border border-green-300 rounded-md focus:border-green-500">
+            </div>
+        </div>
+        <button type="submit" class="mt-4 bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700">Record Fees</button>
+    </form>
+
+    <!-- Payment Overview Table -->
+    <h3 class="text-xl font-bold text-green-600">Payment Overview</h3>
+    <table class="min-w-full bg-white border border-green-300 mb-6">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Student Name</th>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Amount Due</th>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Last Payment Date</th>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Paid By</th>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Balance Left</th>
+                <th class="px-4 py-2 border bg-green-200 text-green-700">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td class="border px-4 py-2">{{ payment.student.name }}</td>
+                <td class="border px-4 py-2">{{ payment.amount_due }}</td>
+                <td class="border px-4 py-2">{{ payment.last_payment_date }}</td>
+                <td class="border px-4 py-2">{{ payment.paid_by }}</td>
+                <td class="border px-4 py-2">{{ payment.balance_left }}</td>
+                <td class="border px-4 py-2">
+                    <button class="text-blue-500" onclick="sendReminder('{{ payment.student.id }}')">Send Reminder SMS</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Student Summary Section -->
+    <div id="student-summary" class="mt-8 p-4 bg-white border border-green-300 rounded hidden">
+        <h3 class="text-xl font-bold text-green-600">Student Summary</h3>
+        <p>Date of Joining: <span id="date-of-joining" class="font-semibold"></span></p>
+        <p>All Related Costs: <span id="related-costs" class="font-semibold"></span></p>
+        <p>Current Fees to be Paid: <span id="current-fees" class="font-semibold"></span></p>
+        <p>Other Important Fees: <span id="other-fees" class="font-semibold"></span></p>
+    </div>
+</div>
+
+<script>
+    // JavaScript functions to handle form submission and SMS sending
+    document.getElementById('student-select').addEventListener('change', function() {
+        const studentId = this.value;
+        // Fetch student summary based on studentId
+    });
+
+    function sendReminder(studentId) {
+        // Function to send SMS reminder
+        if (confirm("Are you sure you want to send a reminder SMS?")) {
+            // Implement SMS sending logic here
+        }
+    }
+</script>
