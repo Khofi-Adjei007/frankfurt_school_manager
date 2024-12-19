@@ -137,61 +137,53 @@
         <!-- Overview Section -->
         <div id="overview" class="content-section">
 
-        <div class="container mx-auto bg-white p-4 rounded-lg shadow-sm border-l-4 border-l-red-500">
-                        <!-- Quick Information Section Header -->
-                        <h2 class="text-sm font-semibold text-gray-700 mb-4">
-                            Today : Wednesday, 25th April, 2025
-                        </h2>
-
-                    <!-- Attendancae and maual clocking -->
-                    <div class="flex justify-start  overflow-x-auto  p-2">
-                        <div class="flex space-x-4 whitespace-nowrap">
-                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-lime-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
-                            <div class="flex flex-col ml-3 items-start">
-                                <p class="text-sm">Total Attendance Today</p>
-                                <span class="text-lg font-bold">63/103</span>
-                            </div>
-                            <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-green-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
-                                Do a Manual Clock-in
-                            </p>
+            <div class="container mx-auto bg-white p-6 rounded-md border-l-4 border-red-500">
+                <!-- Quick Information Section Header -->
+                <h2 class="text-sm font-semibold text-gray-600 mb-6">
+                    Today: Wednesday, 25th April, 2025
+                </h2>
+            
+                <!-- Attendance and Manual Clocking Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+                    <!-- Total Attendance Card -->
+                    <div class="bg-lime-50 hover:bg-lime-100 p-4 rounded-lg shadow-md border-l-4 border-l-lime-500 transition transform hover:scale-105">
+                        <p class="text-sm text-gray-600">Total Attendance Today</p>
+                        <span class="block text-2xl font-bold text-gray-800">63/103</span>
+                        <button class="mt-4 w-full bg-green-600 text-white text-sm font-semibold py-2 rounded-md hover:bg-green-700">
+                            Manual Clock-in
                         </button>
-
-                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-red-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
-                            <div class="flex flex-col ml-3 items-start">
-                                <p class="text-sm">Assignment Due on 3/10/24</p>
-                                <span class="text-sm font-semibold italic">14 Submissions / 103</span>
-                            </div>
-                            <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-red-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
-                               Review Assignments
-                            </p>
-                        </button>
-
-                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-lime-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
-                            <div class="flex flex-col ml-3 items-start">
-                                <p class="text-sm">Total Attendance Today</p>
-                                <span class="text-lg font-bold">63/103</span>
-                            </div>
-                            <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-yellow-500 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
-                                Do a Manual Clock-in
-                            </p>
-                        </button>
-
-                        <button class="w-80 ml-3 mr-3 bg-lime-50 hover:bg-lime-100 text-gray-700 font-medium rounded-lg shadow-md py-2 px-2 border-l-4 border-l-lime-500 transition-all duration-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg text-left">
-                            <div class="flex flex-col ml-3 items-start">
-                                <p class="text-sm">Total Attendance Today</p>
-                                <span class="text-lg font-bold">63/103</span>
-                            </div>
-                            <!-- Manual Clock-in Button styled as a text link -->
-                            <p class="bg-green-600 text-white mt-2 text-center font-semibold py-1 rounded-lg w-full">
-                                Do a Manual Clock-in
-                            </p>
-                        </button>
-                        </div>
                     </div>
-        </div>
+            
+                    <!-- Assignment Due Card -->
+                    <div class="bg-red-50 hover:bg-red-100 p-4 rounded-lg shadow-md border-l-4 border-l-red-500 transition transform hover:scale-105">
+                        <p class="text-sm text-gray-600">Assignment Due: 3/10/24</p>
+                        <span class="block text-lg font-semibold text-gray-800 italic">14 Submissions / 103</span>
+                        <button class="mt-4 w-full bg-red-600 text-white text-sm font-semibold py-2 rounded-md hover:bg-red-700">
+                            Review Assignments
+                        </button>
+                    </div>
+            
+                    <!-- Additional Card Template -->
+                    <div class="bg-lime-50 hover:bg-lime-100 p-4 rounded-lg shadow-md border-l-4 border-l-lime-500 transition transform hover:scale-105">
+                        <p class="text-sm text-gray-600">Total Attendance Today</p>
+                        <span class="block text-2xl font-bold text-gray-800">63/103</span>
+                        <button class="mt-4 w-full bg-yellow-500 text-white text-sm font-semibold py-2 rounded-md hover:bg-yellow-600">
+                            Manual Clock-in
+                        </button>
+                    </div>
+            
+                    <div class="bg-lime-50 hover:bg-lime-100 p-4 rounded-lg shadow-md border-l-4 border-l-lime-500 transition transform hover:scale-105">
+                        <p class="text-sm text-gray-600">Total Attendance Today</p>
+                        <span class="block text-2xl font-bold text-gray-800">63/103</span>
+                        <button class="mt-4 w-full bg-green-600 text-white text-sm font-semibold py-2 rounded-md hover:bg-green-700">
+                            Manual Clock-in
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            
 
                     
         <div class="bg-white mx-auto mt-3 p-1 grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center">
@@ -257,7 +249,6 @@
                 {% include 'timetables/Academic_timetable.html' %}
             </div>
             
-
 
             </div>
         </div>
