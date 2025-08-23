@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> School Registration | Frankfurt School Manager</title>
+    <title>School Registration | Frankfurt School Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
     {% tailwind_css %}
 </head>
@@ -21,7 +21,7 @@
             <form method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
                 {% csrf_token %}
                 {{ form.non_field_errors }}
-            
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.name.label_tag }}
@@ -38,15 +38,8 @@
                         {{ form.school_type }}
                     </div>
                 </div>
-            
+
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div>
-                        {{ form.year_established.label_tag }}
-                        {% if form.year_established.errors %}
-                            <p class="text-red-600 text-sm">{{ form.year_established.errors.0 }}</p>
-                        {% endif %}
-                        {{ form.year_established }}
-                    </div>
                     <div>
                         {{ form.physical_address.label_tag }}
                         {% if form.physical_address.errors %}
@@ -54,9 +47,6 @@
                         {% endif %}
                         {{ form.physical_address }}
                     </div>
-                </div>
-            
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.digital_address.label_tag }}
                         {% if form.digital_address.errors %}
@@ -64,6 +54,9 @@
                         {% endif %}
                         {{ form.digital_address }}
                     </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.official_telephone_number.label_tag }}
                         {% if form.official_telephone_number.errors %}
@@ -71,9 +64,6 @@
                         {% endif %}
                         {{ form.official_telephone_number }}
                     </div>
-                </div>
-            
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.email.label_tag }}
                         {% if form.email.errors %}
@@ -81,13 +71,9 @@
                         {% endif %}
                         {{ form.email }}
                     </div>
-                    <div>
-                        {{ form.population.label_tag }}
-                        {% if form.population.errors %}
-                        <p class="text-red-600 text-sm">{{ form.population.errors.0 }}</p>
-                        {% endif %}
-                        {{ form.population }}
-                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.password.label_tag }}
                         {% if form.password.errors %}
@@ -103,18 +89,17 @@
                         {{ form.confirm_password }}
                     </div>
                 </div>
-            
+
                 <div class="mt-6">
                     <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                         Register School
                     </button>
                 </div>
             </form>
-            
 
             <div class="text-center mt-6">
                 <p class="text-gray-600">Already have an account? 
-                    <a href="{%  url 'gateway:logins' %}" class="font-medium text-red-600 hover:text-red-500">Login</a>
+                    <a href="{% url 'gateway:logins' %}" class="font-medium text-red-600 hover:text-red-500">Login</a>
                 </p>
             </div>
         </div>

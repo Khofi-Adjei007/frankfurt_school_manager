@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from ..models import School
 import re
 
-
 class SchoolRegistrationForm(forms.ModelForm):
     password = forms.CharField(
         label=_("Password"),
@@ -28,9 +27,9 @@ class SchoolRegistrationForm(forms.ModelForm):
     class Meta:
         model = School
         fields = [
-            'name', 'school_type', 'year_established', 'physical_address', 
+            'name', 'school_type', 'physical_address', 
             'digital_address', 'official_telephone_number', 'email', 
-            'social_media', 'population'
+            'social_media'
         ]
 
         widgets = {
@@ -41,10 +40,6 @@ class SchoolRegistrationForm(forms.ModelForm):
             }),
             'school_type': forms.Select(attrs={
                 'id': 'school_type',
-                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
-            }),
-            'year_established': forms.NumberInput(attrs={
-                'id': 'year_established',
                 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
             }),
             'physical_address': forms.TextInput(attrs={
@@ -67,20 +62,18 @@ class SchoolRegistrationForm(forms.ModelForm):
                 'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm',
                 'placeholder': 'Email'
             }),
-            'population': forms.NumberInput(attrs={
-                'id': 'student_population',
-                'class': 'mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm'
-            }),
+        
         }
 
+    # Existing clean methods unchanged
     def clean_name(self):
-        name = self.cleaned_data.get('name').lower()  # Convert to lowercase
+        name = self.cleaned_data.get('name').lower()
         if not name or not re.match(r'^[a-zA-Z\s]*$', name):
             raise forms.ValidationError(_("Enter a valid school name (letters and spaces only)."))
         return name
 
     def clean_email(self):
-        email = self.cleaned_data.get('email').lower()  # Convert to lowercase
+        email = self.cleaned_data.get('email').lower()
         if not email:
             raise forms.ValidationError(_("Email address cannot be empty."))
         if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
@@ -88,13 +81,13 @@ class SchoolRegistrationForm(forms.ModelForm):
         return email
 
     def clean_physical_address(self):
-        physical_address = self.cleaned_data.get('physical_address').lower()  # Convert to lowercase
+        physical_address = self.cleaned_data.get('physical_address').lower()
         if not physical_address:
             raise forms.ValidationError(_("Physical address cannot be empty."))
         return physical_address
 
     def clean_digital_address(self):
-        digital_address = self.cleaned_data.get('digital_address').lower()  # Convert to lowercase
+        digital_address = self.cleaned_data.get('digital_address').lower()
         if not digital_address:
             raise forms.ValidationError(_("Digital address cannot be empty."))
         return digital_address
@@ -103,21 +96,11 @@ class SchoolRegistrationForm(forms.ModelForm):
         official_telephone_number = self.cleaned_data.get('official_telephone_number')
         if not official_telephone_number:
             raise forms.ValidationError(_("Official telephone number cannot be empty."))
-        if not re.match(r'^\+?1?\d{9,15}$', official_telephone_number): 
+        if not re.match(r'^\+?1?\d{9,15}$', official_telephone_number):
             raise forms.ValidationError(_("Enter a valid official telephone number."))
         return official_telephone_number
 
-    def clean_population(self):
-        population = self.cleaned_data.get('population')
-        if population is None or population < 0:
-            raise forms.ValidationError(_("Enter a valid student population (must be a positive number)."))
-        return population
-
     def clean(self):
-        """
-        Custom clean method to check for duplicates across multiple fields 
-        and ensure password and confirm password match.
-        """
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
@@ -126,14 +109,12 @@ class SchoolRegistrationForm(forms.ModelForm):
             if password != confirm_password:
                 self.add_error('confirm_password', _("The two password fields must match."))
 
-        # Check for duplicate entries
         name = cleaned_data.get('name')
         email = cleaned_data.get('email')
         official_telephone_number = cleaned_data.get('official_telephone_number')
         digital_address = cleaned_data.get('digital_address')
         physical_address = cleaned_data.get('physical_address')
 
-        # Check for duplicate entries
         if name and School.objects.filter(name__iexact=name).exists():
             self.add_error('name', _("A school with this name already exists."))
 

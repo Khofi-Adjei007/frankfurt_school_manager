@@ -1,0 +1,37 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Welcome | Frankfurt School Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    {% tailwind_css %}
+</head>
+<body class="bg-gray-100">
+    <div class="flex min-h-screen items-center justify-center px-4">
+        <div class="w-full max-w-md bg-white p-8 shadow-md rounded-lg text-center">
+            <img src="{% static 'imgs/frankfurtlogoweb.png' %}" alt="Frankfurt School Manager Logo" class="mx-auto mb-6 h-32 w-32 object-contain">
+            <h2 class="text-2xl font-bold text-red-600 mb-4">We are almost there!</h2>
+            <p class="text-gray-600 mb-6">Your school is registered. Verify your email to proceed with setup.</p>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-green-600 mb-4">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" class="space-y-4">
+                {% csrf_token %}
+                <div>
+                    <label for="otp" class="block text-sm font-medium text-gray-700">Enter OTP</label>
+                    <input type="text" name="otp" id="otp" maxlength="6" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" placeholder="6-digit code" required>
+                    {% if form.errors.otp %}
+                        <p class="text-red-600 text-sm">{{ form.errors.otp.0 }}</p>
+                    {% endif %}
+                </div>
+                <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Verify and Start Setup</button>
+            </form>
+            <p class="mt-4 text-sm text-gray-600">Didn't receive the OTP? <a href="#" class="text-red-600 hover:text-red-500">Resend</a></p>
+        </div>
+    </div>
+</body>
+</html>
