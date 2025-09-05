@@ -8,32 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
     {% tailwind_css %}
     <style>
-        .step-item {
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-medium;
-            color: #6b7280;
-            transition: all 0.3s;
-            width: 100%;
-        }
-        .step-item.active {
-            border-left: 2px solid #ffffff;
-            color: #ffffff;
-            background: #ef4444;
-            width: 100%;
-            box-sizing: border-box;
-            padding-left: 1rem;
-        }
-        .content-section {
-            min-height: 300px;
-        }
-        .decorative-image {
-            max-width: 200px;
-            opacity: 0.1;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
+        .step-item { padding: 0.5rem 1rem; cursor: default; font-medium; color: #6b7280; transition: all 0.3s; width: 100%; }
+        .step-item.active { border-left: 2px solid #ffffff; color: #ffffff; background: #ef4444; width: 100%; box-sizing: border-box; padding-left: 1rem; }
+        .content-section { min-height: 300px; padding: 1rem; }
+        .progress-bar { width: {{ progress_width }}%; background: #ef4444; height: 5px; transition: width 0.3s; }
+        .decorative-image { max-width: 150px; opacity: 0.1; position: absolute; bottom: 10px; right: 10px; }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -42,12 +21,12 @@
             <!-- Stepper (Left Panel) -->
             <div class="w-1/4 border-r border-gray-200 bg-red-600 text-white p-0">
                 <div class="p-6">
-                    <h2 class="text-2xl font-bold mb-6">Review and Finalize</h2>
+                    <h2 class="text-2xl font-bold mb-6">Setup Steps</h2>
                     <ul class="space-y-2">
-                        <li class="step-item {% if step == 1 or step == 3 %} active {% endif %}" data-step="1">
+                        <li class="step-item {% if step == 1 %} active {% endif %}" data-step="1">
                             <i class="ri-user-line"></i> Admin Profile
                         </li>
-                        <li class="step-item {% if step == 2 or step == 3 %} active {% endif %}" data-step="2">
+                        <li class="step-item {% if step == 2 %} active {% endif %}" data-step="2">
                             <i class="ri-building-line"></i> School Details
                         </li>
                         <li class="step-item {% if step == 3 %} active {% endif %}" data-step="3">
@@ -58,107 +37,55 @@
             </div>
             <!-- Content (Right Panel) -->
             <div class="w-3/4 pl-6 relative">
+                <div class="bg-gray-200 h-5 rounded overflow-hidden mb-4">
+                    <div class="progress-bar"></div>
+                </div>
                 <p class="text-gray-600 mb-6">Step {{ step }} of 3</p>
-                <form method="POST" enctype="multipart/form-data" class="space-y-6 px-6">
-                    {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <div class="content-section">
                     {% if step == 1 %}
-                        <!-- Step 1: Admin Profile -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="other_names" class="block text-sm font-medium text-gray-700">Principal First Name(s)</label>
-                                <input type="text" name="other_names" id="other_names" value="{{ user.other_names }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                            </div>
-                            <div>
-                                <label for="last_name" class="block text-sm font-medium text-gray-700">Principal Last Name</label>
-                                <input type="text" name="last_name" id="last_name" value="{{ user.last_name }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Principal Email</label>
-                                <input type="email" name="email" id="email" value="{{ user.email }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="phone_number" class="block text-sm font-medium text-gray-700">Principal Phone</label>
-                                <input type="tel" name="phone_number" id="phone_number" value="{{ user.phone_number }}" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div class="sm:col-span-2">
-                                <label for="photo" class="block text-sm font-medium text-gray-700">Principal Photo (max 5MB)</label>
-                                <input type="file" name="photo" id="photo" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                            </div>
-                        </div>
-                        <input type="hidden" name="user_type" value="admin">
+                        <h2 class="text-xl font-semibold mb-4">Admin Profile</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md mt-4">Save and Next</button>
+                        </form>
                     {% elif step == 2 %}
-                        <!-- Step 2: School Configuration -->
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">School Configuration</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="population" class="block text-sm font-medium text-gray-700">Student Population</label>
-                                <input type="number" name="population" id="population" min="1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="year_established" class="block text-sm font-medium text-gray-700">Year Established</label>
-                                <input type="number" name="year_established" id="year_established" min="1900" max="2025" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="registration_number" class="block text-sm font-medium text-gray-700">Registration Number</label>
-                                <input type="text" name="registration_number" id="registration_number" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="number_of_classrooms" class="block text-sm font-medium text-gray-700">Number of Classrooms</label>
-                                <input type="number" name="number_of_classrooms" id="number_of_classrooms" min="1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="number_of_teachers" class="block text-sm font-medium text-gray-700">Number of Teachers</label>
-                                <input type="number" name="number_of_teachers" id="number_of_teachers" min="1" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="levels" class="block text-sm font-medium text-gray-700">Educational Levels</label>
-                                <input type="text" name="levels" id="levels" placeholder="e.g., K-12, Primary" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                            <div>
-                                <label for="facilities" class="block text-sm font-medium text-gray-700">Key Facilities</label>
-                                <input type="text" name="facilities" id="facilities" placeholder="e.g., Library, Labs" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" required>
-                            </div>
-                        </div>
+                        <h2 class="text-xl font-semibold mb-4">School Details</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md mt-4">Save and Next</button>
+                        </form>
                     {% elif step == 3 %}
-                        <!-- Step 3: Review and Finalize with Stepper Content -->
-                        <div class="content-section relative px-6">
-                            {% if step >= 1 %}
-                                <div class="mb-6 p-4 bg-gray-50 rounded-md">
-                                    <h4 class="text-md font-medium text-gray-700 mb-2">Admin Profile</h4>
-                                    <p><strong>First Name(s):</strong> {{ user.other_names }}</p>
-                                    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-                                    <p><strong>Email:</strong> {{ user.email }}</p>
-                                    <p><strong>Phone:</strong> {{ user.phone_number }}</p>
-                                </div>
-                            {% endif %}
-                            {% if step >= 2 %}
-                                <div class="mb-6 p-4 bg-gray-50 rounded-md">
-                                    <h4 class="text-md font-medium text-gray-700 mb-2">School Details</h4>
-                                    <p><strong>Population:</strong> {{ school.population }}</p>
-                                    <p><strong>Year Established:</strong> {{ school.year_established }}</p>
-                                    <p><strong>Registration Number:</strong> {{ school.registration_number }}</p>
-                                    <p><strong>Number of Classrooms:</strong> {{ school.number_of_classrooms }}</p>
-                                    <p><strong>Number of Teachers:</strong> {{ school.number_of_teachers }}</p>
-                                    <p><strong>Levels:</strong> {{ school.levels }}</p>
-                                    <p><strong>Facilities:</strong> {{ school.facilities }}</p>
-                                </div>
-                            {% endif %}
+                        <h2 class="text-xl font-semibold mb-4">Setup Summary</h2>
+                        <div class="space-y-4">
                             <div class="p-4 bg-gray-50 rounded-md">
-                                <h4 class="text-md font-medium text-gray-700 mb-2">Finalize Setup</h4>
-                                <p class="text-sm text-gray-600 mb-2">Assign yourself as the Principal (required).</p>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" name="is_principal" id="is_principal" class="form-checkbox h-5 w-5 text-red-600" checked disabled>
-                                    <span class="ml-2 text-sm text-gray-700">Principal</span>
-                                </label>
+                                <h3 class="text-lg font-medium mb-2">Admin Profile</h3>
+                                <p><strong>Name:</strong> {{ user.last_name }}, {{ user.other_names|default:"" }}</p>
+                                <p><strong>Email:</strong> {{ user.email }}</p>
+                                <p><strong>Phone:</strong> {{ user.phone_number|default:"Not set" }}</p>
                             </div>
-                            <!-- Decorative Image -->
-                            <img src="{% static 'imgs/school_decorative.png' %}" alt="Decorative Image" class="decorative-image" style="opacity: 0.1;">
+                            <div class="p-4 bg-gray-50 rounded-md">
+                                <h3 class="text-lg font-medium mb-2">School Details</h3>
+                                <p><strong>Name:</strong> {{ school.school_name }}</p>
+                                <p><strong>Type:</strong> {{ school.school_type }}</p>
+                                <p><strong>Address:</strong> {{ school.physical_address }}</p>
+                                <p><strong>Population:</strong> {{ school.population|default:"Not set" }}</p>
+                                <p><strong>Year Established:</strong> {{ school.year_established|default:"Not set" }}</p>
+                            </div>
                         </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="confirm" class="w-full bg-red-600 text-white py-2 px-4 rounded-md mt-4">Confirm and Finish</button>
+                        </form>
                     {% endif %}
-                    <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 mx-auto block mt-6">
-                        {% if step == 3 %} Confirm and Finish {% else %} Save and Next {% endif %}
-                    </button>
-                </form>
+                </div>
+                <img src="{% static 'imgs/school_decorative.png' %}" alt="Decorative" class="decorative-image">
             </div>
         </div>
     </div>

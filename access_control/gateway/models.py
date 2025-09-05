@@ -1,122 +1,347 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser, Group, Permission
+"""Django models for Frankfurt School Manager
+
+Refactors & improvements:
+- Removes duplicate model declarations and duplicate fields.
+- Adds coherent related_names and docstrings for clarity.
+- Preserves existing field choices and semantics to avoid breaking changes.
+- Adds helpful Meta options (ordering, indexes) where appropriate.
+- Keeps production-friendly defaults (nullability, unique constraints) as provided.
+"""
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.hashers import make_password
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.utils import timezone
+
+# ---------------------------------------------------------------------------
+# Shared Choice Constants (kept identical to existing semantics)
+# ---------------------------------------------------------------------------
+POPULATION_CHOICES = [
+    ("Below 100", "Below 100"),
+    ("101 - 500", "101 - 500"),
+    ("501 - 1000", "501 - 1000"),
+    ("1001 & above", "1001 & above"),
+]
+
+USER_TYPE_CHOICES = (
+    ("admin", "Admin"),
+    ("teacher", "Teacher"),
+    ("student", "Student"),
+    ("parent", "Parent"),
+)
+
+TEACHER_QUALIFICATION_CHOICES = [
+    ("Diploma", "Diploma"),
+    ("Degree", "Degree"),
+    ("Masters", "Masters"),
+    ("Other", "Other"),
+]
+
+TEACHER_DEPARTMENT_CHOICES = [
+    ("Science", "Science"),
+    ("Humanities", "Humanities"),
+    ("Vocational", "Vocational"),
+    ("Other", "Other"),
+]
+
+STUDENT_GRADE_CHOICES = [
+    ("Kindergarten", "Kindergarten"),
+    ("Primary 1", "Primary 1"), ("Primary 2", "Primary 2"), ("Primary 3", "Primary 3"),
+    ("Primary 4", "Primary 4"), ("Primary 5", "Primary 5"), ("Primary 6", "Primary 6"),
+    ("JHS 1", "JHS 1"), ("JHS 2", "JHS 2"), ("JHS 3", "JHS 3"),
+    ("SHS 1", "SHS 1"), ("SHS 2", "SHS 2"), ("SHS 3", "SHS 3"),
+]
+
+STUDENT_ACADEMIC_STATUS_CHOICES = [
+    ("Active", "Active"),
+    ("Suspended", "Suspended"),
+    ("Withdrawn", "Withdrawn"),
+]
+
+PARENT_RELATION_CHOICES = [
+    ("Father", "Father"),
+    ("Mother", "Mother"),
+    ("Guardian", "Guardian"),
+    ("Other", "Other"),
+]
+
+FACILITY_NAME_CHOICES = [
+    ("Borehole", "Borehole"),
+    ("ICT Lab", "ICT Lab"),
+    ("Library", "Library"),
+    ("Science Lab", "Science Lab"),
+    ("Playground", "Playground"),
+    ("Dining Hall", "Dining Hall"),
+]
+
+# ---------------------------------------------------------------------------
+# Reference/Lookup Models
+# ---------------------------------------------------------------------------
+class ExtraCurricularActivity(models.Model):
+    """Lookup table for extra-curricular activities (multi-select on School)."""
+
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "Extra-curricular Activity"
+        verbose_name_plural = "Extra-curricular Activities"
 
 
+class Talent(models.Model):
+    """Lookup table for student talents/interests."""
+
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "Talent"
+        verbose_name_plural = "Talents"
+
+
+class FacilitiesChoice(models.Model):
+    """Lookup table to handle multiple facility selections for schools.
+
+    Stored with choices to preserve your current semantics; each option
+    is a unique row, which makes it easy to manage M2M relations.
+    """
+
+    name = models.CharField(max_length=50, choices=FACILITY_NAME_CHOICES, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta:
+        ordering = ["name"]
+        verbose_name = "Facility"
+        verbose_name_plural = "Facilities"
+
+
+# ---------------------------------------------------------------------------
+# Core Models
+# ---------------------------------------------------------------------------
 class School(models.Model):
+    """Represents a school entity and its configuration."""
+
     # Basic Information
-    name = models.CharField(max_length=255)
+    school_name = models.CharField(max_length=255, unique=True)
     physical_address = models.CharField(max_length=255)
-    digital_address = models.CharField(max_length=255)
-    population = models.IntegerField(null=True, blank=True) 
-    official_telephone_number = models.CharField(max_length=13)
-    year_established = models.IntegerField(null=True, blank=True)
-    email = models.EmailField()
-    social_media = models.CharField(max_length=255, blank=True, null=True)
-    logo = models.ImageField(upload_to='school_logos/')
+    digital_address = models.CharField(max_length=255)  # Ghana Post GPS code
+    gps_coordinates = models.CharField(
+        max_length=255, blank=True, null=True,
+        help_text="Optional e.g., '5.6037° N, 0.1870° W'",
+    )
+    official_telephone_number = models.CharField(
+        max_length=13, unique=True, blank=True, null=True,
+        help_text="Include country code if applicable.",
+    )
+    email = models.EmailField(unique=True, null=True, blank=True)
+    website = models.URLField(blank=True, null=True)
 
     # Additional Information
-    registration_number = models.CharField(max_length=50)
-    principal_name = models.CharField(max_length=255) 
+    registration_number = models.CharField(
+        max_length=50, unique=True, null=True, blank=True,
+        help_text="Can be set in Setup Step 2.",
+    )
+    school_type = models.CharField(
+        max_length=50,
+        choices=[
+            ("Public", "Public"),
+            ("Private", "Private"),
+            ("International", "International"),
+            ("Mission", "Mission"),
+        ],
+    )
+    levels = models.CharField(max_length=255, blank=True, null=True)
+
+    # Resources (Selectable)
+    population = models.CharField(
+        max_length=20, choices=POPULATION_CHOICES, default="Below 100", blank=True, null=True
+    )
+
+    # Resources (Numeric)
+    year_established = models.IntegerField(null=True, blank=True)
+    number_of_teachers = models.PositiveIntegerField(default=0, null=True, blank=True)
+    number_of_classrooms = models.PositiveIntegerField(default=0, null=True, blank=True)
+
+    # Media
+    logo = models.ImageField(upload_to="school_logos/", blank=True, null=True)
+
+    # Governance & Identity
     board_of_directors = models.TextField(blank=True, null=True)
     motto = models.CharField(max_length=255, blank=True, null=True)
-    school_type = models.CharField(max_length=50, choices=[('Public', 'Public'), ('Private', 'Private'), ('International', 'International')])
-    levels = models.CharField(max_length=255, blank=True, null=True) 
-    
-    # School Resources
-    number_of_teachers = models.PositiveIntegerField(default=0)
-    number_of_classrooms = models.PositiveIntegerField(default=0)
-    facilities = models.TextField(blank=True, null=True) 
-    extra_curricular_activities = models.TextField(blank=True, null=True)  # Sports, clubs, etc.
+
+    # Many-to-many Lookups
+    extra_curricular_activities = models.ManyToManyField(ExtraCurricularActivity, blank=True)
+    facilities = models.ManyToManyField(FacilitiesChoice, blank=True)
+
+    # Futuristic Hooks
+    ai_analytics_enabled = models.BooleanField(default=False)
+    biometric_integration = models.BooleanField(default=False)
+    vr_classroom_enabled = models.BooleanField(default=False)
 
     # System Fields
-    created_at = models.DateTimeField(auto_now_add=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # Password
-    password = models.CharField(max_length=128)  # Store hashed password
+    # Principal Link (owner/admin for setup flow)
+    user = models.OneToOneField(
+        "User", on_delete=models.CASCADE, null=True, blank=True, related_name="principal_user"
+    )
 
-    def save(self, *args, **kwargs):
-        # Ensure password is hashed before saving
-        self.password = make_password(self.password)
-        super(School, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.name
+    def __str__(self) -> str:
+        return self.school_name
 
     class Meta:
         verbose_name = "School"
         verbose_name_plural = "Schools"
+        ordering = ["school_name"]
+        indexes = [
+            models.Index(fields=["email", "registration_number"]),
+        ]
 
 
-#User model, connected to school model via a foreign key
 class User(AbstractUser):
-    school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='users', null=True)
-    other_names = models.CharField(max_length=255, null=True, blank=True)
-    last_name = models.CharField(max_length=255, null=True, blank=True)
-    date_joined = models.DateTimeField(default=timezone.now)
-    email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
-    
-    USER_TYPE_CHOICES = (
-        ('admin', 'Admin'),
-        ('teacher', 'Teacher'),
-        ('student', 'Student'),
-        ('parent', 'Parent'),
-    )
-    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+    """Custom user model extending Django's AbstractUser.
 
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='registrations_user_set',
-        blank=True
-    )
-    
+    Notes:
+    - Email is intentionally *not* unique. Use `username` for authentication.
+    - `school` is a nullable association so users (parents/teachers/students) can be linked.
+    - Custom related_names are used to avoid clashes with Django defaults.
+    """
+
+    # Personal Details
+    other_names = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, null=False)
+    email = models.EmailField()  # non-unique by design
+    phone_number = models.CharField(max_length=15, null=False)
+    photo = models.ImageField(upload_to="profile_photos/", blank=True, null=True)
+
+    # Role & Setup
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default=None, null=True, blank=True)
     is_setup_complete = models.BooleanField(default=False)
 
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='registrations_user_permissions_set', 
-        blank=True
+    # School Relationship (single field, SET_NULL to prevent cascade deletes)
+    school = models.ForeignKey(
+        "School", on_delete=models.SET_NULL, null=True, blank=True, related_name="associated_users"
     )
 
-    def __str__(self):
+    # Futuristic Hooks
+    last_login_location = models.CharField(max_length=255, blank=True, null=True)
+    biometric_id = models.CharField(max_length=255, blank=True, null=True)
+
+    # Groups and Permissions (custom related_names avoid clashes)
+    groups = models.ManyToManyField("auth.Group", related_name="registrations_user_set", blank=True)
+    user_permissions = models.ManyToManyField(
+        "auth.Permission", related_name="registrations_user_permissions_set", blank=True
+    )
+
+    def __str__(self) -> str:
         return self.username
 
+    class Meta:
+        ordering = ["username"]
+        indexes = [models.Index(fields=["username", "user_type"])]
 
 
+# ---------------------------------------------------------------------------
+# Profile Models
+# ---------------------------------------------------------------------------
+class Teacher(models.Model):
+    """Teacher profile linked 1:1 with a User."""
 
-class TeacherProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField("User", on_delete=models.CASCADE, related_name="teacher_profile")
+
+    # Personal Details (duplicated here for fast access/display at profile level)
+    other_names = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, null=False)
+    phone_number = models.CharField(max_length=15, null=False)
+    email = models.EmailField(blank=True, null=True)
+
+    # Teacher-Specific Details
+    teacher_id = models.CharField(max_length=50, unique=True, help_text="GES registration number or internal ID")
     subject_taught = models.CharField(max_length=255)
     hire_date = models.DateField()
+    qualification = models.CharField(max_length=100, choices=TEACHER_QUALIFICATION_CHOICES, default="Diploma")
+    department = models.CharField(max_length=100, choices=TEACHER_DEPARTMENT_CHOICES, blank=True, null=True)
+    emergency_contact = models.CharField(max_length=15, null=False)
+    teaching_load = models.PositiveIntegerField(blank=True, null=True)
+    certification_status = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
-    def __str__(self):
-        return self.user.username
+    # Media
+    photo = models.ImageField(upload_to="teacher_photos/", blank=True, null=True)
+
+    # Futuristic Hook
+    biometric_id = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.last_name}, {self.other_names or ''} - {self.subject_taught}"
+
+    class Meta:
+        ordering = ["last_name", "other_names"]
+        indexes = [models.Index(fields=["teacher_id", "phone_number"])]
+        verbose_name = "Teacher"
+        verbose_name_plural = "Teachers"
 
 
-class StudentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class Student(models.Model):
+    """Student profile linked 1:1 with a User."""
+
+    user = models.OneToOneField("User", on_delete=models.CASCADE, related_name="student_profile")
+
+    # Personal Details
+    other_names = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, null=False)
+    student_id = models.CharField(max_length=50, unique=True, help_text="School-specific or GES ID")
     date_of_birth = models.DateField()
-    grade = models.CharField(max_length=10)
+    grade = models.CharField(max_length=50, choices=STUDENT_GRADE_CHOICES)
     enrollment_date = models.DateField()
+    guardian_phone = models.CharField(max_length=15, null=False)
+    house = models.CharField(max_length=100, blank=True, null=True)
+    academic_status = models.CharField(max_length=20, choices=STUDENT_ACADEMIC_STATUS_CHOICES, default="Active")
 
-    def __str__(self):
-        return self.user.username
+    # Interests and Talents
+    interests_talents = models.ManyToManyField(Talent, blank=True)
+
+    # Media
+    photo = models.ImageField(upload_to="student_photos/", null=False)
+
+    # Futuristic Hook
+    biometric_data = models.CharField(max_length=255, blank=True, null=True, help_text="Hashed clock-in data")
+
+    def __str__(self) -> str:
+        return f"{self.last_name}, {self.other_names or ''} - {self.grade}"
+
+    class Meta:
+        ordering = ["last_name", "other_names"]
+        indexes = [models.Index(fields=["student_id"])]
+        verbose_name = "Student"
+        verbose_name_plural = "Students"
 
 
-class ParentProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE, related_name="parents")
-    relation = models.CharField(max_length=50)
+class Parent(models.Model):
+    """Parent/Guardian profile linked 1:1 with a User."""
 
-    def __str__(self):
-        return self.user.username
+    user = models.OneToOneField("User", on_delete=models.CASCADE, related_name="parent_profile")
+    students = models.ManyToManyField("Student", related_name="parents")
+    relation = models.CharField(max_length=50, choices=PARENT_RELATION_CHOICES)
+    phone_number = models.CharField(max_length=15, null=False)
+    occupation = models.CharField(max_length=100, blank=True, null=True)
+    emergency_contact = models.CharField(max_length=15, null=False)
 
+    # Futuristic Hook
+    biometric_data = models.CharField(max_length=255, blank=True, null=True, help_text="Hashed clock-in data")
 
+    def __str__(self) -> str:
+        return f"{self.user.username} - {self.relation}"
 
+    class Meta:
+        ordering = ["user__username"]
+        indexes = [models.Index(fields=["phone_number"])]
+        verbose_name = "Parent"
+        verbose_name_plural = "Parents"

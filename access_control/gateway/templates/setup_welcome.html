@@ -7,6 +7,59 @@
     <title>Setup Welcome | Frankfurt School Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
     {% tailwind_css %}
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: fadeIn 0.3s;
+        }
+        .flower-decoration {
+            margin-top: 10px;
+            height: 50px;
+            opacity: 0.8;
+        }
+        .resend-btn {
+            color: #ef4444;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .resend-btn.ready {
+            color: #991b1b;
+            cursor: pointer;
+        }
+        .resend-btn.disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: width 0.1s linear;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <div class="flex min-h-screen items-center justify-center px-4">
@@ -24,13 +77,62 @@
                 <div>
                     <label for="otp" class="block text-sm font-medium text-gray-700">Enter OTP</label>
                     <input type="text" name="otp" id="otp" maxlength="6" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm" placeholder="6-digit code" required>
-                    {% if form.errors.otp %}
-                        <p class="text-red-600 text-sm">{{ form.errors.otp.0 }}</p>
-                    {% endif %}
                 </div>
                 <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Verify and Start Setup</button>
             </form>
-            <p class="mt-4 text-sm text-gray-600">Didn't receive the OTP? <a href="#" class="text-red-600 hover:text-red-500">Resend</a></p>
+            <p class="mt-4 text-sm text-gray-600">Didn't receive the OTP? 
+                <a href="?resend=1" id="resendBtn" class="resend-btn {% if cooldown_remaining > 0 %}disabled{% else %}ready{% endif %}" 
+                   {% if cooldown_remaining > 0 %}onclick="return false;"{% endif %}>
+                    Resend
+                </a>
+                {% if cooldown_remaining > 0 %}
+                    <span id="countdown" class="text-gray-500"> ({{ cooldown_remaining }}s)</span>
+                {% endif %}
+            </p>
+
+            <!-- Welcome Modal -->
+            {% if show_welcome %}
+                <div id="welcomeModal" class="modal" style="display: flex;">
+                    <div class="modal-content">
+                        <h3 class="text-xl font-semibold mb-2 text-red-600">Welcome aboard captain!</h3>
+                        <p class="mb-4 text-gray-700">We are glad to have you, We are going into setup shortly 😊</p>
+                        <img src="https://via.placeholder.com/100x50?text=Congrats+Flowers" alt="Congratulatory Flowers" class="flower-decoration mx-auto">
+                        <div class="progress-bar" id="progressBar"></div>
+                        <script>
+                            document.getElementById('welcomeModal').style.display = 'flex';
+                            const progressBar = document.getElementById('progressBar');
+                            let width = 0;
+                            const interval = setInterval(() => {
+                                if (width >= 100) {
+                                    clearInterval(interval);
+                                } else {
+                                    width += 12.5;
+                                    progressBar.style.width = width + '%';
+                                }
+                            }, 1000);
+                            setTimeout(function() {
+                                window.location.href = "{% url 'gateway:setup_step1' %}?step=1";
+                            }, 8000);
+                            let cooldown = {{ cooldown_remaining|default:0 }};
+                            if (cooldown > 0) {
+                                const countdownElement = document.getElementById('countdown');
+                                const resendBtn = document.getElementById('resendBtn');
+                                const timer = setInterval(() => {
+                                    cooldown--;
+                                    countdownElement.textContent = ` (${cooldown}s)`;
+                                    if (cooldown <= 0) {
+                                        clearInterval(timer);
+                                        resendBtn.classList.remove('disabled');
+                                        resendBtn.classList.add('ready');
+                                        resendBtn.removeAttribute('onclick');
+                                        countdownElement.textContent = '';
+                                    }
+                                }, 1000);
+                            }
+                        </script>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </body>

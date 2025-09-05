@@ -15,76 +15,101 @@
             <img src="{% static 'imgs/frankfurtlogoweb.png' %}" alt="Frankfurt School Manager Logo" class="mx-auto -mb-14 -mt-16 h-56 w-56 object-contain">
             <div class="text-center mb-6">
                 <h2 class="text-3xl font-bold text-red-600">Join Our School Network Today!</h2>
-                <p class="text-gray-500 mt-2">Complete this form to begin managing your school's operations with ease.</p>
+                <p class="text-gray-500 mt-2">Enter basic details to start the registration process.</p>
             </div>
 
             <form method="POST" enctype="multipart/form-data" class="space-y-6" novalidate>
                 {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
                 {{ form.non_field_errors }}
 
+                <!-- School Name and Type -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
-                        {{ form.name.label_tag }}
-                        {% if form.name.errors %}
-                        <p class="text-red-600 text-sm">{{ form.name.errors.0 }}</p>
+                        {{ form.school_name.label_tag }}
+                        {% if form.school_name.errors %}
+                            {% for error in form.school_name.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
-                        {{ form.name }}
+                        {{ form.school_name }}
                     </div>
                     <div>
                         {{ form.school_type.label_tag }}
                         {% if form.school_type.errors %}
-                        <p class="text-red-600 text-sm">{{ form.school_type.errors.0 }}</p>
+                            {% for error in form.school_type.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.school_type }}
                     </div>
                 </div>
 
+                <!-- Physical and Digital Address -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.physical_address.label_tag }}
                         {% if form.physical_address.errors %}
-                        <p class="text-red-600 text-sm">{{ form.physical_address.errors.0 }}</p>
+                            {% for error in form.physical_address.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.physical_address }}
                     </div>
                     <div>
                         {{ form.digital_address.label_tag }}
                         {% if form.digital_address.errors %}
-                        <p class="text-red-600 text-sm">{{ form.digital_address.errors.0 }}</p>
+                            {% for error in form.digital_address.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.digital_address }}
                     </div>
                 </div>
 
+                <!-- Telephone and Email -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.official_telephone_number.label_tag }}
                         {% if form.official_telephone_number.errors %}
-                        <p class="text-red-600 text-sm">{{ form.official_telephone_number.errors.0 }}</p>
+                            {% for error in form.official_telephone_number.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.official_telephone_number }}
                     </div>
                     <div>
                         {{ form.email.label_tag }}
                         {% if form.email.errors %}
-                        <p class="text-red-600 text-sm">{{ form.email.errors.0 }}</p>
+                            {% for error in form.email.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.email }}
                     </div>
                 </div>
 
+                <!-- Password Fields -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                         {{ form.password.label_tag }}
                         {% if form.password.errors %}
-                        <p class="text-red-600 text-sm">{{ form.password.errors.0 }}</p>
+                            {% for error in form.password.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.password }}
                     </div>
                     <div>
                         {{ form.confirm_password.label_tag }}
                         {% if form.confirm_password.errors %}
-                        <p class="text-red-600 text-sm">{{ form.confirm_password.errors.0 }}</p>
+                            {% for error in form.confirm_password.errors %}
+                                <p class="text-red-600 text-sm">{{ error }}</p>
+                            {% endfor %}
                         {% endif %}
                         {{ form.confirm_password }}
                     </div>
@@ -96,6 +121,12 @@
                     </button>
                 </div>
             </form>
+
+            {% if request.GET.step == 'otp_sent' %}
+                <div class="text-center mt-4 text-green-600">
+                    OTP sent! Please check your email and proceed to verify. Click "Register School" again if needed.
+                </div>
+            {% endif %}
 
             <div class="text-center mt-6">
                 <p class="text-gray-600">Already have an account? 

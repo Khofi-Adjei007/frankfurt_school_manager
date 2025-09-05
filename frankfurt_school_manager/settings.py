@@ -109,6 +109,7 @@ DATABASES = {
 #api's and set ups
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
 
 # Password validation
@@ -145,35 +146,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-    },
-    'formatters': {
-        'simple': {
-            'format': '%(levelname)s %(asctime)s %(name)s: %(message)s',
+            'level': 'DEBUG',  # Changed to DEBUG to see debug logs
         },
     },
     'loggers': {
-        'django': {
+        '': {  # Root logger
             'handlers': ['console'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': True,
         },
-        'access_control.gateway': {  # Updated from 'your_app_name'
+        'django': {
             'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': False,
+            'level': 'DEBUG',
+            'propagate': True,
         },
-        'moderator.moderators_service': {
+        'gateway': {  # Specific logger for our views
             'handlers': ['console'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': False,
         },
     },
