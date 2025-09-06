@@ -15,35 +15,56 @@ import logging
 
 
 logger = logging.getLogger(__name__)
-
 @login_required(login_url='/gateway/logins/')
 def moderators_service_page(request):
-    user = request.user
-    # Check for school relationship
-    if not hasattr(user, 'school') or not user.school:
-        school_id = request.session.get('school_id')
-        if not school_id:
-            logger.error("No school_id in session for user: %s", user.email)
-            raise Http404("No school associated with this account.")
-        try:
-            school = School.objects.get(id=school_id)
-            # Optionally update user.school if missing (for future consistency)
-            if not hasattr(user, 'school') or not user.school:
-                user.school = school
-                user.save()
-                logger.info("Updated user %s school to %s", user.email, school_id)
-        except School.DoesNotExist:
-            logger.error("School not found for id: %s", school_id)
-            raise Http404("No school associated with this account.")
-    else:
-        school = user.school
+    """
+    Render the moderator home page with user and school information.
 
+    Args:
+        request: HTTP request object
+
+    Returns:
+        Rendered moderator home template with context
+
+    Raises:
+        Http404: If no school is associated with the user
+    """
+    user = request.user
+
+    # Fetch or assign school based on user relationship
+    school = None
+    if hasattr(user, 'school') and user.school:
+        school = user.school
+        logger.debug("Fetched school %s from user relationship for user: %s", school.school_name, user.email)
+    else:
+        school_id = request.session.get('school_id')
+        if school_id:
+            try:
+                school = School.objects.get(id=school_id)
+                # Update user.school if missing (for consistency)
+                if not hasattr(user, 'school') or not user.school:
+                    user.school = school
+                    user.save()
+                    logger.info("Updated user %s school to %s", user.email, school_id)
+            except School.DoesNotExist:
+                logger.error("School not found for id: %s for user: %s", school_id, user.email)
+                raise Http404("No school associated with this account.")
+        else:
+            logger.error("No school_id in session and no school relationship for user: %s", user.email)
+            raise Http404("No school associated with this account.")
+
+    # Determine user role dynamically
+    user_role = 'Admin' if user.is_superuser else 'Moderator'  # Adjust based on your role model if exists
+
+    # Prepare context
     context = {
-        'school_name': school.school_name,  # Adjust to your School model field
-        'user_role': 'Admin',
+        'user_role': user_role,
+        'school_name': school.school_name,
     }
+
     return render(request, "moderators_service_page.html", context)
 
+# Other views remain unchanged for now, but can be standardized later
 @login_required(login_url='/gateway/logins/')
 def admissions_and_registrations(request):
     user = request.user
@@ -65,7 +86,6 @@ def settings_page(request):
         raise Http404("No school associated with this account.")
     school = user.school
 
-    # Handle both forms in the same view
     admin_settings_form = AdminSettingsForm()
     admin_school_setup_form = AdminAndSchoolSetupForm()
 
@@ -75,13 +95,13 @@ def settings_page(request):
             if admin_settings_form.is_valid():
                 admin_settings_form.save()
                 logger.info("Admin settings updated for user: %s", user.email)
-                return redirect('moderators_service:settings_page')  # Reload settings page
+                return redirect('moderators_service:settings_page')
         elif 'admin_school_setup' in request.POST:
             admin_school_setup_form = AdminAndSchoolSetupForm(request.POST, request.FILES, instance=school)
             if admin_school_setup_form.is_valid():
                 admin_school_setup_form.save()
                 logger.info("School settings updated for school: %s", school.school_name)
-                return redirect('moderators_service:settings_page')  # Reload settings page
+                return redirect('moderators_service:settings_page')
 
     context = {
         'admin_settings_form': admin_settings_form,

@@ -1,218 +1,312 @@
-
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Servervice Home Page | Frankfurt School Manager | </title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+    <title>Admin Service Home | Frankfurt School Manager</title>
+
+    <!-- External Resources -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <!-- Tailwind CSS -->
     {% tailwind_css %}
 </head>
-<body>
-
-<div class="min-h-screen  bg-gray-300 bg-cover bg-center">
+<body class="min-h-screen bg-gray-300 bg-cover bg-center">
+    <!-- Main Container -->
     <div class="min-h-10 flex justify-center">
-
-        <div class="relative bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[80%] top-0 left-0 right-0 h-auto overflow-y-auto">
+        <div class="relative bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[83%] top-0 left-0 right-0 h-auto overflow-y-auto">
+            <!-- Background Overlay -->
             <div class="absolute inset-0 bg-center opacity-10" style="background-image: url('{% static 'imgs/background.jpg' %}');"></div>
+
+            <!-- Content Layer -->
             <div class="relative z-10">
-            
-            <!--Header login, Notifications and others Start-->
-            <div class="sticky top-0 z-50 w-full bg-red-600 py-2 px-12  mb-6 flex items-center justify-between ">
 
-                <!-- User Avatar and Info -->
-                <div class="flex items-center space-x-4">
-                    <!-- User Avatar -->
-                    <img class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" alt="Bordered avatar">
-                        
-                    <!-- User Information -->
-                    <div class="flex flex-col">
-
-                    <!-- Username and SVG icon -->
-                        <div class="flex items-center space-x-1">
-                            <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
-                            <path fill="#fff" d="M8 13a1 1 0 0 1-.707-.293l-2-2a1 1 0 1 1 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 1 8 13Z"/>
-                            </svg>
-                        </div>
-                        
-                    <!-- User role -->
-                    {% if user.is_authenticated %}
-                    <p class="text-gray-100 font-thin text-xs md:text-sm">
-                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ user_role }}</span>
-                        {{ school_name }}  <!-- Dynamically display the school name -->
-                    </p>
-                {% else %}
-                    <p class="text-gray-100 font-thin text-xs md:text-sm">
-                        Please log in to see your school information.
-                    </p>
-                {% endif %}
-                
-
-
+                <!-- Header Section -->
+                <header class="sticky top-0 z-50 w-full bg-red-600 py-2 px-6 mb-6 flex items-center justify-between">
+                    <!-- User Info -->
+                    <div class="flex items-center space-x-4">
+                        <img 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" 
+                            alt="User Avatar" 
+                            class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300"
+                            aria-label="User profile picture">
+                        <div class="flex flex-col">
+                            <div class="flex items-center space-x-1">
+                                <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
+                                <svg class="w-3 h-3 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
+                                    <path fill="#fff" d="M8 13a1 1 0 0 0-.707-.293l-2-2a1 1 0 1 0 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 0 8 13Z"/>
+                                </svg>
+                            </div>
+                            {% if user.is_authenticated %}
+                                <p class="text-gray-100 font-thin text-xs md:text-sm">
+                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full">{{ user_role }}</span>
+                                    {{ school_name }}
+                                </p>
+                            {% else %}
+                                <p class="text-gray-100 font-thin text-xs md:text-sm">
+                                    Please log in to see your school information.
+                                </p>
+                            {% endif %}
                         </div>
                     </div>
 
-                    <!-- Icons for Notifications and Chat -->
+                    <!-- Action Icons -->
                     <div class="flex items-center space-x-4 mr-3 md:mr-6 bg-red-100 border border-gray-200 p-2 rounded-lg ring-2 ring-red-100 ring-offset-2">
-                        <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-red-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" type="button">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                            <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
-                            </svg> 
-                            <div class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900"></div>
-                        </button>
-                        <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-    
-                        
+                        <!-- Notification Dropdown -->
+                        <div class="relative">
+                            <button 
+                                id="dropdownNotificationButton" 
+                                data-dropdown-toggle="dropdownNotification" 
+                                class="inline-flex items-center text-sm font-medium text-red-500 hover:text-gray-900"
+                                type="button"
+                                aria-label="Toggle notifications"
+                                aria-expanded="false">
+                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                                    <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+                                </svg>
+                                <span class="absolute block w-2 h-2 bg-red-500 border-2 border-white rounded-full -top-1 start-2"></span>
+                            </button>
+                            <!-- Dropdown Menu -->
+                            <div 
+                                id="dropdownNotification" 
+                                class="hidden absolute right-0 mt-2 w-60 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                                aria-labelledby="dropdownNotificationButton">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notification 1</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notification 2</a>
+                            </div>
+                        </div>
+                        <div class="w-px h-6 bg-gray-300"></div>
+
                         <!-- Chat Icon -->
-                        <button class="relative">
-                            <svg class="w-6 h-6 text-red-500 dark:text-white hover:text-gray-900"   aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <button 
+                            class="relative text-red-500 hover:text-gray-900"
+                            aria-label="Open chat"
+                            disabled>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z" clip-rule="evenodd"/>
                                 <path fill-rule="evenodd" d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z" clip-rule="evenodd"/>
-                            </svg>  
+                            </svg>
                         </button>
+                        <div class="w-px h-6 bg-gray-300"></div>
 
-                    
-
-                         <!-- Divider -->
-                         <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-                         <a href="{% url 'moderators_service:settings_page' %}" class="relative">
+                        <!-- Settings -->
+                        <a href="{% url 'moderators_service:settings_page' %}" class="relative" aria-label="Go to settings">
                             <button type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8.68637 4.00008L11.293 1.39348C11.6835 1.00295 12.3167 1.00295 12.7072 1.39348L15.3138 4.00008H19.0001C19.5524 4.00008 20.0001 4.4478 20.0001 5.00008V8.68637L22.6067 11.293C22.9972 11.6835 22.9972 12.3167 22.6067 12.7072L20.0001 15.3138V19.0001C20.0001 19.5524 19.5524 20.0001 19.0001 20.0001H15.3138L12.7072 22.6067C12.3167 22.9972 11.6835 22.9972 11.293 22.6067L8.68637 20.0001H5.00008C4.4478 20.0001 4.00008 19.5524 4.00008 19.0001V15.3138L1.39348 12.7072C1.00295 12.3167 1.00295 11.6835 1.39348 11.293L4.00008 8.68637V5.00008C4.00008 4.4478 4.4478 4.00008 5.00008 4.00008H8.68637ZM6.00008 6.00008V9.5148L3.5148 12.0001L6.00008 14.4854V18.0001H9.5148L12.0001 20.4854L14.4854 18.0001H18.0001V14.4854L20.4854 12.0001L18.0001 9.5148V6.00008H14.4854L12.0001 3.5148L9.5148 6.00008H6.00008ZM12.0001 16.0001C9.79094 16.0001 8.00008 14.2092 8.00008 12.0001C8.00008 9.79094 9.79094 8.00008 12.0001 8.00008C14.2092 8.00008 16.0001 9.79094 16.0001 12.0001C16.0001 14.2092 14.2092 16.0001 12.0001 16.0001ZM12.0001 14.0001C13.1047 14.0001 14.0001 13.1047 14.0001 12.0001C14.0001 10.8955 13.1047 10.0001 12.0001 10.0001C10.8955 10.0001 10.0001 10.8955 10.0001 12.0001C10.0001 13.1047 10.8955 14.0001 12.0001 14.0001Z"></path>
+                                    <path d="M8.68637 4.00008L11.293 1.39348C11.6835 1.00295 12.3167 1.00295 12.7072 1.39348L15.3138 4.00008H19.0001C19.5524 4.00008 20.0001 4.4478 20.0001 5.00008V8.68637L22.6067 11.293C22.9972 11.6835 22.9972 12.3167 22.6067 12.7072L20.0001 15.3138V19.0001C20.0001 19.5524 19.5524 20.0001 19.0001 20.0001H15.3138L12.7072 22.6067C12.3167 22.9972 11.6835 22.9972 11.293 22.6067L8.68637 20.0001H5.00008C4.4478 20.0001 4.00008 19.5524 4.00008 19.0001V15.3138L1.39348 12.7072C1.00295 12.3167 1.00295 11.6835 1.39348 11.293L4.00008 8.68637V5.00008C4.00008 4.4478 4.4478 4.00008 5.00008 4.00008H8.68637ZM6.00008 6.00008V9.5148L3.5148 12.0001L6.00008 14.4854V18.0001H9.5148L12.0001 20.4854L14.4854 18.0001H18.0001V14.4854L20.4854 12.0001L18.0001 9.5148V6.00008H14.4854L12.0001 3.5148L9.5148 6.00008H6.00008ZM12.0001 16.0001C9.79094 16.0001 8.00008 14.2092 8.00008 12.0001C8.00008 9.79094 9.79094 8.00008 12.0001 8.00008C14.2092 8.00008 16.0001 9.79094 16.0001 12.0001C16.0001 14.2092 14.2092 16.0001 12.0001 16.0001ZM12.0001 14.0001C13.1047 14.0001 14.0001 13.1047 14.0001 12.0001C14.0001 10.8955 13.1047 10.0001 12.0001 10.0001C10.8955 10.0001 10.0001 10.8955 10.0001 12.0001C10.0001 13.1047 10.8955 14.0001 12.0001 14.0001Z"/>
                                 </svg>
                             </button>
                         </a>
-                        
+                        <div class="w-px h-6 bg-gray-300"></div>
 
-                            <!-- Divider -->
-                           <div class="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
-                           <a href="{% url 'gateway:logout' %}">
-                            <button class="relative">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 dark:text-white hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"></path>
+                        <!-- Logout -->
+                        <a href="{% url 'gateway:logout' %}" aria-label="Logout">
+                            <button>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"/>
                                 </svg>
                             </button>
                         </a>
-                        
-                         
                     </div>
-            </div>
-            <!--Header login, Notifications and others Ends-->
+                </header>
 
-                
-            <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10 justify-items-center items-center">
+               <!-- Main Content -->
+    <main class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10 justify-items-center items-center">
+    <!-- Admissions & Registrations Card -->
+<div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+            max-w-sm w-full h-56 p-6 bg-blue-700 border border-gray-200 rounded-lg shadow
+            ring-2 ring-blue-700 ring-offset-2 overflow-hidden">
 
-                <!-- First Card -->
-                <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-blue-700 duration-200 ...animate-breathing max-w-sm p-6 bg-blue-700 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-blue-700 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4142 3L12.4142 5H21C21.5523 5 22 5.44772 22 6V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H10.4142ZM13 9H11V15H16V13H13V9Z"></path></svg>
-                    <a href="{% url 'moderators_service:admissions_and_registrations' %}"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-200 dark:text-white">Admissions & Registrations</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">Admit new students and register new staff here.</p>
-                    <div class="flex flex-col-4 mt-8 text-gray-300">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Students</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Teachers</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Other Staffs</span>
-                   </div>
-                </div>
-            
-
-                <!-- New Second Card -->
-                <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-green-600 duration-200 ...animate-breathing max-w-sm p-7 bg-green-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-green-600 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3"  viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 0 9 12 16 22 10.1667V17.5H24V9L12 2ZM3.99902 13.4905V18.0001C5.82344 20.429 8.72812 22.0001 11.9998 22.0001 15.2714 22.0001 18.1761 20.429 20.0005 18.0001L20.0001 13.4913 12.0003 18.1579 3.99902 13.4905Z"></path></svg>                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Students & Classroom</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 italic text-sm">All year calender and events</p>
-                    <div class="flex flex-col-4 mt-6 text-gray-300">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Games</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Holidays</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Extra Curricullar</span>
-                    </div>
-                </div>
-
-  
-                <!-- New Third Card -->
-                <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-orange-600 duration-200 ...animate-breathing max-w-sm p-6 bg-orange-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-orange-600 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3"  viewBox="0 0 24 24" fill="currentColor"><path d="M16 2H4C3.44772 2 3 2.44772 3 3V21C3 21.5523 3.44772 22 4 22H12.2547C11.4638 20.8662 11 19.4872 11 18C11 14.134 14.134 11 18 11C19.0736 11 20.0907 11.2417 21 11.6736V7L16 2ZM13.7857 15.3269C13.8246 14.5997 14.3858 14.0083 15.11 13.9313L15.9807 13.8389C16.0841 13.8279 16.1815 13.7845 16.2589 13.715L16.9102 13.1299C17.4519 12.6431 18.2669 12.6218 18.8334 13.0795L19.5145 13.6298C19.5954 13.6951 19.6949 13.7333 19.7988 13.7389L20.6731 13.7857C21.4003 13.8246 21.9917 14.3858 22.0687 15.11L22.1611 15.9807C22.1721 16.0841 22.2155 16.1815 22.285 16.2589L22.8701 16.9102C23.3569 17.4519 23.3782 18.2669 22.9205 18.8334L22.3702 19.5145C22.3049 19.5954 22.2667 19.6949 22.2611 19.7988L22.2143 20.6731C22.1754 21.4003 21.6142 21.9917 20.89 22.0687L20.0193 22.1611C19.9159 22.1721 19.8185 22.2155 19.7411 22.285L19.0898 22.8701C18.5481 23.3569 17.7331 23.3782 17.1666 22.9205L16.4855 22.3702C16.4046 22.3049 16.3051 22.2667 16.2012 22.2611L15.3269 22.2143C14.5997 22.1754 14.0083 21.6142 13.9313 20.89L13.8389 20.0193C13.8279 19.9159 13.7845 19.8185 13.715 19.7411L13.1299 19.0898C12.6431 18.5481 12.6218 17.733 13.0795 17.1666L13.6298 16.4855C13.6951 16.4046 13.7333 16.3051 13.7389 16.2012L13.7857 15.3269ZM21.0303 17.0303L19.9697 15.9697L17.5 18.4393L16.0303 16.9697L14.9697 18.0303L16.9697 20.0303L17.5 20.5607L18.0303 20.0303L21.0303 17.0303Z"></path></svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Exams, Grades & Transcripts</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 text-sm italic">See all activities due on examinations & gradings</p>
-                    <div class="flex flex-col-4 mt-6 text-gray-300">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Gradings</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Examinations</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Resits</span>
-                    </div>
-                </div>
-
-
-                <!-- New Fourth Card -->
-                <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-purple-600 duration-200 ...animate-breathing max-w-sm p-6 bg-purple-600 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-purple-600 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M16 16C17.6569 16 19 17.3431 19 19C19 20.6569 17.6569 22 16 22C14.3431 22 13 20.6569 13 19C13 17.3431 14.3431 16 16 16ZM6 12C8.20914 12 10 13.7909 10 16C10 18.2091 8.20914 20 6 20C3.79086 20 2 18.2091 2 16C2 13.7909 3.79086 12 6 12ZM14.5 2C17.5376 2 20 4.46243 20 7.5C20 10.5376 17.5376 13 14.5 13C11.4624 13 9 10.5376 9 7.5C9 4.46243 11.4624 2 14.5 2Z"></path></svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Reports, Analytics & Finance</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">See all that is happening and projections</p>
-                    <div class="flex flex-col-4 mt-8 text-gray-300">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Revenues</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Expenses</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Live Reports</span>
-                    </div>
-                </div>
-            
-
-                <!-- Fith Card -->
-                <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-yellow-500 duration-200 ...animate-breathing max-w-sm p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-yellow-600 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3" viewBox="0 0 24 24" fill="currentColor"><path d="M21 10.063V4C21 3.44772 20.5523 3 20 3H19C17.0214 4.97864 13.3027 6.08728 11 6.61281V17.3872C13.3027 17.9127 17.0214 19.0214 19 21H20C20.5523 21 21 20.5523 21 20V13.937C21.8626 13.715 22.5 12.9319 22.5 12 22.5 11.0681 21.8626 10.285 21 10.063ZM5 7C3.89543 7 3 7.89543 3 9V15C3 16.1046 3.89543 17 5 17H6L7 22H9V7H5Z"></path></svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white">Events & Communications</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 text-sm dark:text-gray-400 italic">Send and receieve Communications...</p>
-                    <div class="flex flex-col-4 mt-6 text-gray-300">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Staff</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>Parents</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>students</span>
-                    </div>
-                </div>
-
-
-                <!-- Sixth Card -->
-                <div class="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 hover:bg-teal-600 duration-200 ...animate-breathing max-w-sm p-6 bg-teal-600 relative border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ring-2 ring-teal-600 ring-offset-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-100 dark:text-gray-400 mb-3 relative z-10" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 3C3.44772 3 3 3.44772 3 4V20C3 20.5523 3.44772 21 4 21H14C14.5523 21 15 20.5523 15 20V10.6973L17.0215 20.2076C17.1363 20.7479 17.6673 21.0927 18.2075 20.9779L21.142 20.3541C21.6822 20.2393 22.027 19.7083 21.9122 19.1681L19.0015 5.47402C18.8866 4.9338 18.3556 4.58896 17.8154 4.70378L15 5.30221V5C15 4.44772 14.5523 4 14 4H9C9 3.44772 8.55228 3 8 3H4ZM9 6H13V14H9V6ZM13 16V19H9V16H13ZM7 17V19H5V17H7ZM18.7699 18.8137L18.3541 16.8577L19.3323 16.6498L19.748 18.6058L18.7699 18.8137Z"></path>
-                    </svg>
-                    <a href="#"><h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-100 dark:text-white relative z-10">Library & I.C.T</h5></a>
-                    <p class="mb-3 font-normal text-gray-100 dark:text-gray-400 italic text-sm relative z-10">All Library and Information Technology activities</p>
-                    <div class="flex flex-col-4 mt-6 text-gray-300 relative z-10">
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5 flex-shrink-0"></span>Library</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5 flex-shrink-0"></span>I.C.T</span>
-                    <span class="flex items-center text-sm font-medium text-gray-300 dark:text-white me-3"><span class="flex w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5 flex-shrink-0"></span>Hackertons</span>
-                    </div>
-                </div>
-
-                
-            </div>
-            
-            <div class="h-auto flex flex-col mt-24">
-                <div class="w-full bg-gray-50 py-2 border border-t-red-500 shadow-lg flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0">
-                    <!-- First Logo -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-4 max-h-32 max-w-32">
-                    </div>
-            
-                    <!-- Divider (Hidden on small screens) -->
-                    <div class="w-px h-6 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
-            
-                    <!-- Second Logo -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <img src="{% static 'imgs/otherschool.jpg' %}" alt="Frankfurt School Manager Logo" class="ml-4 max-h-16 max-w-16">
-                    </div>
-                </div>
-            </div>   
- 
-            </div>
-        </div>
-
+    <!-- Left: Content -->
+    <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+        <a href="#">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-200">
+                Admissions & Registrations
+            </h5>
+            <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
+                Admit new students <br> and register new staff here.
+            </p>
+        </a>
     </div>
+
+    <!-- Roles pinned to bottom-left -->
+    <div class="absolute bottom-0 left-2 flex flex-col gap-1 w-fit z-10">
+        <span class="inline-flex items-center gap-1 text-xs font-medium bg-blue-600 px-2 py-0.5 rounded-md text-gray-100">
+            🧑‍🎓 Students
+        </span>
+        <span class="inline-flex items-center gap-1 text-xs font-medium bg-purple-500 px-2 py-0.5 rounded-md text-gray-100">
+            👩‍🏫 Teachers
+        </span>
+        <span class="inline-flex items-center gap-1 text-xs font-medium bg-indigo-500 px-2 py-0.5 rounded-md text-gray-100">
+            🏢 Other Staff
+        </span>
+    </div>
+
+    <!-- Right: Illustration -->
+    <img src="{% static 'imgs/admissions.png' %}" 
+         alt="Admissions" 
+         class="absolute right-0 bottom-0 w-40 h-40 object-contain transform translate-x-2.5 opacity-95">
 </div>
 
-<script>
-</script>
+
+
+
+<!-- Students & Classroom Card -->
+<div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+            max-w-sm w-full h-56 p-6 bg-green-600 border border-gray-200 rounded-lg shadow
+            ring-2 ring-green-600 ring-offset-2 overflow-hidden">
+
+    <!-- Left: Content -->
+    <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+        <a href="#" class="pointer-events-none opacity-50">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-100">
+                Students & Classroom
+            </h5>
+              <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
+                Everything about students<br>and classrooms
+        </p>
+        </a>
+      
+        <!-- Roles as pill badges -->
+<div class="mt-2 flex flex-wrap gap-2 text-xs">
+  <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">
+    📘 Classes
+  </span>
+  <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">
+    📚 Subjects
+  </span>
+  <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">
+    🧑‍🎓 Students
+  </span>
+</div>
+
+
+    </div>
+
+    <!-- Right: Illustration (sitting on bottom) -->
+    <img src="{% static 'imgs/classroom.png' %}" 
+         alt="Classroom" 
+         class="absolute right-0 bottom-0 w-48 h-48 object-contain transform translate-x-2.5 opacity-95">
+</div>
+
+
+    <!-- Exams, Grades & Transcripts Card -->
+    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
+                max-w-sm w-full h-56 p-6 bg-orange-600 border border-gray-200 rounded-lg shadow ring-2 ring-orange-600 ring-offset-2 
+                flex justify-between items-center">
+        <div class="flex flex-col justify-between h-full">
+            <a href="#" class="pointer-events-none opacity-50">
+                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Exams, Grades & Transcripts</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 text-sm italic">See all activities due on examinations & gradings</p>
+            <div class="flex flex-col text-gray-300">
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Gradings</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Examinations</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Resits</span>
+            </div>
+        </div>
+        <img src="{% static 'imgs/exams.png' %}" alt="Exams" class="w-24 h-24 object-contain ml-4">
+    </div>
+
+    <!-- Reports, Analytics & Finance Card -->
+    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
+                max-w-sm w-full h-56 p-6 bg-purple-600 border border-gray-200 rounded-lg shadow ring-2 ring-purple-600 ring-offset-2 
+                flex justify-between items-center">
+        <div class="flex flex-col justify-between h-full">
+            <a href="#" class="pointer-events-none opacity-50">
+                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Reports, Analytics & Finance</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 text-sm italic">See all that is happening and projections</p>
+            <div class="flex flex-col text-gray-300">
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Revenues</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Expenses</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Live Reports</span>
+            </div>
+        </div>
+        <img src="{% static 'imgs/reports.png' %}" alt="Reports" class="w-24 h-24 object-contain ml-4">
+    </div>
+
+    <!-- Events & Communications Card -->
+    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
+                max-w-sm w-full h-56 p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow ring-2 ring-yellow-600 ring-offset-2 
+                flex justify-between items-center">
+        <div class="flex flex-col justify-between h-full">
+            <a href="#" class="pointer-events-none opacity-50">
+                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Events & Communications</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 text-sm italic">Send and receive communications...</p>
+            <div class="flex flex-col text-gray-300">
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Staff</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Parents</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Students</span>
+            </div>
+        </div>
+        <img src="{% static 'imgs/events.png' %}" alt="Events" class="w-24 h-24 object-contain ml-4">
+    </div>
+
+    <!-- Library & ICT Card -->
+    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
+                max-w-sm w-full h-56 p-6 bg-teal-600 border border-gray-200 rounded-lg shadow ring-2 ring-teal-600 ring-offset-2 
+                flex justify-between items-center">
+        <div class="flex flex-col justify-between h-full">
+            <a href="#" class="pointer-events-none opacity-50">
+                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Library & ICT</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-100 text-sm italic">All Library and ICT activities</p>
+            <div class="flex flex-col text-gray-300">
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Library</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>ICT</span>
+                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Hackathons</span>
+            </div>
+        </div>
+        <img src="{% static 'imgs/library.png' %}" alt="Library" class="w-24 h-24 object-contain ml-4">
+    </div>
+
+</main>
+
+                <!-- Footer Section -->
+                <footer class="h-auto flex flex-col mt-24">
+                    <div class="w-full bg-gray-50 py-2 border-t border-red-500 shadow-lg flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0">
+                        <div class="flex-shrink-0 flex items-center">
+                            <img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-4 max-h-32 max-w-32">
+                        </div>
+                        <div class="w-px h-6 bg-gray-300 hidden sm:block"></div>
+                        <div class="flex-shrink-0 flex items-center">
+                            <img src="{% static 'imgs/otherschool.jpg' %}" alt="Partner Logo" class="ml-4 max-h-16 max-w-16">
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Section -->
+    <script>
+        // Notification Dropdown Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('dropdownNotificationButton');
+            const dropdown = document.getElementById('dropdownNotification');
+
+            button.addEventListener('click', () => {
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !isExpanded);
+                dropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+                    button.setAttribute('aria-expanded', 'false');
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
