@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
+    <!-- Meta and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Service Home | Frankfurt School Manager</title>
@@ -11,274 +11,285 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
+
+    <!-- CSS Styles -->
+    <style>
+        /* Hide elements until Alpine initializes */
+        [x-cloak] { display: none !important; }
+    </style>
 
     <!-- Tailwind CSS -->
     {% tailwind_css %}
 </head>
+
 <body class="min-h-screen bg-gray-300 bg-cover bg-center">
-    <!-- Main Container -->
+    <!-- Main Layout Container -->
     <div class="min-h-10 flex justify-center">
         <div class="relative bg-white rounded-lg mx-auto shadow-md w-full md:w-[90%] lg:w-[83%] top-0 left-0 right-0 h-auto overflow-y-auto">
             <!-- Background Overlay -->
             <div class="absolute inset-0 bg-center opacity-10" style="background-image: url('{% static 'imgs/background.jpg' %}');"></div>
 
-            <!-- Content Layer -->
+            <!-- Content Wrapper -->
             <div class="relative z-10">
 
                 <!-- Header Section -->
-                <header class="sticky top-0 z-50 w-full bg-red-600 py-2 px-6 mb-6 flex items-center justify-between">
-                    <!-- User Info -->
-                    <div class="flex items-center space-x-4">
-                        <img 
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32o4YmIS8HWcsOFMi4LEyFVMJZX8NY3jPJQ&s" 
-                            alt="User Avatar" 
-                            class="w-12 h-12 md:w-14 md:h-14 p-1 rounded-full ring-2 ring-gray-300"
-                            aria-label="User profile picture">
-                        <div class="flex flex-col">
-                            <div class="flex items-center space-x-1">
-                                <span class="text-gray-100 font-semibold text-sm md:text-base">Khofi Adjei</span>
-                                <svg class="w-3 h-3 text-gray-100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill="currentColor" d="m18.774 8.245-.892-.893a1.5 1.5 0 0 1-.437-1.052V5.036a2.484 2.484 0 0 0-2.48-2.48H13.7a1.5 1.5 0 0 1-1.052-.438l-.893-.892a2.484 2.484 0 0 0-3.51 0l-.893.892a1.5 1.5 0 0 1-1.052.437H5.036a2.484 2.484 0 0 0-2.48 2.481V6.3a1.5 1.5 0 0 1-.438 1.052l-.892.893a2.484 2.484 0 0 0 0 3.51l.892.893a1.5 1.5 0 0 1 .437 1.052v1.264a2.484 2.484 0 0 0 2.481 2.481H6.3a1.5 1.5 0 0 1 1.052.437l.893.892a2.484 2.484 0 0 0 3.51 0l.893-.892a1.5 1.5 0 0 1 1.052-.437h1.264a2.484 2.484 0 0 0 2.481-2.48V13.7a1.5 1.5 0 0 1 .437-1.052l.892-.893a2.484 2.484 0 0 0 0-3.51Z"/>
-                                    <path fill="#fff" d="M8 13a1 1 0 0 0-.707-.293l-2-2a1 1 0 1 0 1.414-1.414l1.42 1.42 5.318-3.545a1 1 0 0 1 1.11 1.664l-6 4A1 1 0 0 0 8 13Z"/>
-                                </svg>
-                            </div>
-                            {% if user.is_authenticated %}
-                                <p class="text-gray-100 font-thin text-xs md:text-sm">
-                                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full">{{ user_role }}</span>
-                                    {{ school_name }}
-                                </p>
-                            {% else %}
-                                <p class="text-gray-100 font-thin text-xs md:text-sm">
-                                    Please log in to see your school information.
-                                </p>
-                            {% endif %}
-                        </div>
+                <header class="w-full bg-red-600 mb-10 shadow px-6 py-3 flex items-center justify-between">
+                    <!-- Left: Logo and School Name -->
+                    <div class="flex items-center gap-3 text-lg font-semibold text-white">
+                        <img src="{% static 'imgs/badge.png' %}" alt="School Logo" class="w-10 h-10 rounded-full">
+                        <span>Future People Academy</span>
                     </div>
 
-                    <!-- Action Icons -->
-                    <div class="flex items-center space-x-4 mr-3 md:mr-6 bg-red-100 border border-gray-200 p-2 rounded-lg ring-2 ring-red-100 ring-offset-2">
-                        <!-- Notification Dropdown -->
-                        <div class="relative">
-                            <button 
-                                id="dropdownNotificationButton" 
-                                data-dropdown-toggle="dropdownNotification" 
-                                class="inline-flex items-center text-sm font-medium text-red-500 hover:text-gray-900"
+                    <!-- Right: Icons and User -->
+                    <div class="flex items-center gap-6">
+                        <!-- Notification Icon -->
+                        <button
+                            type="button"
+                            aria-label="Notifications"
+                            class="relative w-9 h-9 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition"
+                        >
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6z"/>
+                            </svg>
+                            <span class="absolute top-1 right-1 block w-2 h-2 bg-yellow-400 rounded-full" aria-hidden="true"></span>
+                        </button>
+
+                        <!-- Profile and Dropdown -->
+                        <div
+                            x-data="{ open: false }"
+                            x-on:keydown.escape.window="open = false"
+                            class="relative flex items-center gap-3"
+                        >
+                            <!-- Avatar -->
+                            {% if request.user.photo %}
+                                <img src="{{ request.user.photo.url }}" alt="User Avatar"
+                                     class="w-10 h-10 rounded-full border-2 border-white object-cover">
+                            {% else %}
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white font-bold border-2 border-white">
+                                    {{ request.user.username|first|upper }}
+                                </div>
+                            {% endif %}
+
+                            <!-- Name and Role -->
+                            <div class="leading-tight text-white">
+                                <div class="font-semibold">
+                                    {{ request.user.get_full_name|default:request.user.username }}
+                                </div>
+                                <div class="text-xs opacity-90 capitalize">
+                                    {{ request.user.user_type|default:"User" }}
+                                </div>
+                            </div>
+
+                            <!-- Chevron Toggle -->
+                            <button
                                 type="button"
-                                aria-label="Toggle notifications"
-                                aria-expanded="false">
-                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                                    <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
+                                @click="open = !open"
+                                :aria-expanded="open.toString()"
+                                aria-haspopup="true"
+                                class="ml-1 w-8 h-8 flex items-center justify-center rounded-md bg-white/10 hover:bg-white/20 text-white transition focus:outline-none"
+                            >
+                                <svg
+                                    :class="{'rotate-180': open}"
+                                    class="w-4 h-4 transform transition-transform duration-200"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                >
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
-                                <span class="absolute block w-2 h-2 bg-red-500 border-2 border-white rounded-full -top-1 start-2"></span>
                             </button>
-                            <!-- Dropdown Menu -->
-                            <div 
-                                id="dropdownNotification" 
-                                class="hidden absolute right-0 mt-2 w-60 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
-                                aria-labelledby="dropdownNotificationButton">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notification 1</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notification 2</a>
+
+                            <!-- Dropdown Panel -->
+                            <div
+                                x-cloak
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 -translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-in duration-150"
+                                x-transition:leave-start="opacity-100 translate-y-0"
+                                x-transition:leave-end="opacity-0 -translate-y-2"
+                                @click.away="open = false"
+                                class="absolute right-0 top-14 w-56 bg-white rounded-lg shadow-lg py-2 z-50"
+                                role="menu"
+                                aria-label="Profile menu"
+                            >
+                                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100" role="menuitem">
+                                    <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path d="M10 4a3 3 0 100 6 3 3 0 000-6zM2 18a8 8 0 1116 0H2z" />
+                                    </svg>
+                                    Profile
+                                </a>
+                                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-gray-100" role="menuitem">
+                                    <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                        <path d="M11.3 1.046a1 1 0 00-2.6 0L8 3.06a7.001 7.001 0 00-2.12.55L3.06 3.3a1 1 0 000 2.6l1.81 2.81c-.12.7-.12 1.42 0 2.12L3.06 11.4a1 1 0 000 2.6l2.82 1.81c.7.12 1.42.12 2.12 0L11.4 18.94a1 1 0 002.6 0l1.81-1.81c.7.12 1.42.12 2.12 0l2.82-1.81a1 1 0 000-2.6l-1.81-2.82c.12-.7.12-1.42 0-2.12L18.94 6.06a1 1 0 00-2.6-2.6l-1.81 1.81a7.001 7.001 0 00-2.12-.55L11.3 1.046z"/>
+                                    </svg>
+                                    Settings
+                                </a>
+                                <div class="border-t border-gray-100 my-1"></div>
+                                <form method="POST" action="#" class="px-0">
+                                    {% csrf_token %}
+                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" role="menuitem">
+                                        <svg class="w-4 h-4 text-gray-500 inline-block me-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M16 13v-2H7V8l-5 4 5 4v-3h9zM20 3H12a2 2 0 00-2 2v4h2V5h8v14h-8v-4h-2v4a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+                                        </svg>
+                                        Logout
+                                    </button>
+                                </form>
                             </div>
                         </div>
-                        <div class="w-px h-6 bg-gray-300"></div>
-
-                        <!-- Chat Icon -->
-                        <button 
-                            class="relative text-red-500 hover:text-gray-900"
-                            aria-label="Open chat"
-                            disabled>
-                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z" clip-rule="evenodd"/>
-                            </svg>
-                        </button>
-                        <div class="w-px h-6 bg-gray-300"></div>
-
-                        <!-- Settings -->
-                        <a href="{% url 'moderators_service:settings_page' %}" class="relative" aria-label="Go to settings">
-                            <button type="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8.68637 4.00008L11.293 1.39348C11.6835 1.00295 12.3167 1.00295 12.7072 1.39348L15.3138 4.00008H19.0001C19.5524 4.00008 20.0001 4.4478 20.0001 5.00008V8.68637L22.6067 11.293C22.9972 11.6835 22.9972 12.3167 22.6067 12.7072L20.0001 15.3138V19.0001C20.0001 19.5524 19.5524 20.0001 19.0001 20.0001H15.3138L12.7072 22.6067C12.3167 22.9972 11.6835 22.9972 11.293 22.6067L8.68637 20.0001H5.00008C4.4478 20.0001 4.00008 19.5524 4.00008 19.0001V15.3138L1.39348 12.7072C1.00295 12.3167 1.00295 11.6835 1.39348 11.293L4.00008 8.68637V5.00008C4.00008 4.4478 4.4478 4.00008 5.00008 4.00008H8.68637ZM6.00008 6.00008V9.5148L3.5148 12.0001L6.00008 14.4854V18.0001H9.5148L12.0001 20.4854L14.4854 18.0001H18.0001V14.4854L20.4854 12.0001L18.0001 9.5148V6.00008H14.4854L12.0001 3.5148L9.5148 6.00008H6.00008ZM12.0001 16.0001C9.79094 16.0001 8.00008 14.2092 8.00008 12.0001C8.00008 9.79094 9.79094 8.00008 12.0001 8.00008C14.2092 8.00008 16.0001 9.79094 16.0001 12.0001C16.0001 14.2092 14.2092 16.0001 12.0001 16.0001ZM12.0001 14.0001C13.1047 14.0001 14.0001 13.1047 14.0001 12.0001C14.0001 10.8955 13.1047 10.0001 12.0001 10.0001C10.8955 10.0001 10.0001 10.8955 10.0001 12.0001C10.0001 13.1047 10.8955 14.0001 12.0001 14.0001Z"/>
-                                </svg>
-                            </button>
-                        </a>
-                        <div class="w-px h-6 bg-gray-300"></div>
-
-                        <!-- Logout -->
-                        <a href="{% url 'gateway:logout' %}" aria-label="Logout">
-                            <button>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-500 hover:text-gray-900" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M5 11H13V13H5V16L0 12L5 8V11ZM3.99927 18H6.70835C8.11862 19.2447 9.97111 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.97111 4 8.11862 4.75527 6.70835 6H3.99927C5.82368 3.57111 8.72836 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C8.72836 22 5.82368 20.4289 3.99927 18Z"/>
-                                </svg>
-                            </button>
-                        </a>
                     </div>
                 </header>
 
-               <!-- Main Content -->
-    <main class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10 justify-items-center items-center">
-    <!-- Admissions & Registrations Card -->
-<div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
-            max-w-sm w-full h-56 p-6 bg-blue-700 border border-gray-200 rounded-lg shadow
-            ring-2 ring-blue-700 ring-offset-2 overflow-hidden">
+                <!-- Main Content -->
+                <main class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 mb-10 justify-items-center items-center">
+                    <!-- Admissions & Registrations Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-blue-700 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-blue-700 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                      <a href="{% url 'moderators_service:admissions_and_registrations' %}">
+                            <h5 class="text-xl font-semibold tracking-tight text-white whitespace-nowrap">
+                                Admissions & Registrations
+                            </h5>
+                            <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
+                                Admit new students <br> and register new staff.
+                            </p>
+                        </a>
 
-    <!-- Left: Content -->
-    <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
-        <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-200">
-                Admissions & Registrations
-            </h5>
-            <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
-                Admit new students <br> and register new staff here.
-            </p>
-        </a>
-    </div>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">🧑‍🎓 Students</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">👩‍🏫 Teachers</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">🏢 Other Staff</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/admissions.png' %}" alt="Admissions"
+                             class="absolute right-0 bottom-0 w-44 h-44 object-contain transform translate-x-3 translate-y-3 opacity-95">
+                    </div>
 
-    <!-- Roles pinned to bottom-left -->
-    <div class="absolute bottom-0 left-2 flex flex-col gap-1 w-fit z-10">
-        <span class="inline-flex items-center gap-1 text-xs font-medium bg-blue-600 px-2 py-0.5 rounded-md text-gray-100">
-            🧑‍🎓 Students
-        </span>
-        <span class="inline-flex items-center gap-1 text-xs font-medium bg-purple-500 px-2 py-0.5 rounded-md text-gray-100">
-            👩‍🏫 Teachers
-        </span>
-        <span class="inline-flex items-center gap-1 text-xs font-medium bg-indigo-500 px-2 py-0.5 rounded-md text-gray-100">
-            🏢 Other Staff
-        </span>
-    </div>
+                    <!-- Students & Classroom Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-green-600 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-green-600 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                            <a href="#" class="pointer-events-none">
+                                <h5 class="text-xl font-semibold whitespace-nowrap tracking-tight text-white">
+                                    Students & classrooms
+                                </h5>
+                                <p class="mt-4 font-normal text-white text-sm italic leading-snug">
+                                    Everything about students<br>and classrooms
+                                </p>
+                            </a>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">📘 Classes</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">📚 Subjects</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">🧑‍🎓 Students</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/classroom.png' %}" alt="Classroom"
+                             class="absolute right-0 bottom-0 w-52 h-52 object-contain transform translate-x-4 translate-y-10 opacity-95">
+                    </div>
 
-    <!-- Right: Illustration -->
-    <img src="{% static 'imgs/admissions.png' %}" 
-         alt="Admissions" 
-         class="absolute right-0 bottom-0 w-40 h-40 object-contain transform translate-x-2.5 opacity-95">
-</div>
+                    <!-- Exams, Grades & Transcripts Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-orange-600 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-orange-600 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                            <a href="#" class="pointer-events-none">
+                                <h5 class="text-xl font-semibold whitespace-nowrap tracking-tight text-white">
+                                    Exams, Grades & Transcripts
+                                </h5>
+                                <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
+                                    See all activities due on examinations & gradings
+                                </p>
+                            </a>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">📝 Gradings</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">📖 Examinations</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">🔄 Resits</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/exams-bro.png' %}" alt="Exams"
+                             class="absolute right-0 bottom-0 w-44 h-44 object-contain transform translate-x-4 translate-y-4 opacity-95">
+                    </div>
 
+                    <!-- Reports, Analytics & Finance Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-purple-600 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-purple-600 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                            <a href="#" class="pointer-events-none">
+                                <h5 class="text-xl font-bold tracking-tight text-white whitespace-nowrap">
+                                    Reports, Analytics & Finance
+                                </h5>
+                                <p class="mt-2 text-sm italic text-white/90 leading-snug">
+                                    See all that is happening and projections
+                                </p>
+                            </a>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">💰 Revenues</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">💸 Expenses</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">📊 Live Reports</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/Report-bro.png' %}" alt="Reports"
+                             class="absolute right-0 bottom-0 w-52 h-52 object-contain transform translate-x-8 translate-y-10 opacity-95">
+                    </div>
 
+                    <!-- Events & Communications Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-yellow-600 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                            <a href="#" class="pointer-events-none">
+                                <h5 class="text-xl font-semibold whitespace-nowrap tracking-tight text-gray-100">
+                                    Events & Communications
+                                </h5>
+                                <p class="mt-2 font-normal text-gray-100 text-sm italic leading-snug">
+                                    - Communicate to your school community and manage events -
+                                </p>
+                            </a>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">👨‍🏫 Staff</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">👨‍👩‍👧 Parents</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">🧑‍🎓 Students</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/Cancelled event-cuate.png' %}" alt="Events"
+                             class="absolute right-0 bottom-0 w-40 h-40 object-contain transform translate-x-3 translate-y-3 opacity-95">
+                    </div>
 
-
-<!-- Students & Classroom Card -->
-<div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
-            max-w-sm w-full h-56 p-6 bg-green-600 border border-gray-200 rounded-lg shadow
-            ring-2 ring-green-600 ring-offset-2 overflow-hidden">
-
-    <!-- Left: Content -->
-    <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
-        <a href="#" class="pointer-events-none opacity-50">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-100">
-                Students & Classroom
-            </h5>
-              <p class="mt-4 font-normal text-gray-100 text-sm italic leading-snug">
-                Everything about students<br>and classrooms
-        </p>
-        </a>
-      
-        <!-- Roles as pill badges -->
-<div class="mt-2 flex flex-wrap gap-2 text-xs">
-  <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">
-    📘 Classes
-  </span>
-  <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">
-    📚 Subjects
-  </span>
-  <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">
-    🧑‍🎓 Students
-  </span>
-</div>
-
-
-    </div>
-
-    <!-- Right: Illustration (sitting on bottom) -->
-    <img src="{% static 'imgs/classroom.png' %}" 
-         alt="Classroom" 
-         class="absolute right-0 bottom-0 w-48 h-48 object-contain transform translate-x-2.5 opacity-95">
-</div>
-
-
-    <!-- Exams, Grades & Transcripts Card -->
-    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
-                max-w-sm w-full h-56 p-6 bg-orange-600 border border-gray-200 rounded-lg shadow ring-2 ring-orange-600 ring-offset-2 
-                flex justify-between items-center">
-        <div class="flex flex-col justify-between h-full">
-            <a href="#" class="pointer-events-none opacity-50">
-                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Exams, Grades & Transcripts</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-100 text-sm italic">See all activities due on examinations & gradings</p>
-            <div class="flex flex-col text-gray-300">
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Gradings</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Examinations</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Resits</span>
-            </div>
-        </div>
-        <img src="{% static 'imgs/exams.png' %}" alt="Exams" class="w-24 h-24 object-contain ml-4">
-    </div>
-
-    <!-- Reports, Analytics & Finance Card -->
-    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
-                max-w-sm w-full h-56 p-6 bg-purple-600 border border-gray-200 rounded-lg shadow ring-2 ring-purple-600 ring-offset-2 
-                flex justify-between items-center">
-        <div class="flex flex-col justify-between h-full">
-            <a href="#" class="pointer-events-none opacity-50">
-                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Reports, Analytics & Finance</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-100 text-sm italic">See all that is happening and projections</p>
-            <div class="flex flex-col text-gray-300">
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Revenues</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Expenses</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Live Reports</span>
-            </div>
-        </div>
-        <img src="{% static 'imgs/reports.png' %}" alt="Reports" class="w-24 h-24 object-contain ml-4">
-    </div>
-
-    <!-- Events & Communications Card -->
-    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
-                max-w-sm w-full h-56 p-6 bg-yellow-500 border border-gray-200 rounded-lg shadow ring-2 ring-yellow-600 ring-offset-2 
-                flex justify-between items-center">
-        <div class="flex flex-col justify-between h-full">
-            <a href="#" class="pointer-events-none opacity-50">
-                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Events & Communications</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-100 text-sm italic">Send and receive communications...</p>
-            <div class="flex flex-col text-gray-300">
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Staff</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>Parents</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Students</span>
-            </div>
-        </div>
-        <img src="{% static 'imgs/events.png' %}" alt="Events" class="w-24 h-24 object-contain ml-4">
-    </div>
-
-    <!-- Library & ICT Card -->
-    <div class="mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing 
-                max-w-sm w-full h-56 p-6 bg-teal-600 border border-gray-200 rounded-lg shadow ring-2 ring-teal-600 ring-offset-2 
-                flex justify-between items-center">
-        <div class="flex flex-col justify-between h-full">
-            <a href="#" class="pointer-events-none opacity-50">
-                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-100">Library & ICT</h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-100 text-sm italic">All Library and ICT activities</p>
-            <div class="flex flex-col text-gray-300">
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-blue-600 rounded-full me-1.5"></span>Library</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-purple-500 rounded-full me-1.5"></span>ICT</span>
-                <span class="flex items-center text-sm font-medium"><span class="w-2.5 h-2.5 bg-indigo-500 rounded-full me-1.5"></span>Hackathons</span>
-            </div>
-        </div>
-        <img src="{% static 'imgs/library.png' %}" alt="Library" class="w-24 h-24 object-contain ml-4">
-    </div>
-
-</main>
+                    <!-- Library & ICT Card -->
+                    <div class="relative mb-3 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 animate-breathing
+                                max-w-sm w-full h-56 p-6 bg-teal-600 border border-gray-200 rounded-lg shadow
+                                ring-2 ring-teal-600 ring-offset-2 overflow-hidden">
+                        <div class="relative z-10 flex flex-col justify-between h-full w-2/3">
+                            <a href="#" class="pointer-events-none">
+                                <h5 class="text-xl font-semibold whitespace-nowrap tracking-tight text-gray-100">
+                                    Library & ICT
+                                </h5>
+                                <p class="mt-2 font-normal text-gray-100 text-sm italic leading-snug">
+                                    Manage your library resources and ICT services across the school
+                                </p>
+                            </a>
+                            <div class="mt-2 flex flex-wrap gap-2 text-xs">
+                                <span class="flex items-center gap-1 bg-blue-600 text-gray-100 px-2 py-0.5 rounded-md">📖 Library</span>
+                                <span class="flex items-center gap-1 bg-purple-500 text-gray-100 px-2 py-0.5 rounded-md">💻 ICT</span>
+                                <span class="flex items-center gap-1 bg-indigo-500 text-gray-100 px-2 py-0.5 rounded-md">🚀 Hackathons</span>
+                            </div>
+                        </div>
+                        <img src="{% static 'imgs/Studying-amico.png' %}" alt="Library"
+                             class="absolute right-0 bottom-0 w-44 h-44 object-contain transform translate-x-2.5 opacity-95">
+                    </div>
+                </main>
 
                 <!-- Footer Section -->
-                <footer class="h-auto flex flex-col mt-24">
-                    <div class="w-full bg-gray-50 py-2 border-t border-red-500 shadow-lg flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0">
-                        <div class="flex-shrink-0 flex items-center">
-                            <img src="{% static 'imgs/webdimen.png' %}" alt="Frankfurt School Manager Logo" class="mr-4 max-h-32 max-w-32">
-                        </div>
-                        <div class="w-px h-6 bg-gray-300 hidden sm:block"></div>
-                        <div class="flex-shrink-0 flex items-center">
-                            <img src="{% static 'imgs/otherschool.jpg' %}" alt="Partner Logo" class="ml-4 max-h-16 max-w-16">
-                        </div>
+                <footer class="w-full bg-gray-50 border-t border-red-500 py-3 flex flex-col sm:flex-row items-center justify-between px-6 text-sm text-gray-600">
+                    <div>
+                        © 2025 Future People Academy. All rights reserved.
+                    </div>
+                    <div class="flex items-center gap-2 mt-2 sm:mt-0">
+                        <span>Built and maintained by</span>
+                        <img src="{% static 'imgs/future_people_logo copy.png' %}" alt="Webdimen Logo" class="h-6">
                     </div>
                 </footer>
 
@@ -288,8 +299,8 @@
 
     <!-- JavaScript Section -->
     <script>
-        // Notification Dropdown Toggle
-        document.addEventListener('DOMContentLoaded', () => {
+        // Notification Dropdown Toggle (Deprecated: Replaced by Alpine.js dropdown)
+        /* document.addEventListener('DOMContentLoaded', () => {
             const button = document.getElementById('dropdownNotificationButton');
             const dropdown = document.getElementById('dropdownNotification');
 
@@ -299,14 +310,13 @@
                 dropdown.classList.toggle('hidden');
             });
 
-            // Close dropdown when clicking outside
             document.addEventListener('click', (event) => {
                 if (!button.contains(event.target) && !dropdown.contains(event.target)) {
                     button.setAttribute('aria-expanded', 'false');
                     dropdown.classList.add('hidden');
                 }
             });
-        });
+        }); */
     </script>
 </body>
 </html>
