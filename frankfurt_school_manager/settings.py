@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'students',
+    'attendance',
+    'notifications',
 
     # Custom apps
     'access_control.gateway',
@@ -54,6 +57,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 AUTH_USER_MODEL = 'gateway.User'
 LOGIN_URL = '/gateway/logins/'
+
 
 # Middleware
 MIDDLEWARE = [

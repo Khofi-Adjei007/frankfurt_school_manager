@@ -26,4 +26,5 @@ urlpatterns = [
     path('fsm_core_users/users/', include("fsm_core_users.users.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
     path('admin/', admin.site.urls),
+    path("students/", include("students.urls")),
 ]
