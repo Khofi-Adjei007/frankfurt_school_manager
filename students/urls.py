@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
+from .views import StudentRegistrationView
 
 app_name = "students"
 
 urlpatterns = [
-    path("register/", views.register_student, name="register_student"),
+    path("register/step/<int:step>/", StudentRegistrationView.as_view(), name="registration_step"),
+    path("register/", StudentRegistrationView.as_view(), name="registration_start"),  # default step 0
+    path("register/success/<int:pk>/", StudentRegistrationView.as_view(), name="registration_success"),
 ]

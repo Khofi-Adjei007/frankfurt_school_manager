@@ -1,4 +1,37 @@
 from django.db import models
+import psycopg2
+
+
+# students/models.py (append or create students/draft_models.py)
+from django.db import models
+from django.contrib.postgres.fields import JSONField  # if using Postgres
+from django.conf import settings
+
+# If not using Postgres, use models.JSONField (Django 3.1+) — prefer models.JSONField for compatibility
+try:
+    JSON = models.JSONField  # Django native
+except AttributeError:
+    from django.contrib.postgres.fields import JSONField as JSON
+    JSON = JSON
+
+class StudentRegistrationDraft(models.Model):
+    """
+    Stores stepper draft data and uploaded files (optional).
+    Admins can save progress and resume later.
+    """
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="student_registration_drafts"
+    )
+    data = JSON(blank=True, null=True)  # stores cleaned_data per step
+    uploaded_files = JSON(blank=True, null=True)  # { "personal.photo": "<storage_path>", ... }
+
+    is_active = models.BooleanField(default=True)  # mark old drafts inactive if needed
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Draft #{self.pk} by {self.created_by or 'unknown'} - {self.updated_at.isoformat()}"
 
 # -------------------------
 # Choice Constants
