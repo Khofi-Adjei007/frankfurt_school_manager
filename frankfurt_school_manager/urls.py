@@ -17,14 +17,24 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 urlpatterns = [
-    path('moderator/moderators_service/', include("moderator.moderators_service.urls")),
-    path('teachers/teachers_service/', include("teachers.teachers_service.urls")),
-    path('gateway/', include('access_control.gateway.urls', namespace='gateway')),
-    path('parents/parents_service/', include("parents.parents_service.urls")),
-    path('sia/sch_explorer/', include("sia.sch_explorer.urls")),
-    path('fsm_core_users/users/', include("fsm_core_users.users.urls")),
-    path("__reload__/", include("django_browser_reload.urls")),
-    path('admin/', admin.site.urls),
+    # API routes
+    path("api/students/", include("students.api.urls")),
+    path("api/teachers_service/", include("teachers_service.api.urls")),
+    path("api/moderators/", include("moderator.api.urls")),
+    path("api/parents/", include("parents.api.urls")),
+
+    # Web routes (HTML templates, forms, dashboards)
     path("students/", include("students.urls")),
+    path('teachers/teachers_service/', include("teachers_service.urls")),
+    path("moderator/moderators_service/", include("moderator.moderators_service.urls")),
+    path("parents/parents_service/", include("parents.parents_service.urls")),
+    path("sia/sch_explorer/", include("sia.sch_explorer.urls")),
+    path("fsm_core_users/users/", include("fsm_core_users.users.urls")),
+
+    # Utilities
+    path("__reload__/", include("django_browser_reload.urls")),
+    path("gateway/", include("access_control.gateway.urls", namespace="gateway")),
+    path("admin/", admin.site.urls),
 ]

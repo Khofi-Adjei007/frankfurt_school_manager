@@ -10,13 +10,13 @@ from .models import Student, Talent, Sport, StudentRegistrationDraft
 from .utils import save_temp_file, move_temp_to_model_field, open_temp_file
 
 # Import your step forms. Adjust paths to actual files.
-from .forms.registrations.personal_info import StudentPersonalForm
-from .forms.registrations.education_background import StudentEducationForm
-from .forms.registrations.family_info import StudentFamilyForm
-from .forms.registrations.talents_sports import StudentTalentsForm
-from .forms.registrations.medical_info import StudentMedicalForm
+from .forms.registrations.personal_info import StudentPersonalInfoForm
+from .forms.registrations.education_background import StudentEducationBackgroundForm
+from .forms.registrations.family_info import StudentFamilyInfoForm
+from .forms.registrations.talents_sports import StudentTalentsSportsForm
+from .forms.registrations.medical_info import StudentMedicalInfoForm
 from .forms.registrations.documents import StudentDocumentsForm
-from .forms.registrations.office_use import StudentOfficeForm
+from .forms.registrations.office_use import StudentOfficeUseForm
 
 SESSION_KEY = "student_registration_data"
 SESSION_FILES_KEY = "student_registration_files"
@@ -30,13 +30,13 @@ class StudentRegistrationView(View):
     - Commits atomically in final step.
     """
     FORMS = [
-        ("personal", StudentPersonalForm),
-        ("education", StudentEducationForm),
-        ("family", StudentFamilyForm),
-        ("talents", StudentTalentsForm),
-        ("medical", StudentMedicalForm),
+        ("personal", StudentPersonalInfoForm),
+        ("education", StudentEducationBackgroundForm),
+        ("family", StudentFamilyInfoForm),
+        ("talents", StudentTalentsSportsForm),
+        ("medical", StudentMedicalInfoForm),
         ("documents", StudentDocumentsForm),
-        ("office", StudentOfficeForm),
+        ("office", StudentOfficeUseForm),
     ]
 
     def get_form(self, request, step, post=False):

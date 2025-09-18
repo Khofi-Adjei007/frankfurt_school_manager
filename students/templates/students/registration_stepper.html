@@ -1,0 +1,59 @@
+<!-- students/registration_stepper.html -->
+
+<div class="w-full max-w-4xl mx-auto">
+  <!-- Stepper indicators -->
+  <div class="flex items-center mb-6">
+    <div class="flex-1 flex items-center">
+      <div class="w-6 h-6 flex items-center justify-center rounded-full 
+                  text-white font-bold 
+                  {% if step == 1 %} bg-red-600 {% else %} bg-gray-400 {% endif %}">
+        1
+      </div>
+      <div class="flex-1 h-1 {% if step > 1 %} bg-red-600 {% else %} bg-gray-300 {% endif %}"></div>
+    </div>
+    <div class="flex-1 flex items-center">
+      <div class="w-6 h-6 flex items-center justify-center rounded-full 
+                  text-white font-bold 
+                  {% if step == 2 %} bg-red-600 {% else %} bg-gray-400 {% endif %}">
+        2
+      </div>
+      <div class="flex-1 h-1 {% if step > 2 %} bg-red-600 {% else %} bg-gray-300 {% endif %}"></div>
+    </div>
+    <div class="flex-1 flex items-center">
+      <div class="w-6 h-6 flex items-center justify-center rounded-full 
+                  text-white font-bold 
+                  {% if step == 3 %} bg-red-600 {% else %} bg-gray-400 {% endif %}">
+        3
+      </div>
+    </div>
+  </div>
+
+  <!-- Step forms -->
+  <div class="bg-white shadow rounded-lg p-6 border border-gray-200">
+    {% if step == 1 %}
+      {% include "students/forms/personal_info.html" %}
+    {% elif step == 2 %}
+      {% include "students/forms/education_background.html" %}
+    {% elif step == 3 %}
+      {% include "students/forms/family_info.html" %}
+    {% endif %}
+  </div>
+
+  <!-- Navigation buttons -->
+  <div class="mt-6 flex justify-between">
+    {% if step > 1 %}
+      <button type="submit" name="prev" value="1" class="px-4 py-2 bg-gray-300 rounded-lg">
+        Previous
+      </button>
+    {% endif %}
+    {% if step < 3 %}
+      <button type="submit" name="next" value="1" class="px-4 py-2 bg-red-600 text-white rounded-lg">
+        Next
+      </button>
+    {% else %}
+      <button type="submit" name="finish" value="1" class="px-4 py-2 bg-green-600 text-white rounded-lg">
+        Finish
+      </button>
+    {% endif %}
+  </div>
+</div>
