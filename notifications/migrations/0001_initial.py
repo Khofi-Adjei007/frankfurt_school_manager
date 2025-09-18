@@ -9,10 +9,10 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('moderators_service', '0003_admin_admin_photo_admin_middle_name'),
-        ('parents_service', '0001_initial'),
+        ('moderators', '0003_admin_admin_photo_admin_middle_name'),
+        ('parents', '0001_initial'),
         ('students', '0003_studentregistrationdraft'),
-        ('teachers_service', '0001_initial'),
+        ('teachers', '0001_initial'),
     ]
 
     operations = [

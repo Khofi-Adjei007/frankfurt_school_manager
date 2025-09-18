@@ -10,20 +10,20 @@ class NotificationLog(models.Model):
         blank=True
     )
     recipient_parent = models.ForeignKey(
-        "parents_service.Parent",
+        "parents.ParentProfile",
         on_delete=models.CASCADE,
         null=True,
         blank=True
     )
     recipient_teacher = models.ForeignKey(
-        "teachers_service.Teacher",
+        "teachers.Teacher",
         on_delete=models.CASCADE,
         null=True,
         blank=True
     )
     recipient_staff = models.ForeignKey(
-        "moderators_service.Admin",
-        on_delete=models.CASCADE,
+        "moderators.Admin",
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )

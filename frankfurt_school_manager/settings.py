@@ -41,13 +41,13 @@ INSTALLED_APPS = [
     'students',
     'attendance',
     'notifications',
+    'parents',
+    'teachers',
+    'moderators',
 
     # Custom apps
     'access_control.gateway',
     'sia.sch_explorer',
-    'teachers_service',
-    'parents.parents_service',
-    'moderator.moderators_service',
 
     # Tailwind theme
     'theme',

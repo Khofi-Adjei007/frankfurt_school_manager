@@ -5,19 +5,19 @@ from django.core.exceptions import ValidationError
 class AttendanceLog(models.Model):
     student = models.ForeignKey(
         "students.Student",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     teacher = models.ForeignKey(
-        "teachers_service.Teacher",
-        on_delete=models.CASCADE,
+        "teachers.Teacher",
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     staff = models.ForeignKey(
-        "moderators_service.Admin",
-        on_delete=models.CASCADE,
+        "moderators.Admin",
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )

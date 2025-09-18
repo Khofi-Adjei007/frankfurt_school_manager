@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('moderators_service', '0003_admin_admin_photo_admin_middle_name'),
+        ('moderators', '0003_admin_admin_photo_admin_middle_name'),
         ('students', '0001_initial'),
     ]
 
